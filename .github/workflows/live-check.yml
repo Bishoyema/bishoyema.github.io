@@ -1,0 +1,39 @@
+name: Live site check
+
+# Tests the public website in a real Chrome browser on GitHub's servers:
+# pages, videos, phone layout, menu, contact buttons, WhatsApp and LinkedIn links.
+# Run it any time from Actions → Live site check → Run workflow.
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Public site URL (several allowed, separated by spaces; the first one that works is checked)"
+        required: true
+        default: "https://bishoyema.github.io"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Only the browser driver is needed; it drives the Chrome already installed on the runner.
+      - name: Install the browser driver
+        run: |
+          mkdir -p "$RUNNER_TEMP/check"
+          cp scripts/live-check.mjs "$RUNNER_TEMP/check/"
+          npm install --prefix "$RUNNER_TEMP/check" --no-audit --no-fund playwright-core@1.63.0
+
+      - name: Check the live site
+        env:
+          SITE_URLS: ${{ inputs.url }}
+        run: node "$RUNNER_TEMP/check/live-check.mjs" $SITE_URLS

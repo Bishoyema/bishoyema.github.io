@@ -51,6 +51,12 @@ Until you switch the Pages source, GitHub Pages keeps serving your previous `ind
 so nothing breaks in the meantime. The same workflow also checks every push and pull
 request (lint, types, build).
 
+## Check the live site
+
+**Actions → Live site check → Run workflow**, paste your public URL, and GitHub tests the
+real site in Chrome: every page, the videos, phone and tablet layouts, the menu, and the
+email, WhatsApp and LinkedIn buttons. A green tick means everything works.
+
 ---
 
 ## Editing content
