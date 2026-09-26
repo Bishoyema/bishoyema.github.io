@@ -217,4 +217,5 @@ for (const [name, data] of Object.entries(shots)) {
 
 console.log(`\nSite: ${SITE}`);
 console.log(failures ? `RESULT: ${failures} check(s) failed, ${warnings} warning(s)` : `RESULT: all checks passed${warnings ? `, ${warnings} warning(s)` : ""}`);
-process.exit(failures ? 1 : 0);
+// Set the exit code instead of calling process.exit(), which can cut off output still being written to a pipe.
+process.exitCode = failures ? 1 : 0;
