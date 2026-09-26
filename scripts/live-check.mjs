@@ -9,6 +9,9 @@
  * Locally, set CHROME_PATH to a Chrome/Chromium binary. Requires `playwright-core`
  * (the workflow installs it; it is not a project dependency).
  */
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import path from "node:path";
 import { chromium } from "playwright-core";
 
 const PROFILE = {
@@ -87,6 +90,30 @@ for (const file of VIDEOS) {
 }
 const missing = await fetch(`${SITE}/work/this-page-does-not-exist/`);
 check(missing.status === 404, `unknown page returns 404 (${missing.status})`);
+
+// Every image the site serves must be byte-identical to the repository (proves the latest media is live).
+const repo = process.env.GITHUB_WORKSPACE || process.env.REPO_DIR;
+if (repo && existsSync(path.join(repo, "public", "media", "images"))) {
+  const files = [
+    ...readdirSync(path.join(repo, "public", "media", "images")).map((f) => `/media/images/${f}`),
+    ...readdirSync(path.join(repo, "public", "og")).map((f) => `/og/${f}`),
+    "/og.jpg",
+  ];
+  const sha = (data) => createHash("sha256").update(data).digest("hex");
+  const mismatched = [];
+  for (let i = 0; i < files.length; i += 10) {
+    await Promise.all(
+      files.slice(i, i + 10).map(async (file) => {
+        const response = await fetch(SITE + file);
+        const live = sha(Buffer.from(await response.arrayBuffer()));
+        if (response.status !== 200 || live !== sha(readFileSync(path.join(repo, "public", file)))) {
+          mismatched.push(`${file} (${response.status})`);
+        }
+      }),
+    );
+  }
+  check(mismatched.length === 0, `all ${files.length} images on the live site match the repository${mismatched.length ? `: ${mismatched.slice(0, 5).join(", ")}` : ""}`);
+}
 
 // ---------------------------------------------------------------- 2. External contact links
 try {

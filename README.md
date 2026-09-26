@@ -25,7 +25,7 @@ Other commands:
 | `npm start` | Previews the finished build at http://localhost:3000 (run `npm run build` first) |
 | `npm run lint` | Checks the code |
 | `npm run typecheck` | Checks TypeScript types |
-| `npm run media` | Regenerates the optimised images and videos (needs `ffmpeg`, see below) |
+| `npm run media` | Regenerates the optimised images and videos (needs `ffmpeg`, see below). Add a name to redo one asset, e.g. `npm run media -- impactx-automation-a` |
 
 ## Deploy to Vercel (recommended)
 
@@ -147,7 +147,7 @@ scripts/
 | `35780.jpg` "Your ads aren't failing" | Work card + case study |
 | `35779.jpg` "30 Days of Content" (product-led) | Hero card, work card, case study (variant A), social image |
 | `35776.jpg` "30 Days of Content" (lifestyle) | Case study (variant B) |
-| `35778.jpg` "Your business doesn't sleep" (detailed) | Work card, case study (variant A) |
+| `35778.jpg` "Your business doesn't sleep" (detailed) | Work card, case study (variant A). In the web copy, a small third-party app logo inside the mock-up is replaced with a neutral icon; the original file is unchanged |
 | `35777.jpg` "Your business doesn't sleep" (4 steps) | Case study (variant B) |
 | `brand-story.jpg` (poster frame) | Film poster in the AI Video gallery and case study |
 | `skincare-ad.jpg` (poster frame) | Hero card, film poster in the AI Video gallery and case study |

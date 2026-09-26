@@ -6,7 +6,8 @@
  * They are never modified, moved, renamed or deleted.
  *
  * Requirements: `sharp` (dev dependency) and `ffmpeg` on your PATH.
- * Usage:        npm run media
+ * Usage:        npm run media               (everything)
+ *               npm run media -- <name>     (only assets whose name contains <name>)
  *
  * Output (all committed, so deploys never need to run this):
  *   public/media/images/<name>-<width>.{avif,webp}  + <name>-<maxWidth>.jpg fallback
@@ -24,12 +25,36 @@ const root = fileURLToPath(new URL("..", import.meta.url));
 const IMAGES = path.join(root, "public/media/images");
 const VIDEOS = path.join(root, "public/media/videos");
 
+/**
+ * The detailed automation poster shows a third-party app logo inside its mock chat interface.
+ * The web copy covers it with a neutral "reply sent" icon drawn in the poster's own icon style
+ * (thin ring, dark centre, white line icon). The original file is never changed.
+ */
+const neutralReplyIcon = (() => {
+  const [cx, cy] = [580.5, 473.5];
+  const [sx, sy] = [0.85, 1.05]; // the glass panel is seen in perspective
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="880" height="1168">
+  <defs>
+    <radialGradient id="g" cx="0.45" cy="0.4" r="0.65">
+      <stop offset="0" stop-color="#1f4a43"/>
+      <stop offset="1" stop-color="#113b3a"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0.7"/></filter>
+  </defs>
+  <ellipse cx="${cx}" cy="${cy}" rx="15.9" ry="22.2" fill="url(#g)" filter="url(#soft)"/>
+  <g transform="translate(${cx - 12 * sx} ${cy - 12 * sy}) scale(${sx} ${sy})" fill="none" stroke="#dfe5e1" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 4.5h12a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-7l-4.5 3.5v-3.5H6a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3Z"/>
+    <path d="m8.6 11.1 2.4 2.4 4.6-4.6"/>
+  </g>
+</svg>`;
+})();
+
 /** Campaign posters, 880×1168 originals. */
 const posters = [
   { src: "35780.jpg", name: "impactx-key-visual" },
   { src: "35779.jpg", name: "impactx-ai-video-a" },
   { src: "35776.jpg", name: "impactx-ai-video-b" },
-  { src: "35778.jpg", name: "impactx-automation-a" },
+  { src: "35778.jpg", name: "impactx-automation-a", overlay: neutralReplyIcon },
   { src: "35777.jpg", name: "impactx-automation-b" },
 ];
 
@@ -84,6 +109,16 @@ async function writeResponsive(input, name, widths) {
   console.log(`  image  ${name}  [${widths.join(", ")}]`);
 }
 
+/** Original file, or an in-memory copy with the overlay applied (the original is only read). */
+async function posterInput(poster) {
+  const input = path.join(root, poster.src);
+  if (!poster.overlay) return input;
+  return sharp(input).composite([{ input: Buffer.from(poster.overlay), top: 0, left: 0 }]).png().toBuffer();
+}
+
+const only = process.argv[2];
+const selected = (name) => !only || name.includes(only);
+
 function ffmpeg(args) {
   execFileSync("ffmpeg", ["-v", "error", "-y", ...args], { stdio: "inherit" });
 }
@@ -116,13 +151,13 @@ async function main() {
 
   try {
     console.log("Posters");
-    for (const p of posters) await writeResponsive(path.join(root, p.src), p.name, [440, 880]);
+    for (const p of posters.filter((p) => selected(p.name))) await writeResponsive(await posterInput(p), p.name, [440, 880]);
 
     console.log("Film posters");
-    for (const p of filmPosters) await writeResponsive(path.join(root, p.src), p.name, [240, 480]);
+    for (const p of filmPosters.filter((p) => selected(p.name))) await writeResponsive(path.join(root, p.src), p.name, [240, 480]);
 
     console.log("Films");
-    for (const film of films) {
+    for (const film of films.filter((f) => selected(f.name))) {
       const input = path.join(root, film.src);
 
       copyFileSync(input, path.join(VIDEOS, `${film.name}.mp4`));
