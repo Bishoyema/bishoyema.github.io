@@ -12,6 +12,8 @@ export type ImageAsset = {
   width: number;
   height: number;
   alt: string;
+  /** CSS object-position used when the image is cropped, e.g. "50% 0%" to keep the top. */
+  focus?: string;
 };
 
 export type FilmAsset = {
@@ -115,6 +117,6 @@ export const stills = {
     frame("skincare-film-still-2", "The red Original pack on a white studio set."),
     frame("skincare-film-still-3", "The blue Invisible+ pack on a white studio set."),
     frame("skincare-film-still-4", "The orange Face pack with patches in the foreground."),
-    frame("skincare-film-still-5", "The full range of three packs under the line “Your blemish hero”."),
+    { ...frame("skincare-film-still-5", "The full range of three packs under the line “Your blemish hero”."), focus: "50% 0%" },
   ],
 };

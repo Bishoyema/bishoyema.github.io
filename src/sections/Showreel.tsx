@@ -73,7 +73,6 @@ export function Showreel() {
                     <ChapterButton
                       seconds={chapter.seconds}
                       until={chapters[index + 1]?.seconds}
-                      label={`Play from ${chapter.time}: ${chapter.title}`}
                       className="flex w-full cursor-pointer items-center gap-5 py-3.5 text-left text-mute transition-colors duration-300 hover:text-paper data-[active]:text-paper"
                     >
                       <span className="tabular w-10 text-sm text-faint group-data-[active]/chapter:text-signal">

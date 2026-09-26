@@ -164,26 +164,25 @@ function FilmMedia({ project }: { project: Project }) {
           <div className="lg:col-span-6">
             <h2 className="label text-faint">Key frames</h2>
             <p className="mt-2 text-sm text-mute">Frames from the film. Select one to play from that moment.</p>
-            <ol className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-1 lg:gap-0 lg:border-t lg:border-line">
+            <ol className="no-scrollbar -mx-5 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:px-8 lg:mx-0 lg:grid lg:grid-cols-1 lg:gap-0 lg:overflow-visible lg:border-t lg:border-line lg:px-0 lg:pb-0">
               {frames.map((frame, index) => (
-                <li key={frame.time} className="lg:border-b lg:border-line">
+                <li key={frame.time} className="w-[40vw] max-w-[11rem] shrink-0 snap-start lg:w-auto lg:max-w-none lg:border-b lg:border-line">
                   <ChapterButton
                     seconds={frame.seconds}
                     until={frames[index + 1]?.seconds}
-                    label={`Play from ${frame.time}: ${frame.title}`}
                     className="flex w-full cursor-pointer flex-col gap-3 text-left lg:flex-row lg:items-center lg:gap-5 lg:py-3"
                   >
                     <span className="relative block aspect-[9/16] w-full overflow-hidden rounded-xl ring-1 ring-line transition-[box-shadow] duration-300 group-data-[active]/chapter:ring-2 group-data-[active]/chapter:ring-signal lg:w-14 lg:shrink-0 lg:rounded-lg">
-                      <ResponsiveImage image={frame.still} sizes="(min-width: 1024px) 56px, (min-width: 640px) 30vw, 45vw" />
+                      <ResponsiveImage image={frame.still} sizes="(min-width: 1024px) 56px, 40vw" alt="" />
                       <span className="absolute inset-0 grid place-items-center bg-ink/40 opacity-0 transition-opacity duration-300 group-hover/chapter:opacity-100 lg:hidden">
                         <Play width={20} height={20} />
                       </span>
                     </span>
-                    <span className="flex flex-1 items-baseline gap-4">
+                    <span className="flex flex-1 flex-col gap-1 lg:flex-row lg:items-baseline lg:gap-4">
                       <span className="tabular text-sm text-faint group-data-[active]/chapter:text-signal">{frame.time}</span>
                       <span className="flex-1">
                         <span className="block text-[0.9375rem] font-medium text-paper">{frame.title}</span>
-                        <span className="mt-0.5 block text-sm leading-snug text-mute">{frame.note}</span>
+                        <span className="mt-0.5 hidden text-sm leading-snug text-mute lg:block">{frame.note}</span>
                       </span>
                     </span>
                   </ChapterButton>

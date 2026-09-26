@@ -33,6 +33,7 @@ export function ResponsiveImage({ image, sizes, className, imgClassName, priorit
         loading={priority ? "eager" : "lazy"}
         decoding="async"
         fetchPriority={priority ? "high" : undefined}
+        style={image.focus ? { objectPosition: image.focus } : undefined}
         className={cn("block h-full w-full object-cover", imgClassName)}
       />
     </picture>

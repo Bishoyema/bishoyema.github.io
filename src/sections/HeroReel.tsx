@@ -58,7 +58,6 @@ export function HeroReel() {
 
       <Link
         href="/#showreel"
-        aria-label="Watch the featured film: ImpactX Brand Film"
         className="absolute left-1/2 top-[1%] z-20 w-[51%] -translate-x-1/2 animate-card-in [animation-delay:400ms]"
       >
         <LoopVideo
@@ -71,7 +70,10 @@ export function HeroReel() {
           className="aspect-[9/16] rounded-[1.25rem] shadow-[0_40px_80px_-24px_rgb(0_0_0/0.9),0_0_0_1px_rgb(243_240_234/0.16)]"
         >
           <Viewfinder />
-          <span className="absolute inset-x-5 top-5 z-10 flex items-center justify-between text-[0.625rem] font-medium tracking-[0.12em] text-paper">
+          <span
+            aria-hidden
+            className="absolute inset-x-5 top-5 z-10 flex items-center justify-between text-[0.625rem] font-medium tracking-[0.12em] text-paper"
+          >
             <span className="flex items-center gap-1.5">
               <span className="size-1.5 rounded-full bg-signal animate-rec" />
               REC
@@ -82,7 +84,10 @@ export function HeroReel() {
             <span className="label block text-[0.625rem] text-paper/70">Featured film</span>
             <span className="mt-1 flex items-center justify-between gap-3">
               <span className="font-display text-[1.375rem] leading-none text-paper">ImpactX Brand Film</span>
-              <span className="grid size-9 shrink-0 place-items-center rounded-full bg-paper text-ink transition-transform duration-500 group-hover/reel:scale-110">
+              <span
+                aria-hidden
+                className="grid size-9 shrink-0 place-items-center rounded-full bg-paper text-ink transition-transform duration-500 group-hover/reel:scale-110"
+              >
                 <Play width={14} height={14} className="translate-x-px" />
               </span>
             </span>

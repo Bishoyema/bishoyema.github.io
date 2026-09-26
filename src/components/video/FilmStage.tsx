@@ -50,21 +50,20 @@ type ChapterButtonProps = {
   until?: number;
   className?: string;
   children: ReactNode;
-  label: string;
 };
 
-export function ChapterButton({ seconds, until, className, children, label }: ChapterButtonProps) {
+export function ChapterButton({ seconds, until, className, children }: ChapterButtonProps) {
   const { time, playFrom } = useFilmStage();
   const active = time !== null && time >= seconds - 0.05 && (until === undefined || time < until - 0.05);
   return (
     <button
       type="button"
       onClick={() => playFrom(seconds)}
-      aria-label={label}
       aria-current={active ? "true" : undefined}
       data-active={active ? "" : undefined}
       className={cn("group/chapter", className)}
     >
+      <span className="sr-only">Play from </span>
       {children}
     </button>
   );

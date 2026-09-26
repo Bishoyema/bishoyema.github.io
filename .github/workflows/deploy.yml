@@ -1,0 +1,73 @@
+name: Build and deploy
+
+# Every push and pull request is linted, type-checked and built.
+# Pushes to main are also published to GitHub Pages, but only once
+# Settings → Pages → Source is set to "GitHub Actions". Until then the
+# deploy job is skipped, so nothing fails. (Vercel deploys separately.)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    outputs:
+      pages: ${{ steps.pages.outputs.build_type }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+
+      - name: Build static site
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io
+
+      - name: Check whether GitHub Pages deploys from Actions
+        id: pages
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          type=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type 2>/dev/null || echo none)
+          echo "GitHub Pages build type: $type"
+          echo "build_type=$type" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.pages.outputs.build_type == 'workflow'
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    if: needs.build.outputs.pages == 'workflow'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

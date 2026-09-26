@@ -175,10 +175,9 @@ export function FilmPlayer({ film, preview = false, sizes, className, priority =
         <button
           type="button"
           onClick={() => playFrom(0)}
-          aria-label={`Play ${film.title} with sound, ${formatTime(film.duration)}`}
           className="absolute inset-0 flex cursor-pointer flex-col justify-between p-4 text-left sm:p-5"
         >
-          <span className="flex items-center justify-between gap-3">
+          <span aria-hidden className="flex items-center justify-between gap-3">
             {mode === "preview" ? (
               <span className="label inline-flex items-center gap-2 rounded-full bg-ink/55 px-3 py-1.5 text-[0.6875rem] text-paper backdrop-blur-md">
                 <SoundOff width={14} height={14} />
@@ -195,12 +194,18 @@ export function FilmPlayer({ film, preview = false, sizes, className, priority =
           <span className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent" />
 
           <span className="relative flex items-center gap-3">
-            <span className="grid size-14 place-items-center rounded-full bg-paper text-ink shadow-[0_8px_30px_rgb(0_0_0/0.35)] transition-transform duration-500 ease-out group-hover/film:scale-110 sm:size-16">
+            <span
+              aria-hidden
+              className="grid size-14 place-items-center rounded-full bg-paper text-ink shadow-[0_8px_30px_rgb(0_0_0/0.35)] transition-transform duration-500 ease-out group-hover/film:scale-110 sm:size-16"
+            >
               <Play width={22} height={22} className="translate-x-[1px]" />
             </span>
             <span className="leading-tight">
               <span className="block text-[0.9375rem] font-medium text-paper">Watch with sound</span>
-              <span className="block text-sm text-paper/70">{film.title}</span>
+              <span className="block text-sm text-paper/70">
+                {film.title}
+                <span className="sr-only">, {formatTime(film.duration)}</span>
+              </span>
             </span>
           </span>
         </button>

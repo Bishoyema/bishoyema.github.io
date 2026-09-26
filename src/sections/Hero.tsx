@@ -25,10 +25,10 @@ export function Hero() {
             className="mt-6 font-display text-[clamp(4.75rem,24vw,7.5rem)] uppercase leading-[0.8] sm:text-[clamp(6rem,19vw,10rem)] lg:text-[clamp(7.5rem,12.4vw,12.5rem)]"
           >
             <span className="block overflow-hidden pb-[0.05em]">
-              <span className="block animate-rise [animation-delay:100ms]">Bishoy</span>
-            </span>
+              <span className="block animate-unmask">Bishoy</span>
+            </span>{" "}
             <span className="block overflow-hidden pb-[0.05em]">
-              <span className="block animate-rise [animation-delay:200ms]">Emad</span>
+              <span className="block animate-unmask [animation-delay:90ms]">Emad</span>
             </span>
           </h1>
 
