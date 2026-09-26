@@ -1,0 +1,35 @@
+{
+  "name": "bishoy-emad-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio of Bishoy Emad, AI Creative & Digital Marketing Freelancer.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "serve out -l 3000",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "media": "node scripts/optimize-media.mjs"
+  },
+  "dependencies": {
+    "motion": "13.4.4",
+    "next": "16.3.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "serve": "^14.2.6",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
