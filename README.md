@@ -68,7 +68,8 @@ All text lives in `src/data/`. You never need to touch the layout to change copy
 | `src/data/profile.ts` | Name, role, intro, email, WhatsApp, LinkedIn, CV link, About text and stats |
 | `src/data/projects.ts` | The five projects and their case studies |
 | `src/data/services.ts` | Services, AI video formats, "Why work with me" |
-| `src/data/skills.ts` | Tools, capabilities, certifications |
+| `src/data/capabilities.ts` | The Capabilities list |
+| `src/data/certifications.ts` | Certifications |
 | `src/data/media.ts` | Image/video registry and alt text |
 
 ### Adding a project
@@ -88,7 +89,7 @@ src/
   app/              routes: layout + SEO, home page, /work/[slug] case studies, 404,
                     sitemap, robots, favicon/app icons
   sections/         home page sections (Hero, Showreel, SelectedWork, AIVideo, Services,
-                    About, Skills + Certifications, WhyMe, Contact)
+                    About, Capabilities, Certifications, WhyMe, Contact)
   components/       shared UI: Nav, Footer, Button, ResponsiveImage, Reveal, ...
     projects/       project card and case-study layout
     video/          FilmPlayer (films with sound), LoopVideo (silent previews),
@@ -170,10 +171,7 @@ is designed to work without them, and adding them is a one-line change (see TODO
 - [ ] **ImpactX.** Confirm the relationship (client, employer or your own brand) and that you
       may show the work. It is labelled "Brand Campaign" for ImpactX. If it was self-initiated,
       change `type` to `"Concept Project"` in `src/data/projects.ts`.
-- [ ] **Exact tools per project.** Cards currently say "AI video generation", "AI image
-      generation" and similar, because the files don't record which app made what. Replace them
-      with the exact apps in `tools` in `src/data/projects.ts` (e.g. Higgsfield, ChatGPT, Canva).
-- [ ] **Certificates.** Add public credential links (`url` in `src/data/skills.ts`) to show a
+- [ ] **Certificates.** Add public credential links (`url` in `src/data/certifications.ts`) to show a
       "Verify" link, and confirm the Meta Social Media Marketing certificate is completed.
 - [ ] **CV.** Add a PDF to `public/` and set `cvUrl` in `src/data/profile.ts` to show a
       "Download CV" button (important for job applications).

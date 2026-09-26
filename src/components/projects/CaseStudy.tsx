@@ -78,15 +78,6 @@ export function CaseStudy({ project, next }: { project: Project; next: Project }
           <CaseRow title="Deliverables">
             <List items={project.caseStudy.deliverables} />
           </CaseRow>
-          <CaseRow title="Tools used">
-            <ul className="flex flex-wrap gap-2">
-              {project.tools.map((tool) => (
-                <li key={tool} className="rounded-full border border-line-strong px-3.5 py-1.5 text-[0.9375rem] text-paper">
-                  {tool}
-                </li>
-              ))}
-            </ul>
-          </CaseRow>
           <CaseRow title="Final result">
             <p>{project.caseStudy.result}</p>
           </CaseRow>

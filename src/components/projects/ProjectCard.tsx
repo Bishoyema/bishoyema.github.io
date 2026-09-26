@@ -53,14 +53,6 @@ export function ProjectCard({ project, index, className }: { project: Project; i
 
       <p className="mt-3 max-w-xl text-[1.0625rem] leading-relaxed text-mute">{project.summary}</p>
 
-      <ul aria-label="Tools used" className="mt-5 flex flex-wrap gap-2">
-        {project.tools.map((tool) => (
-          <li key={tool} className="rounded-full border border-line px-3 py-1 text-xs text-mute">
-            {tool}
-          </li>
-        ))}
-      </ul>
-
       <span
         aria-hidden
         className="mt-6 inline-flex items-center gap-2 border-b border-line-strong pb-1 text-[0.9375rem] font-medium transition-colors duration-300 group-hover:border-paper"

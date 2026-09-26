@@ -127,6 +127,8 @@ const waitForPlayback = (page, selector, minTime = 0.4) =>
 
   await page.goto(`${SITE}/`, { waitUntil: "load" });
   check((await page.locator("h1").textContent())?.includes("Bishoy"), "desktop: home page renders the headline");
+  check((await page.locator("#capabilities li").count()) === 6, "desktop: Capabilities section lists its 6 capabilities");
+  check((await page.locator("#skills").count()) === 0 && (await page.getByText("Tools used").count()) === 0, "desktop: no tools section or “Tools used” labels on the home page");
   check(await waitForPlayback(page, "#top video"), "desktop: hero film preview plays");
   await page.waitForTimeout(1200);
   shots.desktop = (await page.screenshot({ type: "jpeg", quality: 45, scale: "css" })).toString("base64");
@@ -158,6 +160,7 @@ const waitForPlayback = (page, selector, minTime = 0.4) =>
   check((await contact.getByRole("link", { name: /LinkedIn/ }).getAttribute("href")) === PROFILE.linkedin, "desktop: LinkedIn button points to the profile");
 
   await page.goto(`${SITE}/work/impactx-brand-film/`, { waitUntil: "load" });
+  check((await page.getByText("Tools used").count()) === 0, "desktop: case study has no “Tools used” section");
   await page.getByRole("button", { name: /^Play from 0:30/ }).click({ timeout: 5000 }).catch(() => {});
   await page.waitForTimeout(2500);
   const frame = await videoState(page, "article video");

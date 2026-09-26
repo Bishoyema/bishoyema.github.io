@@ -24,7 +24,7 @@ export function AIVideo() {
               AI video, from script <Accent>to screen</Accent>
             </>
           }
-          intro="Every frame, from script and visuals to edit and sound, is produced with AI tools. No camera crew, no studio, and a turnaround measured in days instead of weeks."
+          intro="Commercials, product films and brand stories produced with AI. No camera crew, no studio, and a turnaround measured in days instead of weeks."
         />
 
         <div className="mt-14 grid grid-cols-1 gap-y-16 md:mt-20 lg:grid-cols-12 lg:gap-x-10">

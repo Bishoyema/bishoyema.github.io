@@ -7,10 +7,7 @@ import { films, images, stills, type FilmAsset, type ImageAsset } from "./media"
  * - Everything described is visible in the work itself or stated in the uploaded files.
  * - No invented clients, metrics, reach or results.
  * - Self-initiated work is labelled "Concept Project".
- *
- * TODO (Bishoy): `tools` lists what each piece was made with in general terms, because
- * the files don't record which app made which piece. Replace with exact tool names
- * (e.g. "Higgsfield", "ChatGPT", "Canva") once confirmed.
+ * - No tools, software or production process are described anywhere.
  */
 
 export type ProjectType = "Brand Campaign" | "Concept Project";
@@ -42,7 +39,6 @@ export type Project = {
   brandNote?: string;
   summary: string;
   format: string;
-  tools: string[];
   cover: ImageAsset;
   film?: FilmAsset;
   /** Where the hover preview starts in the teaser, matching the cover frame (seconds). */
@@ -71,7 +67,6 @@ export const projects: Project[] = [
     summary:
       "A 50-second vertical film that introduces a new Dubai creative agency, told through the character who fronts it.",
     format: "Vertical film · 9:16 · 0:50",
-    tools: ["AI scriptwriting", "AI video generation", "AI sound", "Editing"],
     cover: stills.brand[3],
     film: films.brand,
     previewStart: 3.8,
@@ -90,7 +85,6 @@ export const projects: Project[] = [
       approach:
         "Tell it as a story, not a service list. The film opens on a business owner whose posts aren’t working, then brings in the ImpactX mascot as the answer: a character the brand can reuse on every channel.",
       execution: [
-        "Script, visuals, edit and sound were all produced with AI tools.",
         "One character kept consistent across close-ups, wide shots and motion-graphics scenes.",
         "Neon interface graphics carry the service list, a live chat automation and a wall of AI video content.",
         "The film closes on a package offer and the ImpactX logo.",
@@ -111,7 +105,6 @@ export const projects: Project[] = [
     summary:
       "A 26-second vertical product ad for a blemish-patch range, made as a spec piece to show what AI product video can do for beauty brands.",
     format: "Vertical film · 9:16 · 0:26",
-    tools: ["AI video generation", "AI sound", "Editing"],
     cover: stills.skincare[4],
     film: films.skincare,
     previewStart: 6.9,
@@ -151,7 +144,6 @@ export const projects: Project[] = [
     summary:
       "The opening post of the ImpactX launch. It speaks directly to business owners who keep spending on ads without results.",
     format: "Social post · 3:4 portrait",
-    tools: ["AI image generation", "Copywriting", "Art direction"],
     cover: images.keyVisual,
     caseStudy: {
       challenge:
@@ -180,7 +172,6 @@ export const projects: Project[] = [
     summary:
       "Launch posts for ImpactX’s AI video service, in two variants for testing: one product-led, one lifestyle-led.",
     format: "2 social posts · 3:4 portrait",
-    tools: ["AI image generation", "Copywriting", "Art direction"],
     cover: images.aiVideoA,
     variants: [
       {
@@ -222,7 +213,6 @@ export const projects: Project[] = [
     summary:
       "Launch posts that make marketing automation concrete: a customer message answered and a table booked at 22:47, with nobody at the desk.",
     format: "2 social posts · 3:4 portrait",
-    tools: ["AI image generation", "Copywriting", "Art direction"],
     cover: images.automationA,
     variants: [
       {

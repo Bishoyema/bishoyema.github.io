@@ -54,8 +54,8 @@ export const reasons: Reason[] = [
     body: "Google-certified in digital marketing and e-commerce. Content is planned for the platform and built to be tested, which is why launch posts come in A/B pairs.",
   },
   {
-    title: "AI tools, used with intent",
-    body: "Script, visuals, edit and sound produced with AI. No crew, studio or location to pay for, which leaves room for more versions to test.",
+    title: "AI-powered production",
+    body: "No crews, studios or locations to book, so budgets go further and there is room to test more versions.",
   },
   {
     title: "Commercial experience",

@@ -11,7 +11,7 @@ export function Footer() {
           <p className="font-display text-2xl uppercase text-paper">{profile.name}</p>
           <p className="mt-1">{profile.role} · {profile.location}</p>
           <p className="mt-5 max-w-lg text-faint">
-            All visuals and films on this site were created by {profile.name} with AI tools. Concept projects are
+            All visuals and films on this site were created by {profile.name} using AI. Concept projects are
             independent and not affiliated with the brands shown.
           </p>
         </div>

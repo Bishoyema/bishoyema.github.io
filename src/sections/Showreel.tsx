@@ -20,7 +20,7 @@ const facts = [
   { term: "Format", detail: "Vertical 9:16" },
   { term: "Length", detail: "0:50" },
   { term: "Built for", detail: "Instagram & paid social" },
-  { term: "Made with", detail: "AI, from script to sound" },
+  { term: "Type", detail: "Brand film" },
 ];
 
 export function Showreel() {
@@ -37,8 +37,8 @@ export function Showreel() {
                 ImpactX <Accent>brand film</Accent>
               </h2>
               <p className="mt-6 max-w-lg text-[1.0625rem] leading-relaxed text-mute">
-                A 50-second vertical film that introduces a new Dubai creative agency, told through the character who
-                fronts it. Script, visuals, edit and sound were all produced with AI.
+                An AI-produced, 50-second vertical film that introduces a new Dubai creative agency, told through the
+                character who fronts it.
               </p>
             </Reveal>
 
