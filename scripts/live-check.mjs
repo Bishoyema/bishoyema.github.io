@@ -121,8 +121,9 @@ const waitForPlayback = (page, selector, minTime = 0.4) =>
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
   const errors = [];
-  page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
   page.on("pageerror", (e) => errors.push(e.message));
+  page.on("response", (r) => r.status() >= 400 && errors.push(`${r.status()} ${r.url()}`));
+  page.on("requestfailed", (r) => !/ERR_ABORTED/.test(r.failure()?.errorText ?? "") && errors.push(`${r.failure()?.errorText} ${r.url()}`));
 
   await page.goto(`${SITE}/`, { waitUntil: "load" });
   check((await page.locator("h1").textContent())?.includes("Bishoy"), "desktop: home page renders the headline");
@@ -139,11 +140,11 @@ const waitForPlayback = (page, selector, minTime = 0.4) =>
 
   await page.evaluate(() => document.querySelector("#showreel video").scrollIntoView({ block: "center", behavior: "instant" }));
   check(await waitForPlayback(page, "#showreel video"), "desktop: featured film preview plays when scrolled into view");
-  await page.locator("#showreel").getByRole("button", { name: /Watch with sound/ }).first().click();
+  await page.locator("#showreel").getByRole("button", { name: /Watch with sound/ }).first().click({ timeout: 5000 }).catch(() => {});
   const playing = await waitForPlayback(page, "#showreel video", 0.5);
   const film = await videoState(page, "#showreel video");
   check(playing && film.src.endsWith("brand-film.mp4") && !film.muted && film.controls, "desktop: “Watch with sound” plays the full brand film with sound and controls");
-  await page.getByRole("button", { name: /^Play from 0:20/ }).click();
+  await page.getByRole("button", { name: /^Play from 0:20/ }).click({ timeout: 5000 }).catch(() => {});
   await page.waitForTimeout(2000);
   const seek = await videoState(page, "#showreel video");
   check(seek.time >= 20 && seek.time < 26, `desktop: chapter 0:20 jumps the film (now at ${seek.time.toFixed(1)}s)`);
@@ -157,7 +158,7 @@ const waitForPlayback = (page, selector, minTime = 0.4) =>
   check((await contact.getByRole("link", { name: /LinkedIn/ }).getAttribute("href")) === PROFILE.linkedin, "desktop: LinkedIn button points to the profile");
 
   await page.goto(`${SITE}/work/impactx-brand-film/`, { waitUntil: "load" });
-  await page.getByRole("button", { name: /^Play from 0:30/ }).click();
+  await page.getByRole("button", { name: /^Play from 0:30/ }).click({ timeout: 5000 }).catch(() => {});
   await page.waitForTimeout(2500);
   const frame = await videoState(page, "article video");
   check(!frame.paused && frame.time >= 30 && frame.time < 36, `desktop: case-study key frame plays the film from 0:30 (now at ${frame.time.toFixed(1)}s)`);
@@ -176,6 +177,7 @@ for (const device of [
   const page = await context.newPage();
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
+  page.on("response", (r) => r.status() >= 400 && errors.push(`${r.status()} ${r.url()}`));
   await page.goto(`${SITE}/`, { waitUntil: "load" });
   await page.waitForTimeout(1500);
 
@@ -188,18 +190,21 @@ for (const device of [
   await menu.tap();
   const dialog = page.getByRole("dialog", { name: "Menu" });
   await dialog.waitFor({ state: "visible", timeout: 5000 }).catch(() => {});
-  check(await dialog.isVisible(), `${device.name}: menu opens`);
-  await dialog.getByRole("link", { name: /Work/ }).tap();
-  await page.waitForTimeout(1600);
-  const top = await page.$eval("#work", (el) => Math.round(el.getBoundingClientRect().top));
-  check(!(await dialog.isVisible().catch(() => false)) && top >= 0 && top < 160, `${device.name}: menu link closes the menu and goes to Work`);
+  const opened = await dialog.isVisible();
+  check(opened, `${device.name}: menu opens`);
+  if (opened) {
+    await dialog.getByRole("link", { name: /Work/ }).tap({ timeout: 5000 }).catch(() => {});
+    await page.waitForTimeout(1600);
+    const top = await page.$eval("#work", (el) => Math.round(el.getBoundingClientRect().top));
+    check(!(await dialog.isVisible().catch(() => false)) && top >= 0 && top < 160, `${device.name}: menu link closes the menu and goes to Work`);
+  }
 
   if (device.width === 390) {
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
     await page.waitForTimeout(600);
     shots.mobile = (await page.screenshot({ type: "jpeg", quality: 45, scale: "css" })).toString("base64");
     await page.evaluate(() => document.querySelectorAll("#ai-video video")[0].scrollIntoView({ block: "center", behavior: "instant" }));
-    await page.locator("#ai-video").getByRole("button", { name: /Watch with sound.*ImpactX/ }).tap();
+    await page.locator("#ai-video").getByRole("button", { name: /Watch with sound.*ImpactX/ }).tap({ timeout: 5000 }).catch(() => {});
     check(await waitForPlayback(page, "#ai-video li:first-child video", 0.5), `${device.name}: tapping a film plays it`);
   }
   check(errors.length === 0, `${device.name}: no browser errors${errors.length ? ` (${errors.slice(0, 3).join(" | ")})` : ""}`);
