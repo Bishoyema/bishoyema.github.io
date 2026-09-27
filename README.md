@@ -161,7 +161,7 @@ scripts/
 
 | Asset | Reason |
 | --- | --- |
-| `index.html` (previous one-page site) | Replaced by the new site. Its facts (contact details, L'Oréal background, Google certification, project context) were reused as the source of truth. Kept untouched. |
+| `index.html` (previous one-page site) | Replaced by the new site. Its facts (contact details, L'Oréal background, Google certification, project context) were reused as the source of truth. Kept as it was, except for the updated phone number. |
 | Brand film 0:42 and the end card, in teasers only | 0:42 shows garbled AI text ("15.23X ROBA") and the end card reads "SEE BEYOND THE OBVIOUT". The full film still plays unedited; only the short preview loops avoid these moments. |
 
 No CV, certificate files, portrait or separate logos were included in the uploads. The site

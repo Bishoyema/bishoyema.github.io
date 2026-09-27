@@ -16,7 +16,7 @@ import { chromium } from "playwright-core";
 
 const PROFILE = {
   email: "peshoyemad43@gmail.com",
-  whatsapp: "https://wa.me/971562397680",
+  whatsapp: "https://wa.me/971523976680",
   linkedin: "https://www.linkedin.com/in/beshoy-emad-1063b02a9",
 };
 const PAGES = [

@@ -14,7 +14,7 @@ export const profile = {
 
   email: "peshoyemad43@gmail.com",
   /** International format, digits only (used for wa.me links). */
-  whatsapp: "971562397680",
+  whatsapp: "971523976680",
   linkedin: "https://www.linkedin.com/in/beshoy-emad-1063b02a9",
 
   /** TODO: add a CV (e.g. "/Bishoy-Emad-CV.pdf" in /public) to show a "Download CV" button. */
