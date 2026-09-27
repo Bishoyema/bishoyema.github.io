@@ -18,7 +18,7 @@ export function SelectedWork() {
               Selected <Accent>work</Accent>
             </>
           }
-          intro="Five pieces across AI video, advertising and social campaigns. Self-initiated work is clearly labelled as a concept project."
+          intro="Seven pieces across AI video, advertising and social campaigns. Self-initiated work is clearly labelled as a concept project."
         />
 
         <div

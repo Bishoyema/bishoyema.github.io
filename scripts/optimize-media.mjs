@@ -58,16 +58,23 @@ const posters = [
   { src: "35777.jpg", name: "impactx-automation-b" },
 ];
 
-/** Poster frames supplied with the films, 480×854 originals. */
+/** The serum films are 1080×1920, so their frames also get a sharper 960 size. */
+const HD_FRAME_WIDTHS = [240, 480, 960];
+
+/** Poster frames supplied with the films, 480×854 originals (1080×1920 for the serum films). */
 const filmPosters = [
   { src: "brand-story.jpg", name: "brand-film-poster" },
   { src: "skincare-ad.jpg", name: "skincare-film-poster" },
+  { src: "serum-launch-reel.jpg", name: "serum-reel-poster", widths: HD_FRAME_WIDTHS },
+  { src: "serum-ingredient-film.jpg", name: "serum-ingredients-poster", widths: HD_FRAME_WIDTHS },
 ];
 
 /**
  * Films. `teaser` lists [start, end] seconds stitched into a short silent loop.
  * Segments avoid on-screen text glitches in the source (brand film 0:42 and end card).
  * `stills` are frame grabs used for the storyboard / shot list in the case studies.
+ * Optional: `teaserWidth` scales the loop down (1080×1920 films preview at 720 wide),
+ * `stillWidths` replaces the default [240, 480] still sizes.
  */
 const films = [
   {
@@ -93,6 +100,36 @@ const films = [
       [0.4, 3.4],
     ],
     stills: [2.0, 7.5, 12.0, 18.0, 24.5],
+  },
+  {
+    src: "serum-launch-reel.mp4",
+    name: "serum-reel",
+    fps: 24,
+    teaserWidth: 720,
+    stillWidths: HD_FRAME_WIDTHS,
+    teaser: [
+      [1.0, 3.5],
+      [5.2, 7.4],
+      [8.6, 11.6],
+      [15.3, 18.0],
+    ],
+    stills: [1.5, 6.5, 9.5, 11.5, 13.5, 17.5],
+  },
+  {
+    src: "serum-ingredient-film.mp4",
+    name: "serum-ingredients",
+    fps: 24,
+    teaserWidth: 720,
+    stillWidths: HD_FRAME_WIDTHS,
+    teaser: [
+      [0.0, 2.1],
+      [2.4, 3.4],
+      [4.3, 5.3],
+      [5.4, 8.1],
+      [8.6, 10.5],
+      [13.1, 15.0],
+    ],
+    stills: [1.25, 2.75, 5.0, 7.25, 10.125, 11.75, 14.0],
   },
 ];
 
@@ -123,12 +160,13 @@ function ffmpeg(args) {
   execFileSync("ffmpeg", ["-v", "error", "-y", ...args], { stdio: "inherit" });
 }
 
-function buildTeaser(input, output, segments, fps) {
+function buildTeaser(input, output, segments, fps, width) {
   const parts = segments
     .map(([start, end], i) => `[0:v]trim=start=${start}:end=${end},setpts=PTS-STARTPTS[v${i}]`)
     .join(";");
   const inputs = segments.map((_, i) => `[v${i}]`).join("");
-  const graph = `${parts};${inputs}concat=n=${segments.length}:v=1:a=0,fps=${fps},format=yuv420p[out]`;
+  const scale = width ? `,scale=${width}:-2:flags=lanczos` : "";
+  const graph = `${parts};${inputs}concat=n=${segments.length}:v=1:a=0,fps=${fps}${scale},format=yuv420p[out]`;
   ffmpeg([
     "-i", input,
     "-filter_complex", graph,
@@ -154,7 +192,7 @@ async function main() {
     for (const p of posters.filter((p) => selected(p.name))) await writeResponsive(await posterInput(p), p.name, [440, 880]);
 
     console.log("Film posters");
-    for (const p of filmPosters.filter((p) => selected(p.name))) await writeResponsive(path.join(root, p.src), p.name, [240, 480]);
+    for (const p of filmPosters.filter((p) => selected(p.name))) await writeResponsive(path.join(root, p.src), p.name, p.widths ?? [240, 480]);
 
     console.log("Films");
     for (const film of films.filter((f) => selected(f.name))) {
@@ -164,7 +202,7 @@ async function main() {
       console.log(`  video  ${film.name}.mp4 (copy of ${film.src})`);
 
       const teaser = path.join(VIDEOS, `${film.name}-teaser.mp4`);
-      buildTeaser(input, teaser, film.teaser, film.fps);
+      buildTeaser(input, teaser, film.teaser, film.fps, film.teaserWidth);
       console.log(`  video  ${film.name}-teaser.mp4`);
 
       const teaserFrame = path.join(scratch, `${film.name}-teaser.png`);
@@ -174,7 +212,7 @@ async function main() {
       for (const [i, t] of film.stills.entries()) {
         const frame = path.join(scratch, `${film.name}-${i}.png`);
         ffmpeg(["-ss", String(t), "-i", input, "-frames:v", "1", frame]);
-        await writeResponsive(frame, `${film.name}-still-${i + 1}`, [240, 480]);
+        await writeResponsive(frame, `${film.name}-still-${i + 1}`, film.stillWidths ?? [240, 480]);
       }
     }
   } finally {

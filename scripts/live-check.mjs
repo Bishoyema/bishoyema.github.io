@@ -23,12 +23,23 @@ const PAGES = [
   "/",
   "/work/impactx-brand-film/",
   "/work/skincare-launch-ad/",
+  "/work/serum-launch-reel/",
+  "/work/serum-ingredient-film/",
   "/work/impactx-brand-launch/",
   "/work/impactx-ai-video-launch/",
   "/work/impactx-ai-automation-launch/",
 ];
 const FILES = ["/sitemap.xml", "/robots.txt", "/og.jpg", "/icon.svg", "/favicon.ico"];
-const VIDEOS = ["brand-film.mp4", "brand-film-teaser.mp4", "skincare-film.mp4", "skincare-film-teaser.mp4"];
+const VIDEOS = [
+  "brand-film.mp4",
+  "brand-film-teaser.mp4",
+  "skincare-film.mp4",
+  "skincare-film-teaser.mp4",
+  "serum-reel.mp4",
+  "serum-reel-teaser.mp4",
+  "serum-ingredients.mp4",
+  "serum-ingredients-teaser.mp4",
+];
 
 let failures = 0;
 let warnings = 0;

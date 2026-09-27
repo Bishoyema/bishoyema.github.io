@@ -49,6 +49,15 @@ const frame = (name: string, alt: string): ImageAsset => ({
   alt,
 });
 
+/** Frames from the 1080×1920 serum films, which also come in a sharper 960 size. */
+const frameHD = (name: string, alt: string): ImageAsset => ({
+  base: `/media/images/${name}`,
+  widths: [240, 480, 960],
+  width: 960,
+  height: 1707,
+  alt,
+});
+
 export function imageUrl(image: ImageAsset, format: "avif" | "webp" | "jpg" = "jpg", width?: number) {
   const w = width ?? Math.max(...image.widths);
   return `${image.base}-${w}.${format}`;
@@ -100,6 +109,41 @@ export const films = {
     width: 480,
     height: 854,
   },
+  serumReel: {
+    id: "serum-reel",
+    title: "Serum Launch Reel",
+    src: "/media/videos/serum-reel.mp4",
+    teaser: "/media/videos/serum-reel-teaser.mp4",
+    // The teaser is 720 wide, so its first frame is 480×853.
+    teaserPoster: {
+      ...frame("serum-reel-teaser-poster", "A white serum bottle with a silver dropper cap floats on a deep blue set under the title “Age Proteom™”."),
+      height: 853,
+    },
+    poster: frameHD(
+      "serum-reel-poster",
+      "A white serum bottle with a silver dropper cap floats on a deep blue set, light flaring across the cap, under the title “Age Proteom™, patented biotechnology”.",
+    ),
+    duration: 20,
+    width: 1080,
+    height: 1920,
+  },
+  serumIngredients: {
+    id: "serum-ingredients",
+    title: "Serum Ingredient Film",
+    src: "/media/videos/serum-ingredients.mp4",
+    teaser: "/media/videos/serum-ingredients-teaser.mp4",
+    teaserPoster: {
+      ...frame("serum-ingredients-teaser-poster", "Rows of white serum bottles with silver dropper caps on a warm stone surface."),
+      height: 853,
+    },
+    poster: frameHD(
+      "serum-ingredients-poster",
+      "The serum bottle on a stone plinth in warm light, under the callout “Cellular Water, patented: mimics the water in our skin cells”.",
+    ),
+    duration: 15,
+    width: 1080,
+    height: 1920,
+  },
 } satisfies Record<string, FilmAsset>;
 
 export const stills = {
@@ -118,5 +162,31 @@ export const stills = {
     frame("skincare-film-still-3", "The blue Invisible+ pack on a white studio set."),
     frame("skincare-film-still-4", "The orange Face pack with patches in the foreground."),
     { ...frame("skincare-film-still-5", "The full range of three packs under the line “Your blemish hero”."), focus: "50% 0%" },
+  ],
+  serumReel: [
+    frameHD("serum-reel-still-1", "The serum bottle floats at an angle as a pink light flare crosses its silver cap."),
+    frameHD("serum-reel-still-2", "Close-up of the bottle’s silver cap and label."),
+    {
+      ...frameHD("serum-reel-still-3", "The dropper releases a drop into the open bottle, beside the claim “83% firmer skin”."),
+      focus: "50% 20%",
+    },
+    frameHD("serum-reel-still-4", "A drop falls from the dropper into the bottle, beside the claim “87% more radiant skin”."),
+    frameHD("serum-reel-still-5", "A pearl of serum sits on the bottle’s neck, beside the claim “83% smoother fine lines”."),
+    frameHD("serum-reel-still-6", "The bottle on a glowing pedestal under the line “The cell longevity serum”, with the parent company’s logo below."),
+  ],
+  serumIngredients: [
+    frameHD("serum-ingredients-still-1", "Rows of identical serum bottles stretch into the distance, one in sharp focus at the centre."),
+    frameHD("serum-ingredients-still-2", "Macro of the bottle’s base and its signature line, “Care first.”"),
+    frameHD("serum-ingredients-still-3", "Macro of white serum flowing from the dropper into the neck of the bottle."),
+    frameHD(
+      "serum-ingredients-still-4",
+      "The bottle on a stone plinth in a burst of fine powder, under the callout: patented snow-bacteria extract that protects skin proteins from carbonylation.",
+    ),
+    frameHD("serum-ingredients-still-5", "The bottle under the callout “Cellular Water, patented: mimics the water in our skin cells”."),
+    frameHD(
+      "serum-ingredients-still-6",
+      "The bottle under the callout listing the rest of the formula: sodium acetylated hyaluronate, adenosine, glycerin and tocopherol.",
+    ),
+    frameHD("serum-ingredients-still-7", "End card with the product name above the bottle and the parent company’s logo below."),
   ],
 };

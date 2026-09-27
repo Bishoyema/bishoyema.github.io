@@ -9,7 +9,9 @@ import { getProject } from "@/data/projects";
 import { videoFormats } from "@/data/services";
 import { formatTime } from "@/lib/media-prefs";
 
-const filmProjects = ["impactx-brand-film", "skincare-launch-ad"].map((slug) => getProject(slug)!);
+const filmProjects = ["impactx-brand-film", "skincare-launch-ad", "serum-launch-reel", "serum-ingredient-film"].map(
+  (slug) => getProject(slug)!,
+);
 
 export function AIVideo() {
   return (

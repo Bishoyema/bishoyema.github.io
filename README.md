@@ -66,7 +66,7 @@ All text lives in `src/data/`. You never need to touch the layout to change copy
 | File | What is in it |
 | --- | --- |
 | `src/data/profile.ts` | Name, role, intro, email, WhatsApp, LinkedIn, CV link, About text and stats |
-| `src/data/projects.ts` | The five projects and their case studies |
+| `src/data/projects.ts` | The seven projects and their case studies |
 | `src/data/services.ts` | Services, AI video formats, "Why work with me" |
 | `src/data/capabilities.ts` | The Capabilities list |
 | `src/data/certifications.ts` | Certifications |
@@ -117,6 +117,8 @@ scripts/
 - **Films** are byte-identical copies of your uploads (they were already web-ready).
   Each film also has a ~10-second **silent teaser loop** used for previews (hero, featured
   film, hover on work cards). The teasers skip two moments with AI text glitches (see below).
+  The two serum films are 1080×1920: their teasers are scaled to 720 wide and their frames
+  also come in a sharper 960 size.
 - **Nothing heavy loads up front:** the hero teaser starts only after the page has loaded,
   other previews only when scrolled into view, full films only when someone presses play.
   Autoplay is disabled for visitors who ask for reduced motion or data saving.
@@ -144,6 +146,8 @@ scripts/
 | --- | --- |
 | `brand-story.mp4` (ImpactX brand film, 0:50) | Featured film with chapters, AI Video gallery, case study with 7 key frames, hero teaser, work card preview |
 | `skincare-ad.mp4` (skincare launch ad, 0:26) | AI Video gallery, case study with 5 key frames, work card preview |
+| `serum-launch-reel.mp4` (serum launch reel, 0:20, 1080×1920) | AI Video gallery, case study with 6 key frames, work card preview |
+| `serum-ingredient-film.mp4` (serum ingredient film, 0:15, 1080×1920) | AI Video gallery, case study with 7 key frames, work card preview |
 | `35780.jpg` "Your ads aren't failing" | Work card + case study |
 | `35779.jpg` "30 Days of Content" (product-led) | Hero card, work card, case study (variant A), social image |
 | `35776.jpg` "30 Days of Content" (lifestyle) | Case study (variant B) |
@@ -151,6 +155,7 @@ scripts/
 | `35777.jpg` "Your business doesn't sleep" (4 steps) | Case study (variant B) |
 | `brand-story.jpg` (poster frame) | Film poster in the AI Video gallery and case study |
 | `skincare-ad.jpg` (poster frame) | Hero card, film poster in the AI Video gallery and case study |
+| `serum-launch-reel.jpg`, `serum-ingredient-film.jpg` (poster frames) | Film posters in the AI Video gallery and case studies |
 
 ### Not used, and why
 

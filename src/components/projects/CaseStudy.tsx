@@ -155,7 +155,8 @@ function FilmMedia({ project }: { project: Project }) {
           <div className="lg:col-span-6">
             <h2 className="label text-faint">Key frames</h2>
             <p className="mt-2 text-sm text-mute">Frames from the film. Select one to play from that moment.</p>
-            <ol className="no-scrollbar -mx-5 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:px-8 lg:mx-0 lg:grid lg:grid-cols-1 lg:gap-0 lg:overflow-visible lg:border-t lg:border-line lg:px-0 lg:pb-0">
+            {/* `relative` keeps the buttons' screen-reader text inside the scroller, so phones never scroll sideways. */}
+            <ol className="no-scrollbar relative -mx-5 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:px-8 lg:mx-0 lg:grid lg:grid-cols-1 lg:gap-0 lg:overflow-visible lg:border-t lg:border-line lg:px-0 lg:pb-0">
               {frames.map((frame, index) => (
                 <li key={frame.time} className="w-[40vw] max-w-[11rem] shrink-0 snap-start lg:w-auto lg:max-w-none lg:border-b lg:border-line">
                   <ChapterButton

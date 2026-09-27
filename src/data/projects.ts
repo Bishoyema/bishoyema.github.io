@@ -133,6 +133,87 @@ export const projects: Project[] = [
       "Concept project. Independent spec work, not commissioned by or affiliated with the brand shown. Product names and packaging belong to their owner.",
   },
   {
+    slug: "serum-launch-reel",
+    title: "Serum Launch Reel",
+    category: "AI Video",
+    tags: ["AI Video", "Launch Reel", "Beauty"],
+    type: "Concept Project",
+    brand: "Independent concept",
+    brandNote: "Not affiliated with the brand shown",
+    summary:
+      "A 20-second vertical launch reel for a luxury anti-aging serum, made as a spec piece: a lit product reveal, the dropper moment, then the brand’s reported results as bold on-screen claims.",
+    format: "Vertical film · 9:16 · 0:20",
+    cover: stills.serumReel[2],
+    film: films.serumReel,
+    previewStart: 5.6,
+    storyboard: [
+      { time: "0:00", seconds: 0, title: "The reveal", note: "The bottle turns in mid-air as light flares across its cap.", still: stills.serumReel[0] },
+      { time: "0:05", seconds: 4.75, title: "The label", note: "A slow push in on the label.", still: stills.serumReel[1] },
+      { time: "0:08", seconds: 8, title: "The dropper", note: "A single drop falls into the open bottle, with the first result: 83% firmer skin.", still: stills.serumReel[2] },
+      { time: "0:11", seconds: 10.55, title: "Radiance", note: "The second result: 87% more radiant skin.", still: stills.serumReel[3] },
+      { time: "0:13", seconds: 12.75, title: "Fine lines", note: "The third result: 83% smoother fine lines, each one credited to the brand on screen.", still: stills.serumReel[4] },
+      { time: "0:15", seconds: 14.67, title: "The close", note: "The serum on a lit pedestal, “The cell longevity serum”, then the parent company’s logo.", still: stills.serumReel[5] },
+    ],
+    caseStudy: {
+      challenge:
+        "Launch a premium anti-aging serum on Reels in 20 seconds: make the bottle feel luxurious, show how it is used, and land the brand’s key results before the viewer scrolls on.",
+      approach:
+        "Treat the bottle like jewellery, then back it up. The reel opens on a slow reveal and a close-up of the label, turns on the dropper moment, and gives the second half to three results, each on screen long enough to read.",
+      execution: [
+        "A deep blue and violet studio, with light flaring across the cap as the bottle turns.",
+        "A single drop falls into the open bottle while the results appear one at a time: 83% firmer skin, 87% more radiant skin, 83% smoother fine lines.",
+        "Each result is credited on screen as reported by the brand.",
+        "It closes on the serum, the line “The cell longevity serum” and the parent company’s logo, cut to an energetic soundtrack.",
+      ],
+      deliverables: ["20-second vertical launch reel (9:16)", "On-screen claims and end card", "Sized for Reels, TikTok and Stories"],
+      result:
+        "A launch-ready reel that gives a premium skincare product a studio-quality reveal and its proof points in 20 seconds, without a shoot.",
+    },
+    disclaimer:
+      "Concept project. Independent spec work, not commissioned by or affiliated with the brand shown. Product names, packaging and the results shown on screen belong to, and are reported by, their owner.",
+  },
+  {
+    slug: "serum-ingredient-film",
+    title: "Serum Ingredient Film",
+    category: "AI Video",
+    tags: ["AI Video", "Product Film", "Beauty"],
+    type: "Concept Project",
+    brand: "Independent concept",
+    brandNote: "Not affiliated with the brand shown",
+    summary:
+      "A 15-second vertical product film for a luxury anti-aging serum, made as a spec piece: a rush along rows of bottles, macro details and the dropper, then the formula’s key ingredients called out on screen.",
+    format: "Vertical film · 9:16 · 0:15",
+    cover: stills.serumIngredients[0],
+    film: films.serumIngredients,
+    previewStart: 1.25,
+    storyboard: [
+      { time: "0:00", seconds: 0, title: "Row rush", note: "The camera races along rows of bottles and lands on one in focus.", still: stills.serumIngredients[0] },
+      { time: "0:02", seconds: 2.17, title: "Macro", note: "Up close on the base of the bottle and its “Care first.” signature.", still: stills.serumIngredients[1] },
+      { time: "0:04", seconds: 4.25, title: "The dropper", note: "Serum flows from the dropper into the neck of the bottle.", still: stills.serumIngredients[2] },
+      { time: "0:05", seconds: 5.38, title: "Age Proteom™", note: "The bottle lands on stone. First callout: a patented snow-bacteria extract that protects skin proteins.", still: stills.serumIngredients[3] },
+      { time: "0:08", seconds: 8.45, title: "Cellular Water", note: "Second callout: patented, and made to mimic the water in our skin cells.", still: stills.serumIngredients[4] },
+      { time: "0:11", seconds: 10.95, title: "The formula", note: "Also in the formula: sodium acetylated hyaluronate, adenosine, glycerin and tocopherol.", still: stills.serumIngredients[5] },
+      { time: "0:13", seconds: 12.9, title: "The close", note: "The product name, then the parent company’s logo.", still: stills.serumIngredients[6] },
+    ],
+    caseStudy: {
+      challenge:
+        "Explain what is inside a science-led serum in 15 seconds, and keep it as desirable as a fragrance ad while doing it.",
+      approach:
+        "Earn attention first, then explain. The film opens fast along a row of bottles, slows into macro details and the dropper, and only then brings in the formula, one callout at a time.",
+      execution: [
+        "A warm set of sunlit stone and cream tones, a contrast to the night-time studio of the launch reel.",
+        "Macro shots of the bottle’s base and the dropper show off the materials and the texture of the serum.",
+        "Three callouts name what is in the formula: the patented Age Proteom™ biotechnology, Cellular Water and the supporting ingredients.",
+        "It ends on the product name and the parent company’s logo.",
+      ],
+      deliverables: ["15-second vertical product film (9:16)", "Ingredient callouts and end card", "Sized for Reels, TikTok and Stories"],
+      result:
+        "A product film that turns an ingredient list into something people watch, made as a companion to the Serum Launch Reel.",
+    },
+    disclaimer:
+      "Concept project. Independent spec work, not commissioned by or affiliated with the brand shown. Product names, packaging and ingredient names belong to their owner.",
+  },
+  {
     slug: "impactx-brand-launch",
     title: "Your Ads Aren’t Failing",
     line: "Your ads aren’t failing. Your ideas are.",
