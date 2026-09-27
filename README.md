@@ -66,7 +66,7 @@ All text lives in `src/data/`. You never need to touch the layout to change copy
 | File | What is in it |
 | --- | --- |
 | `src/data/profile.ts` | Name, role, intro, email, WhatsApp, LinkedIn, CV link, About text and stats |
-| `src/data/projects.ts` | The seven projects and their case studies |
+| `src/data/projects.ts` | The eight projects and their case studies |
 | `src/data/services.ts` | Services, AI video formats, "Why work with me" |
 | `src/data/capabilities.ts` | The Capabilities list |
 | `src/data/certifications.ts` | Certifications |
@@ -144,10 +144,11 @@ scripts/
 
 | Original upload | Where it appears |
 | --- | --- |
-| `brand-story.mp4` (ImpactX brand film, 0:50) | Featured film with chapters, AI Video gallery, case study with 7 key frames, hero teaser, work card preview |
+| `brand-story.mp4` (ImpactX brand film, 0:50, 478×850) | Featured film with chapters, AI Video gallery, case study with 7 key frames, hero teaser, work card preview. Replaced on 28 Sep 2026 with a cleaner, higher-bitrate copy of the same cut; its hero teaser is encoded at CRF 21 instead of 30 |
 | `skincare-ad.mp4` (skincare launch ad, 0:26) | AI Video gallery, case study with 5 key frames, work card preview |
 | `serum-launch-reel.mp4` (serum launch reel, 0:20, 1080×1920) | AI Video gallery, case study with 6 key frames, work card preview |
 | `serum-ingredient-film.mp4` (serum ingredient film, 0:15, 1080×1920) | AI Video gallery, case study with 7 key frames, work card preview |
+| `social-beesline-a.jpg` … `social-bioderma-b.jpg` (six 2160×2700 social posts) | “Hive, Light & Cell” work card and case study. `social-bioderma-a.jpg` is also the left hero card, with a slow push-in |
 | `35780.jpg` "Your ads aren't failing" | Work card + case study |
 | `35779.jpg` "30 Days of Content" (product-led) | Hero card, work card, case study (variant A), social image |
 | `35776.jpg` "30 Days of Content" (lifestyle) | Case study (variant B) |
@@ -189,7 +190,7 @@ is designed to work without them, and adding them is a one-line change (see TODO
 1. **Fix the two text glitches in the brand film** (0:42 "ROBA" and the "OBVIOUT" end card),
    then replace the file and run `npm run media`. Creative directors notice these. Also make
    sure ImpactX can back up the on-screen ROAS figure at 0:42. The site copy does not repeat it.
-2. **Export sharper sources:** films at 1080×1920 (currently 480×854) and posters at 2×
+2. **Export sharper sources:** films at 1080×1920 (the ImpactX film is still 478×850, the skincare ad 480×854) and posters at 2×
    (1760×2336) so the work looks crisp on phones and retina laptops. Then run `npm run media`.
 3. **Add 3 to 5 more pieces**, ideally beauty and e-commerce product videos, a social post series,
    and any automation or landing page you have built, to back up every service listed.

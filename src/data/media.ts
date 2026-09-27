@@ -49,6 +49,15 @@ const frame = (name: string, alt: string): ImageAsset => ({
   alt,
 });
 
+/** Social posts from the skincare series, 4:5 portrait. */
+const socialPost = (name: string, alt: string): ImageAsset => ({
+  base: `/media/images/${name}`,
+  widths: [540, 1080, 1620],
+  width: 1620,
+  height: 2025,
+  alt,
+});
+
 /** Frames from the 1080×1920 serum films, which also come in a sharper 960 size. */
 const frameHD = (name: string, alt: string): ImageAsset => ({
   base: `/media/images/${name}`,
@@ -86,6 +95,33 @@ export const images = {
   ),
 };
 
+export const social = {
+  beeslineA: socialPost(
+    "social-beesline-a",
+    "Beesline post: three serums in yellow, blue and orange float in honey-gold light with honeycomb and honey drops, under the headline “Liquid Gold, Three Ways.”",
+  ),
+  beeslineB: socialPost(
+    "social-beesline-b",
+    "Beesline post: the orange, blue and yellow serums stand on colour-matched steps, each under its skin concern, below the headline “What’s Your Skin Concern?”",
+  ),
+  lrpA: socialPost(
+    "social-lrp-a",
+    "La Roche-Posay post: the Anthelios UVMune 400 fluid on a white plinth in a beam of sunlight, under the headline “Protection, all the way to 400nm.” and a UV spectrum bar.",
+  ),
+  lrpB: socialPost(
+    "social-lrp-b",
+    "La Roche-Posay post: a woman in a white swimsuit holds the Anthelios bottle against a deep blue sky, beside the headline “Sun’s out. Shield up.”",
+  ),
+  biodermaA: socialPost(
+    "social-bioderma-a",
+    "Bioderma post: the Photoderm XDefense bottle floats inside a clear sphere with a yellow glow, under the headline “Defense, down to the cell.”",
+  ),
+  biodermaB: socialPost(
+    "social-bioderma-b",
+    "Bioderma post: the Photoderm XDefense bottle lies on a navy and white striped beach towel beside yellow sunglasses, under the headline “Salt. Sun. Shielded.”",
+  ),
+};
+
 export const films = {
   brand: {
     id: "brand-film",
@@ -95,8 +131,8 @@ export const films = {
     teaserPoster: frame("brand-film-teaser-poster", "Close-up of the ImpactX mascot, lit by red neon."),
     poster: frame("brand-film-poster", "A business owner holds up his phone showing a post from his clothing store."),
     duration: 50,
-    width: 480,
-    height: 854,
+    width: 478,
+    height: 850,
   },
   skincare: {
     id: "skincare-film",

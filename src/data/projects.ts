@@ -1,4 +1,4 @@
-import { films, images, stills, type FilmAsset, type ImageAsset } from "./media";
+import { films, images, social, stills, type FilmAsset, type ImageAsset } from "./media";
 
 /**
  * Selected work.
@@ -93,6 +93,78 @@ export const projects: Project[] = [
       result:
         "A single film that introduces the agency, its six services and its mascot in under a minute, part of the ImpactX launch alongside the poster series.",
     },
+  },
+  {
+    slug: "skincare-social-campaign",
+    title: "Hive, Light & Cell",
+    category: "Social Media",
+    tags: ["Social Media", "AI Ad Creative", "Beauty"],
+    type: "Concept Project",
+    brand: "Independent concept",
+    brandNote: "Not affiliated with the brands shown",
+    summary:
+      "Six Instagram and Facebook posts for three skincare brands, Beesline, La Roche-Posay and Bioderma, made as spec work. Each brand gets two opposite concepts, each with its own hook, copy and call to action.",
+    format: "6 social posts · 4:5 portrait",
+    cover: social.beeslineA,
+    variants: [
+      {
+        label: "Beesline · A",
+        title: "Liquid Gold",
+        note: "Hero collection. The three serums float in honey-gold light under “Liquid Gold, Three Ways.”",
+        image: social.beeslineA,
+      },
+      {
+        label: "Beesline · B",
+        title: "Find Your Serum",
+        note: "Problem to solution. Each skin concern sits above its serum, from morning to night.",
+        image: social.beeslineB,
+      },
+      {
+        label: "La Roche-Posay · A",
+        title: "400nm",
+        note: "UV science hero. One sunbeam on a white plinth, and a spectrum that runs all the way to 400nm.",
+        image: social.lrpA,
+      },
+      {
+        label: "La Roche-Posay · B",
+        title: "Shield Up",
+        note: "Lifestyle. Hard midday sun, a deep blue sky and “Sun’s out. Shield up.”",
+        image: social.lrpB,
+      },
+      {
+        label: "Bioderma · A",
+        title: "Down to the Cell",
+        note: "Scientific. The bottle inside a clear sphere, like a cell membrane, with the four aggressors named below.",
+        image: social.biodermaA,
+      },
+      {
+        label: "Bioderma · B",
+        title: "Salt. Sun. Shielded.",
+        note: "Summer lifestyle. A top-down beach flat lay styled in Bioderma’s navy, white and yellow.",
+        image: social.biodermaB,
+      },
+    ],
+    caseStudy: {
+      challenge:
+        "Create two feed posts each for three skincare brands, a serum trio and two SPF50+ fluids, that look like agency campaigns, keep every bottle and label true to the real product, and give each brand its own character.",
+      approach:
+        "Two opposite ideas per brand: one hero or science-led post, and one lifestyle or problem-to-solution post. Each brand takes its look from its own packaging: honey gold for Beesline, clinical white and orange for La Roche-Posay, and navy, white and yellow for Bioderma.",
+      execution: [
+        "Beesline: the three serums float as a hero set in one post, and stand on colour-matched steps from morning to night in the other.",
+        "La Roche-Posay: a sunbeam and a UV spectrum explain ultra-long UVA protection, and a sun-drenched lifestyle shot turns exposure into “Shield up”.",
+        "Bioderma: a clear sphere carries the brand’s cell-level protection idea, and a beach flat lay takes the same product into summer.",
+        "Every hook is short, every call to action is different, and every claim comes from the brands’ own product pages.",
+      ],
+      deliverables: [
+        "6 feed posts (4:5, 1080 × 1350) for Instagram and Facebook",
+        "Hooks, on-image copy and calls to action",
+        "Captions and placement notes for each post",
+      ],
+      result:
+        "A ready-to-post set that shows two directions per brand, from premium hero shots to lifestyle and routine content, with each product shown as it really looks.",
+    },
+    disclaimer:
+      "Concept project. Independent spec work, not commissioned by or affiliated with Beesline, La Roche-Posay or Bioderma. Product names and packaging belong to their owners.",
   },
   {
     slug: "skincare-launch-ad",

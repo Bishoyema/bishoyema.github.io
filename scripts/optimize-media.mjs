@@ -58,6 +58,17 @@ const posters = [
   { src: "35777.jpg", name: "impactx-automation-b" },
 ];
 
+/** Skincare social post series, 2160×2700 (4:5) originals. */
+const SOCIAL_WIDTHS = [540, 1080, 1620];
+const socialPosts = [
+  { src: "social-beesline-a.jpg", name: "social-beesline-a" },
+  { src: "social-beesline-b.jpg", name: "social-beesline-b" },
+  { src: "social-lrp-a.jpg", name: "social-lrp-a" },
+  { src: "social-lrp-b.jpg", name: "social-lrp-b" },
+  { src: "social-bioderma-a.jpg", name: "social-bioderma-a" },
+  { src: "social-bioderma-b.jpg", name: "social-bioderma-b" },
+];
+
 /** The serum films are 1080×1920, so their frames also get a sharper 960 size. */
 const HD_FRAME_WIDTHS = [240, 480, 960];
 
@@ -74,6 +85,7 @@ const filmPosters = [
  * Segments avoid on-screen text glitches in the source (brand film 0:42 and end card).
  * `stills` are frame grabs used for the storyboard / shot list in the case studies.
  * Optional: `teaserWidth` scales the loop down (1080×1920 films preview at 720 wide),
+ * `teaserCrf` sets the loop's x264 quality (default 30, lower is sharper),
  * `stillWidths` replaces the default [240, 480] still sizes.
  */
 const films = [
@@ -81,6 +93,8 @@ const films = [
     src: "brand-story.mp4",
     name: "brand-film",
     fps: 24,
+    // The hero plays this loop first, so it is encoded at a higher quality than the others.
+    teaserCrf: 21,
     teaser: [
       [17.0, 19.3],
       [25.0, 28.0],
@@ -160,7 +174,7 @@ function ffmpeg(args) {
   execFileSync("ffmpeg", ["-v", "error", "-y", ...args], { stdio: "inherit" });
 }
 
-function buildTeaser(input, output, segments, fps, width) {
+function buildTeaser(input, output, segments, fps, width, crf = 30) {
   const parts = segments
     .map(([start, end], i) => `[0:v]trim=start=${start}:end=${end},setpts=PTS-STARTPTS[v${i}]`)
     .join(";");
@@ -174,7 +188,7 @@ function buildTeaser(input, output, segments, fps, width) {
     "-an",
     "-c:v", "libx264",
     "-preset", "slow",
-    "-crf", "30",
+    "-crf", String(crf),
     "-profile:v", "high",
     "-level", "3.1",
     "-movflags", "+faststart",
@@ -191,6 +205,9 @@ async function main() {
     console.log("Posters");
     for (const p of posters.filter((p) => selected(p.name))) await writeResponsive(await posterInput(p), p.name, [440, 880]);
 
+    console.log("Social posts");
+    for (const p of socialPosts.filter((p) => selected(p.name))) await writeResponsive(path.join(root, p.src), p.name, SOCIAL_WIDTHS);
+
     console.log("Film posters");
     for (const p of filmPosters.filter((p) => selected(p.name))) await writeResponsive(path.join(root, p.src), p.name, p.widths ?? [240, 480]);
 
@@ -202,7 +219,7 @@ async function main() {
       console.log(`  video  ${film.name}.mp4 (copy of ${film.src})`);
 
       const teaser = path.join(VIDEOS, `${film.name}-teaser.mp4`);
-      buildTeaser(input, teaser, film.teaser, film.fps, film.teaserWidth);
+      buildTeaser(input, teaser, film.teaser, film.fps, film.teaserWidth, film.teaserCrf);
       console.log(`  video  ${film.name}-teaser.mp4`);
 
       const teaserFrame = path.join(scratch, `${film.name}-teaser.png`);

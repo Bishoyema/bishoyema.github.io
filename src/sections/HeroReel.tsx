@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { films, images } from "@/data/media";
+import { films, images, social } from "@/data/media";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { LoopVideo } from "@/components/video/LoopVideo";
 import { Play } from "@/components/Icons";
@@ -37,12 +37,17 @@ export function HeroReel() {
   return (
     <div className="group/reel relative mx-auto aspect-[1/1.02] w-full max-w-[21rem] sm:max-w-[26rem] lg:max-w-[33rem]">
       <Link
-        href="/work/skincare-launch-ad/"
-        aria-label="Skincare Launch Ad, concept project"
+        href="/work/skincare-social-campaign/"
+        aria-label="Hive, Light & Cell, skincare social posts, concept project"
         className="absolute left-[1%] top-[17%] z-10 w-[39%] animate-card-in transition-[translate] duration-700 ease-out-expo [--r:-8deg] [animation-delay:520ms] group-hover/reel:-translate-x-3"
       >
         <span className="block overflow-hidden rounded-2xl shadow-[0_30px_60px_-20px_rgb(0_0_0/0.8)] ring-1 ring-line-strong">
-          <ResponsiveImage image={films.skincare.poster} sizes="(min-width: 1024px) 13rem, 36vw" priority />
+          <ResponsiveImage
+            image={social.biodermaA}
+            sizes="(min-width: 1024px) 13rem, 36vw"
+            priority
+            className="origin-[50%_42%] animate-slow-zoom"
+          />
         </span>
       </Link>
 

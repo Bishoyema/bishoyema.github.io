@@ -23,6 +23,7 @@
   --animate-fade: fade 1.2s var(--ease-out-expo) both;
   --animate-card-in: card-in 1.4s var(--ease-out-expo) both;
   --animate-rec: rec 2.4s ease-in-out infinite;
+  --animate-slow-zoom: slow-zoom 16s ease-in-out infinite alternate;
 
   @keyframes rise {
     from {
@@ -68,6 +69,15 @@
     }
     50% {
       opacity: 0.25;
+    }
+  }
+  /* A slow push-in so still artwork in the hero moves like the film beside it. */
+  @keyframes slow-zoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.09);
     }
   }
 }
