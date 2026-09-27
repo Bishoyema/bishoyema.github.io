@@ -44,6 +44,8 @@ export type Project = {
   /** Where the hover preview starts in the teaser, matching the cover frame (seconds). */
   previewStart?: number;
   variants?: Variant[];
+  /** Show every variant on the home page as one full-width gallery card, so the work is visible without a click. */
+  gallery?: boolean;
   storyboard?: StoryboardFrame[];
   caseStudy: {
     challenge: string;
@@ -57,44 +59,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "impactx-brand-film",
-    title: "ImpactX Brand Film",
-    category: "AI Video",
-    tags: ["AI Video", "Brand Film", "Character Design"],
-    type: "Brand Campaign",
-    brand: "ImpactX",
-    brandNote: "AI creative agency, Dubai",
-    summary:
-      "A 50-second vertical film that introduces a new Dubai creative agency, told through the character who fronts it.",
-    format: "Vertical film · 9:16 · 0:50",
-    cover: stills.brand[3],
-    film: films.brand,
-    previewStart: 3.8,
-    storyboard: [
-      { time: "0:00", seconds: 0, title: "The problem", note: "A business owner, his store, and a post that isn’t landing.", still: stills.brand[0] },
-      { time: "0:10", seconds: 10.1, title: "Enter the mascot", note: "The ImpactX character appears behind him.", still: stills.brand[1] },
-      { time: "0:17", seconds: 16.8, title: "The reveal", note: "A close-up introduces the character.", still: stills.brand[2] },
-      { time: "0:20", seconds: 20.1, title: "The services", note: "Strategy, content, media buying, AI automation, AI video and growth, in neon.", still: stills.brand[3] },
-      { time: "0:30", seconds: 30.2, title: "Automation", note: "An automated chat conversation plays out on glass.", still: stills.brand[4] },
-      { time: "0:36", seconds: 35.8, title: "AI video", note: "A wall of AI-generated video content.", still: stills.brand[5] },
-      { time: "0:40", seconds: 40.25, title: "The close", note: "A package offer on the desk, then the ImpactX logo.", still: stills.brand[6] },
-    ],
-    caseStudy: {
-      challenge:
-        "Open a new AI creative agency’s Instagram and paid social launch with one film: explain what the agency does, give it a face people remember, and make it without a camera crew or studio.",
-      approach:
-        "Tell it as a story, not a service list. The film opens on a business owner whose posts aren’t working, then brings in the ImpactX mascot as the answer: a character the brand can reuse on every channel.",
-      execution: [
-        "One character kept consistent across close-ups, wide shots and motion-graphics scenes.",
-        "Neon interface graphics carry the service list, a live chat automation and a wall of AI video content.",
-        "The film closes on a package offer and the ImpactX logo.",
-      ],
-      deliverables: ["50-second vertical brand film (9:16)", "Mascot character for the brand", "Built for Instagram and paid social"],
-      result:
-        "A single film that introduces the agency, its six services and its mascot in under a minute, part of the ImpactX launch alongside the poster series.",
-    },
-  },
-  {
     slug: "skincare-social-campaign",
     title: "Hive, Light & Cell",
     category: "Social Media",
@@ -106,6 +70,7 @@ export const projects: Project[] = [
       "Six Instagram and Facebook posts for three skincare brands, Beesline, La Roche-Posay and Bioderma, made as spec work. Each brand gets two opposite concepts, each with its own hook, copy and call to action.",
     format: "6 social posts · 4:5 portrait",
     cover: social.beeslineA,
+    gallery: true,
     variants: [
       {
         label: "Beesline · A",
@@ -165,6 +130,44 @@ export const projects: Project[] = [
     },
     disclaimer:
       "Concept project. Independent spec work, not commissioned by or affiliated with Beesline, La Roche-Posay or Bioderma. Product names and packaging belong to their owners.",
+  },
+  {
+    slug: "impactx-brand-film",
+    title: "ImpactX Brand Film",
+    category: "AI Video",
+    tags: ["AI Video", "Brand Film", "Character Design"],
+    type: "Brand Campaign",
+    brand: "ImpactX",
+    brandNote: "AI creative agency, Dubai",
+    summary:
+      "A 50-second vertical film that introduces a new Dubai creative agency, told through the character who fronts it.",
+    format: "Vertical film · 9:16 · 0:50",
+    cover: stills.brand[3],
+    film: films.brand,
+    previewStart: 3.8,
+    storyboard: [
+      { time: "0:00", seconds: 0, title: "The problem", note: "A business owner, his store, and a post that isn’t landing.", still: stills.brand[0] },
+      { time: "0:10", seconds: 10.1, title: "Enter the mascot", note: "The ImpactX character appears behind him.", still: stills.brand[1] },
+      { time: "0:17", seconds: 16.8, title: "The reveal", note: "A close-up introduces the character.", still: stills.brand[2] },
+      { time: "0:20", seconds: 20.1, title: "The services", note: "Strategy, content, media buying, AI automation, AI video and growth, in neon.", still: stills.brand[3] },
+      { time: "0:30", seconds: 30.2, title: "Automation", note: "An automated chat conversation plays out on glass.", still: stills.brand[4] },
+      { time: "0:36", seconds: 35.8, title: "AI video", note: "A wall of AI-generated video content.", still: stills.brand[5] },
+      { time: "0:40", seconds: 40.25, title: "The close", note: "A package offer on the desk, then the ImpactX logo.", still: stills.brand[6] },
+    ],
+    caseStudy: {
+      challenge:
+        "Open a new AI creative agency’s Instagram and paid social launch with one film: explain what the agency does, give it a face people remember, and make it without a camera crew or studio.",
+      approach:
+        "Tell it as a story, not a service list. The film opens on a business owner whose posts aren’t working, then brings in the ImpactX mascot as the answer: a character the brand can reuse on every channel.",
+      execution: [
+        "One character kept consistent across close-ups, wide shots and motion-graphics scenes.",
+        "Neon interface graphics carry the service list, a live chat automation and a wall of AI video content.",
+        "The film closes on a package offer and the ImpactX logo.",
+      ],
+      deliverables: ["50-second vertical brand film (9:16)", "Mascot character for the brand", "Built for Instagram and paid social"],
+      result:
+        "A single film that introduces the agency, its six services and its mascot in under a minute, part of the ImpactX launch alongside the poster series.",
+    },
   },
   {
     slug: "skincare-launch-ad",

@@ -77,6 +77,8 @@ All text lives in `src/data/`. You never need to touch the layout to change copy
 1. Add the source files, then list them in `scripts/optimize-media.mjs` and run `npm run media`.
 2. Register the new images or film in `src/data/media.ts`.
 3. Add an entry to `src/data/projects.ts`. Use `type: "Concept Project"` for self-initiated work.
+   For a post series, add `gallery: true` next to its `variants`: every post then shows on the
+   home page in one full-width card, so visitors see the whole series without a click.
 
 The work grid, the case-study page (`/work/<slug>/`), the sitemap and the "next project"
 links update automatically. Optional: add a 1200×630 `public/og/<slug>.jpg` social image;
@@ -91,7 +93,7 @@ src/
   sections/         home page sections (Hero, Showreel, SelectedWork, AIVideo, Services,
                     About, Capabilities, Certifications, WhyMe, Contact)
   components/       shared UI: Nav, Footer, Button, ResponsiveImage, Reveal, ...
-    projects/       project card and case-study layout
+    projects/       project cards (single and post-series gallery) and case-study layout
     video/          FilmPlayer (films with sound), LoopVideo (silent previews),
                     FilmStage (chapter / key-frame buttons that drive a player)
   data/             all site content (see above)
