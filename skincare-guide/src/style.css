@@ -446,3 +446,15 @@ td .pr { display: block; font-size: 7.4pt; }
 .lang-row .no { font-weight: 800; color: var(--clay); }
 .lang-row .muted { color: var(--muted); font-size: 8.2pt; }
 .chip.no { color: var(--clay); background: var(--clay-l); border-color: #ecd3c7; text-decoration: line-through; text-decoration-thickness: .6px; }
+
+/* ---------- Designer credit ---------- */
+.credit {
+  position: absolute; left: 16mm; bottom: 12mm; z-index: 1;
+  display: flex; flex-direction: column; align-items: flex-start; gap: .6mm;
+  border-left: 1.4px solid var(--sage); padding-left: 3.2mm; direction: ltr;
+}
+.credit-k { font-family: "Inter"; font-size: 6.8pt; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--sage); }
+.credit-n { font-family: "Cormorant"; font-weight: 600; font-size: 19pt; line-height: 1; color: #fff; letter-spacing: .03em; }
+.credit-ar { font-family: "Cairo"; font-size: 8.4pt; color: #c9d3c6; direction: rtl; }
+.foot .by { display: inline-flex; align-items: center; gap: 2.6mm; direction: ltr; }
+.foot .by .en { font-size: 7pt; color: var(--sage-d); font-weight: 600; letter-spacing: .02em; }

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Skincare Science Essentials</title>
-<meta name="author" content="Skincare Science Essentials">
+<meta name="author" content="Beshoy Emad">
 <meta name="description" content="دليل مبسّط لعلم البشرة والمكونات الفعالة لمستشاري التجميل · A simple guide to skin, ingredients and healthy skin for Beauty Advisors.">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -62,6 +62,11 @@
       <div class="cover-sub">Your Simple Guide to Skin, Ingredients &amp; Healthy Skin</div>
       <div class="cover-ar">دليلك المبسّط لفهم البشرة والمكوّنات الفعّالة</div>
       <div class="cover-ar2">علم البشرة · المكونات الفعالة · الروتين · مهارات شرح المنتج للعميل</div>
+    </div>
+    <div class="credit">
+      <span class="credit-k">Created by</span>
+      <span class="credit-n">Beshoy Emad</span>
+      <span class="credit-ar">تصميم وإعداد</span>
     </div>
   </div>
   <div class="cover-bottom">
@@ -1125,7 +1130,7 @@ document.getElementById("examples").innerHTML = EX.map(e => `<div class="card">
   pages.forEach((p, i) => {
     if (i === 0) return;
     p.insertAdjacentHTML("beforeend",
-      `<div class="foot"><span>Skincare Science Essentials · ${p.dataset.ch || ""}</span><span class="num">${String(i + 1).padStart(2, "0")}</span></div>`);
+      `<div class="foot"><span>Skincare Science Essentials · ${p.dataset.ch || ""}</span><span class="by"><span class="num">${String(i + 1).padStart(2, "0")}</span><span class="en">Created by Beshoy Emad</span></span></div>`);
   });
   document.querySelectorAll("[data-pg]").forEach(el => {
     const target = document.getElementById(el.dataset.pg);
