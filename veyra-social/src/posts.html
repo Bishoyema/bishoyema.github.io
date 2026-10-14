@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Veyra AI: website case study posts</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* ---------- IG 1: cover ---------- */
+  #ig-1 .kicker { position: absolute; left: 64px; top: 176px; }
+  #ig-1 .headline { position: absolute; left: 60px; top: 222px; font-size: 122px; z-index: 10; }
+  #ig-1 .sub { position: absolute; left: 64px; top: 590px; width: 600px; z-index: 10; }
+  #ig-1 .swipe { position: absolute; right: 64px; top: 606px; z-index: 10; }
+  #ig-1 .laptop { left: 168px; top: 724px; width: 880px; transform: perspective(2400px) rotateY(-15deg) rotateX(5deg); }
+  #ig-1 .phone { left: 52px; top: 800px; width: 250px; transform: perspective(1800px) rotateY(14deg) rotateZ(-2deg); }
+  #ig-1 .chip.a { right: 44px; top: 694px; }
+  #ig-1 .chip.b { right: 64px; top: 1150px; }
+
+  /* ---------- IG 2: the problem ---------- */
+  #ig-2 .kicker { position: absolute; left: 64px; top: 176px; }
+  #ig-2 .big { position: absolute; left: 50px; top: 196px; font-size: 360px; font-weight: 800; letter-spacing: -0.07em; line-height: 1; color: var(--volt); text-shadow: 0 0 60px rgb(212 255 58 / 0.18); z-index: 5; }
+  #ig-2 .big span { font-size: 0.5em; letter-spacing: -0.03em; vertical-align: 0.62em; margin-left: 10px; }
+  #ig-2 .claim { position: absolute; left: 64px; top: 586px; width: 952px; font-size: 50px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; z-index: 5; }
+  #ig-2 .claim .m { color: var(--mute); }
+  #ig-2 .src { position: absolute; left: 64px; top: 718px; }
+  #ig-2 .loader { left: 64px; top: 790px; width: 952px; }
+  #ig-2 .loader .screen { aspect-ratio: auto; height: 312px; padding: 36px 40px; display: grid; grid-template-columns: 1fr 260px; gap: 34px; }
+  #ig-2 .sk { border-radius: 10px; background: linear-gradient(90deg, #1b1b1f 0%, #26262b 40%, #1b1b1f 80%); }
+  #ig-2 .progress { position: absolute; left: 0; right: 0; top: 44px; height: 4px; background: #1b1b1f; }
+  #ig-2 .progress i { display: block; height: 100%; width: 38%; background: var(--warn); box-shadow: 0 0 18px var(--warn); }
+  #ig-2 .timer { position: absolute; right: 26px; top: 66px; z-index: 6; display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 14px; background: rgb(255 90 60 / 0.12); box-shadow: inset 0 0 0 1.5px rgb(255 90 60 / 0.45); font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--warn); }
+  #ig-2 .spin { width: 22px; height: 22px; border-radius: 50%; border: 3px solid rgb(255 90 60 / 0.25); border-top-color: var(--warn); }
+  #ig-2 .end { position: absolute; left: 64px; right: 64px; bottom: 56px; display: flex; align-items: flex-end; justify-content: space-between; }
+  #ig-2 .end .body { font-size: 34px; max-width: 800px; }
+
+  /* ---------- IG 3: the case ---------- */
+  #ig-3 .kicker { position: absolute; left: 64px; top: 176px; }
+  #ig-3 .headline { position: absolute; left: 60px; top: 222px; font-size: 100px; }
+  #ig-3 .headline .m { color: var(--mute); }
+  #ig-3 .lede { position: absolute; left: 64px; top: 432px; width: 920px; font-size: 31px; }
+  #ig-3 .browser { left: 64px; top: 600px; width: 690px; transform: perspective(2400px) rotateY(-6deg); transform-origin: left center; }
+  #ig-3 .phone { right: 64px; top: 566px; width: 236px; transform: perspective(1800px) rotateY(-8deg); }
+  #ig-3 .built { position: absolute; left: 64px; right: 64px; top: 1150px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 40px; z-index: 10; }
+  #ig-3 .built div { text-wrap: balance; display: flex; gap: 16px; align-items: baseline; font-size: 27px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; }
+  #ig-3 .built b { font-family: var(--mono); font-size: 18px; font-weight: 500; color: var(--volt); letter-spacing: 0.06em; }
+  #ig-3 .built-title { position: absolute; left: 64px; top: 1104px; font-family: var(--mono); font-size: 17px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); z-index: 10; }
+
+  /* ---------- IG 4: the result ---------- */
+  #ig-4 .kicker { position: absolute; left: 64px; top: 176px; }
+  #ig-4 .headline { position: absolute; left: 60px; top: 222px; font-size: 122px; }
+  #ig-4 .panel { position: absolute; left: 64px; right: 64px; top: 520px; height: 590px; z-index: 5; border-radius: 40px; background: linear-gradient(160deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0.015)); box-shadow: inset 0 0 0 1.5px var(--line-strong); padding: 40px 44px; }
+  #ig-4 .panel-head { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+  #ig-4 .panel-head b { color: var(--paper); font-weight: 500; }
+  #ig-4 .rings { margin-top: 44px; display: grid; grid-template-columns: repeat(4, 1fr); --size: 176px; }
+  #ig-4 .divider { margin: 44px 0 36px; height: 1px; background: var(--line); }
+  #ig-4 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  #ig-4 .stat .v { font-size: 84px; }
+  #ig-4 .foot { position: absolute; left: 64px; right: 64px; bottom: 56px; display: flex; align-items: flex-end; justify-content: space-between; z-index: 10; }
+  #ig-4 .foot .mono-note { max-width: 640px; line-height: 1.55; }
+
+  /* ---------- IG 5: call to action ---------- */
+  #ig-5 .headline { position: absolute; left: 64px; right: 64px; top: 176px; text-align: center; font-size: 150px; z-index: 10; }
+  #ig-5 .portal { position: absolute; left: 50%; top: 520px; width: 250px; height: 430px; transform: translateX(-50%); border-radius: 125px 125px 14px 14px; z-index: 4;
+    background: linear-gradient(180deg, #f6ffd0 0%, var(--volt) 35%, #9fd400 100%);
+    box-shadow: 0 0 30px 4px rgb(212 255 58 / 0.85), 0 0 90px 20px rgb(212 255 58 / 0.35); }
+  #ig-5 .halo { position: absolute; left: 50%; top: 735px; width: 1000px; height: 900px; transform: translate(-50%, -50%); z-index: 2; background: radial-gradient(closest-side, rgb(212 255 58 / 0.30), rgb(212 255 58 / 0.10) 45%, transparent); }
+  #ig-5 .floorgrid { position: absolute; left: -540px; right: -540px; top: 950px; height: 700px; z-index: 1; transform-origin: top center; transform: perspective(500px) rotateX(62deg);
+    background-image: linear-gradient(rgb(212 255 58 / 0.22) 1.5px, transparent 1.5px), linear-gradient(90deg, rgb(212 255 58 / 0.22) 1.5px, transparent 1.5px); background-size: 90px 90px; background-position: center top;
+    mask-image: radial-gradient(ellipse 45% 70% at 50% 0%, #000 10%, transparent 70%); }
+  #ig-5 .floor { position: absolute; left: 50%; top: 946px; width: 900px; height: 260px; transform: translateX(-50%); z-index: 3; background: radial-gradient(ellipse 50% 40% at 50% 0%, rgb(212 255 58 / 0.55), rgb(212 255 58 / 0.08) 55%, transparent 75%); }
+  #ig-5 .reflect { position: absolute; left: 50%; top: 950px; width: 250px; height: 120px; transform: translateX(-50%); z-index: 3; border-radius: 14px 14px 125px 125px; background: linear-gradient(180deg, rgb(212 255 58 / 0.45), transparent 90%); filter: blur(4px); }
+  #ig-5 .horizon { position: absolute; left: 0; right: 0; top: 949px; height: 1.5px; z-index: 3; background: linear-gradient(90deg, transparent, rgb(212 255 58 / 0.6), transparent); }
+    #ig-5 .sub { position: absolute; left: 64px; right: 64px; top: 1010px; text-align: center; font-size: 33px; z-index: 10; }
+  #ig-5 .cta { position: absolute; left: 0; right: 0; top: 1112px; display: flex; justify-content: center; z-index: 10; }
+  #ig-5 .services { position: absolute; left: 64px; right: 64px; bottom: 56px; display: flex; justify-content: center; gap: 16px; z-index: 10; font-family: var(--mono); font-size: 17px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+  #ig-5 .services i { color: var(--volt); font-style: normal; }
+
+  /* ---------- Facebook ---------- */
+  #fb .kicker { position: absolute; left: 64px; top: 176px; }
+  #fb .headline { position: absolute; left: 60px; top: 222px; font-size: 118px; z-index: 10; }
+  #fb .sub { position: absolute; right: 64px; top: 440px; width: 330px; font-size: 28px; text-align: left; z-index: 10; }
+  #fb .laptop { left: 150px; top: 610px; width: 860px; transform: perspective(2400px) rotateY(-14deg) rotateX(4deg); }
+  #fb .phone { left: 48px; top: 660px; width: 236px; transform: perspective(1800px) rotateY(14deg) rotateZ(-2deg); }
+  #fb .panel { position: absolute; left: 40px; right: 40px; bottom: 40px; height: 250px; z-index: 15; border-radius: 34px; background: linear-gradient(180deg, #121215, #0b0b0d); box-shadow: inset 0 0 0 1.5px var(--line-strong), 0 -20px 80px rgb(0 0 0 / 0.6); display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; padding: 0 20px; --size: 128px; }
+  #fb .panel-label { position: absolute; left: 50%; top: -17px; transform: translateX(-50%); padding: 7px 16px; border-radius: 999px; background: var(--volt); color: var(--ink); font-family: var(--mono); font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+
+  /* ---------- LinkedIn ---------- */
+  #li .kicker { position: absolute; left: 64px; top: 176px; }
+  #li .headline { position: absolute; left: 62px; top: 222px; width: 960px; font-size: 66px; line-height: 1.0; letter-spacing: -0.04em; }
+  #li .cols { position: absolute; left: 64px; right: 64px; top: 462px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; z-index: 10; }
+  #li .cols h3 { font-family: var(--mono); font-size: 16px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--volt); padding-bottom: 14px; border-bottom: 1px solid var(--line-strong); margin-bottom: 16px; }
+  #li .cols p { font-size: 24px; line-height: 1.38; color: var(--mute); }
+  #li .cols p strong { color: var(--paper); font-weight: 600; }
+  #li .browser { left: 64px; top: 764px; width: 720px; }
+  #li .phone { right: 70px; top: 724px; width: 232px; }
+  #li .scores { position: absolute; left: 40px; right: 40px; bottom: 40px; height: 196px; z-index: 15; border-radius: 30px; background: linear-gradient(180deg, #121215, #0b0b0d); box-shadow: inset 0 0 0 1.5px var(--line-strong), 0 -20px 80px rgb(0 0 0 / 0.6); display: grid; grid-template-columns: 1.15fr repeat(4, 1fr); align-items: center; padding: 0 30px 0 36px; --size: 104px; }
+  #li .scores .ring { gap: 12px; }
+  #li .scores .ttl { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  #li .scores .ttl span { display: block; margin-top: 8px; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+</style>
+</head>
+<body>
+
+<!-- ============ INSTAGRAM 1 / 5: COVER ============ -->
+<section class="frame" id="ig-1" data-tag="Case study &nbsp;<b>01</b>">
+  <div class="glow" style="left:180px;top:760px;width:900px;height:520px;--c:rgb(212 255 58 / 0.20)"></div>
+  <div class="glow" style="left:-200px;top:-260px;width:700px;height:600px;--c:rgb(212 255 58 / 0.07)"></div>
+  <div class="streaks" data-seed="7" data-count="34" data-area="0,700,1080,1350" data-angle="-11"></div>
+
+  <p class="kicker">Websites that win clients</p>
+  <h1 class="headline">Your website<br>has <em>3 seconds</em><br>to win a client.</h1>
+  <p class="body sub">We built one that scores <strong>100&nbsp;/&nbsp;100</strong> on Google. Here’s how.</p>
+  <div class="swipe">Swipe <span class="arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+
+  <div class="laptop"><div class="lid"><div class="screen"><img src="shots/desktop-hero.jpg" alt=""><div class="glare"></div></div></div><div class="base"></div></div>
+  <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="bat"></span></div><div class="island"></div><img src="shots/mobile-hero.jpg" alt=""><div class="glare"></div></div></div>
+
+  <div class="chip a"><div class="ico" data-mini-ring></div><div><div class="t1">Google Lighthouse</div><div class="t2"><span>100</span> · 100 · 100 · 100</div></div></div>
+  <div class="chip b"><div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div><div><div class="t1">Desktop speed</div><div class="t2"><span>0.7s</span> to main content</div></div></div>
+</section>
+
+<!-- ============ INSTAGRAM 2 / 5: THE PROBLEM ============ -->
+<section class="frame" id="ig-2" data-tag="The problem &nbsp;<b>02</b>">
+  <div class="glow" style="left:-140px;top:120px;width:820px;height:520px;--c:rgb(212 255 58 / 0.10)"></div>
+  <div class="streaks" data-seed="21" data-count="26" data-area="0,120,1080,620" data-angle="0" data-dim="0.55"></div>
+
+  <p class="kicker">The 3-second rule</p>
+  <div class="big">53<span>%</span></div>
+  <p class="claim">of mobile visits are abandoned when a page takes <span class="m">longer than 3 seconds to load.</span></p>
+  <p class="mono-note src">Source: Google / DoubleClick, “The Need for Mobile Speed”, 2016</p>
+
+  <div class="browser loader">
+    <div class="bar"><i></i><i></i><i></i><div class="url">🔒 your-business.com</div></div>
+    <div class="progress"><i></i></div>
+    <div class="screen">
+      <div style="display:grid;gap:18px;align-content:start">
+        <div class="sk" style="height:22px;width:34%"></div>
+        <div class="sk" style="height:58px;width:88%"></div>
+        <div class="sk" style="height:58px;width:64%"></div>
+        <div class="sk" style="height:22px;width:76%;margin-top:6px"></div>
+        <div class="sk" style="height:22px;width:58%"></div>
+      </div>
+      <div class="sk" style="height:236px"></div>
+    </div>
+    <div class="timer"><span class="spin"></span>3.0s · still loading</div>
+  </div>
+
+  <div class="end">
+    <p class="body"><strong>Pretty isn’t enough.</strong> If your site is slow, hard to use or invisible on Google, the client is already gone.</p>
+    <div class="swipe"><span class="arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM 3 / 5: THE CASE ============ -->
+<section class="frame" id="ig-3" data-tag="Case study &nbsp;<b>03</b>">
+  <div class="glow" style="left:120px;top:640px;width:860px;height:460px;--c:rgb(212 255 58 / 0.14)"></div>
+  <div class="grid-bg"></div>
+
+  <p class="kicker">Portfolio website · Dubai</p>
+  <h2 class="headline"><span class="m">The brief:</span> win a client<br>in <em>10 seconds.</em></h2>
+  <p class="body lede">An AI creative needed a site where visitors <strong>see the work playing</strong>, get the offer at a glance and can <strong>reach out in one tap</strong>.</p>
+
+  <div class="browser"><div class="bar"><i></i><i></i><i></i><div class="url">🔒 Case study · ImpactX Brand Film</div></div><div class="screen"><img src="shots/desktop-case.jpg" alt=""><div class="glare"></div></div></div>
+  <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="bat"></span></div><div class="island"></div><img src="shots/mobile-case.jpg" alt=""><div class="glare"></div></div></div>
+
+  <p class="built-title">What we built</p>
+  <div class="built">
+    <div><b>01</b>Cinematic hero, films play on their own</div>
+    <div><b>02</b>8 case studies with key frames</div>
+    <div><b>03</b>One-tap WhatsApp and email</div>
+    <div><b>04</b>SEO and link previews on every page</div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM 4 / 5: THE RESULT ============ -->
+<section class="frame" id="ig-4" data-tag="The result &nbsp;<b>04</b>">
+  <div class="glow" style="left:90px;top:520px;width:900px;height:420px;--c:rgb(212 255 58 / 0.13)"></div>
+
+  <p class="kicker">Tested on Google Lighthouse</p>
+  <h2 class="headline">Four perfect<br><em>scores.</em></h2>
+
+  <div class="panel">
+    <div class="panel-head"><span>Lighthouse report · <b>desktop</b></span><span>Portfolio website</span></div>
+    <div class="rings">
+      <div class="ring" data-ring="100"><div class="label">Performance</div></div>
+      <div class="ring" data-ring="100"><div class="label">Accessibility</div></div>
+      <div class="ring" data-ring="100"><div class="label">Best Practices</div></div>
+      <div class="ring" data-ring="100"><div class="label">SEO</div></div>
+    </div>
+    <div class="divider"></div>
+    <div class="stats">
+      <div class="stat"><div class="v">0.7<small>s</small></div><div class="k">Until the main content is on screen</div></div>
+      <div class="stat"><div class="v">0</div><div class="k">Layout shift. Nothing jumps while it loads</div></div>
+      <div class="stat"><div class="v">6<small>/6</small></div><div class="k">Screen sizes, from phone to 1920px, no breaks</div></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <p class="mono-note">Lighthouse 12, October 2026. On mobile: 100 Accessibility, 100 Best Practices, 100 SEO.</p>
+    <div class="swipe"><span class="arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM 5 / 5: CTA ============ -->
+<section class="frame" id="ig-5" data-tag="Your turn &nbsp;<b>05</b>">
+    <div class="halo"></div>
+  <div class="floorgrid"></div>
+
+  <h2 class="headline">Your website<br>is <em>next.</em></h2>
+  <div class="portal"></div>
+  <div class="reflect"></div>
+  <div class="floor"></div>
+  <div class="horizon"></div>
+
+  <p class="body sub">Fast, cinematic websites that turn visitors<br>into clients. <strong>Designed and built by Veyra AI.</strong></p>
+  <div class="cta"><span class="pill volt">DM us “WEBSITE” <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+  <div class="services"><span>Landing pages</span><i>/</i><span>Business sites</span><i>/</i><span>Portfolios</span><i>/</i><span>Campaign pages</span></div>
+</section>
+
+<!-- ============ FACEBOOK ============ -->
+<section class="frame" id="fb" data-tag="Case study">
+  <div class="glow" style="left:160px;top:640px;width:880px;height:480px;--c:rgb(212 255 58 / 0.20)"></div>
+  <div class="streaks" data-seed="13" data-count="30" data-area="0,560,1080,1150" data-angle="-11"></div>
+
+  <p class="kicker">Portfolio website · Dubai</p>
+  <h1 class="headline">Four perfect<br>scores.<br><em>One website.</em></h1>
+  <p class="body sub">Fast, findable and built to turn visitors into <strong>clients.</strong></p>
+
+  <div class="laptop"><div class="lid"><div class="screen"><img src="shots/desktop-hero.jpg" alt=""><div class="glare"></div></div></div><div class="base"></div></div>
+  <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="bat"></span></div><div class="island"></div><img src="shots/mobile-hero.jpg" alt=""><div class="glare"></div></div></div>
+
+  <div class="panel">
+    <span class="panel-label">Google Lighthouse · desktop</span>
+    <div class="ring" data-ring="100"><div class="label">Performance</div></div>
+    <div class="ring" data-ring="100"><div class="label">Accessibility</div></div>
+    <div class="ring" data-ring="100"><div class="label">Best Practices</div></div>
+    <div class="ring" data-ring="100"><div class="label">SEO</div></div>
+  </div>
+</section>
+
+<!-- ============ LINKEDIN ============ -->
+<section class="frame" id="li" data-tag="Case study &nbsp;<b>01</b>">
+  <div class="glow" style="left:60px;top:760px;width:960px;height:420px;--c:rgb(212 255 58 / 0.12)"></div>
+  <div class="grid-bg" style="opacity:.25"></div>
+
+  <p class="kicker">Web design &amp; development</p>
+  <h1 class="headline">How we built a portfolio site that scores <em>100</em> on every Google Lighthouse test.</h1>
+
+  <div class="cols">
+    <div><h3>Challenge</h3><p>An AI creative in Dubai needed a site that <strong>wins clients in 10 seconds</strong>: work visible, offer clear, contact one tap away.</p></div>
+    <div><h3>What we built</h3><p>A cinematic hero where films play on their own, <strong>8 case studies</strong>, one-tap WhatsApp and email, full SEO.</p></div>
+    <div><h3>Result</h3><p><strong>100 / 100 / 100 / 100</strong> on Lighthouse desktop. 0.7s to main content. Zero layout shift.</p></div>
+  </div>
+
+  <div class="browser"><div class="bar"><i></i><i></i><i></i><div class="url">🔒 Bishoy Emad · AI Creative portfolio</div></div><div class="screen"><img src="shots/desktop-hero.jpg" alt=""><div class="glare"></div></div></div>
+  <div class="phone"><div class="screen"><div class="status"><span>9:41</span><span class="bat"></span></div><div class="island"></div><img src="shots/mobile-case.jpg" alt=""><div class="glare"></div></div></div>
+
+  <div class="scores">
+    <div class="ttl">Google Lighthouse<span>Desktop · Oct 2026</span></div>
+    <div class="ring" data-ring="100"><div class="label">Performance</div></div>
+    <div class="ring" data-ring="100"><div class="label">Accessibility</div></div>
+    <div class="ring" data-ring="100"><div class="label">Best Practices</div></div>
+    <div class="ring" data-ring="100"><div class="label">SEO</div></div>
+  </div>
+</section>
+
+<script>
+  // Shared chrome: logo top-left, section tag top-right.
+  const logo = `<div class="logo"><span class="mark"><svg viewBox="0 0 24 24"><path d="M2.5 4h4.6L12 15.2 16.9 4h4.6l-7.6 16.5h-3.8z" fill="#060607"/></svg></span>VEYRA <span class="ai">AI</span></div>`;
+  document.querySelectorAll(".frame").forEach((frame) => {
+    const top = document.createElement("div");
+    top.className = "chrome-top";
+    top.innerHTML = `${logo}<div class="tag"><span class="dot"></span>${frame.dataset.tag || ""}</div>`;
+    frame.prepend(top);
+  });
+
+  // Lighthouse-style score rings.
+  const ringSvg = (score) => {
+    const r = 52, c = 2 * Math.PI * r, len = (score / 100) * c;
+    return `<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="${r}" fill="rgb(212 255 58 / 0.07)" stroke="rgb(212 255 58 / 0.16)" stroke-width="8"/>` +
+      `<circle cx="60" cy="60" r="${r}" fill="none" stroke="#d4ff3a" stroke-width="8" stroke-linecap="round" stroke-dasharray="${len} ${c}" transform="rotate(-90 60 60)"/></svg>`;
+  };
+  document.querySelectorAll("[data-ring]").forEach((el) => {
+    const dial = document.createElement("div");
+    dial.className = "dial";
+    dial.innerHTML = ringSvg(+el.dataset.ring) + `<div class="num">${el.dataset.ring}</div>`;
+    el.prepend(dial);
+  });
+  document.querySelectorAll("[data-mini-ring]").forEach((el) => {
+    el.innerHTML = `<div style="position:relative;width:44px;height:44px">${ringSvg(100)}<div style="position:absolute;inset:0;display:grid;place-items:center;font-size:15px;font-weight:800;color:#d4ff3a">100</div></div>`;
+    el.style.background = "transparent";
+  });
+
+  // Speed streaks, seeded so every render is identical.
+  function rng(seed) { return () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646; }
+  document.querySelectorAll(".streaks").forEach((box) => {
+    const rand = rng(+box.dataset.seed || 1);
+    const [x0, y0, x1, y1] = box.dataset.area.split(",").map(Number);
+    const angle = +box.dataset.angle || 0;
+    const dim = +box.dataset.dim || 1;
+    const converge = box.dataset.converge ? +box.dataset.converge : null;
+    for (let i = 0; i < +box.dataset.count; i++) {
+      const s = document.createElement("i");
+      const w = 120 + rand() * 520;
+      const x = x0 - 200 + rand() * (x1 - x0 + 200);
+      const y = y0 + rand() * (y1 - y0);
+      const blur = rand() < 0.35 ? 0 : 1 + rand() * 3;
+      let a = angle;
+      if (converge !== null) a = (converge - y) * 0.06 * (x < 540 ? -1 : 1);
+      s.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${rand() < 0.2 ? 3 : 1.5}px;opacity:${(0.18 + rand() * 0.7) * dim};filter:blur(${blur}px);transform:rotate(${a}deg)`;
+      box.appendChild(s);
+    }
+  });
+
+  document.fonts.ready.then(() => { document.documentElement.dataset.ready = "1"; });
+</script>
+</body>
+</html>

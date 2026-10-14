@@ -1,0 +1,7 @@
+Fonts in this folder, all licensed under the SIL Open Font License 1.1
+(https://openfontlicense.org), downloaded from Google Fonts (latin subsets):
+
+- Inter by Rasmus Andersson
+- Instrument Serif by Instrument
+- JetBrains Mono by JetBrains
+- Space Grotesk by Florian Karsten
