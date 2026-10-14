@@ -2,16 +2,17 @@
 @import url("fonts.css");
 
 :root {
-  --ink: #060607;
+  --ink: #07070A;
   --ink-2: #0d0d0f;
   --ink-3: #16161a;
-  --paper: #f3f0ea;
-  --mute: #a19d96;
+  --paper: #F5F5F7;
+  --mute: #9C9CAA;
   --faint: #6f6b66;
-  --line: rgb(243 240 234 / 0.12);
-  --line-strong: rgb(243 240 234 / 0.22);
-  --volt: #d4ff3a;
-  --volt-soft: rgb(212 255 58 / 0.14);
+  --line: rgb(245 245 247 / 0.12);
+  --line-strong: rgb(245 245 247 / 0.22);
+  --volt: #9C90FF;
+  --violet: #6E5BFF;
+  --volt-soft: rgb(110 91 255 / 0.18);
   --warn: #ff5a3c;
   --sans: "Inter", system-ui, sans-serif;
   --serif: "Instrument Serif", Georgia, serif;
@@ -67,33 +68,8 @@ body {
 .chrome-top { top: 56px; }
 .chrome-bottom { bottom: 52px; }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-weight: 800;
-  font-size: 30px;
-  letter-spacing: 0.1em;
-}
-.logo .mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: var(--volt);
-  display: grid;
-  place-items: center;
-}
-.logo .mark svg { width: 24px; height: 24px; }
-.logo .ai {
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 17px;
-  letter-spacing: 0.08em;
-  color: var(--ink);
-  background: var(--paper);
-  border-radius: 999px;
-  padding: 5px 11px 4px;
-}
+.logo { display: flex; align-items: center; }
+.logo svg { display: block; height: 40px; width: auto; }
 
 .tag {
   font-family: var(--mono);
@@ -125,10 +101,7 @@ body {
   line-height: 0.92;
 }
 .headline em, .accent {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-style: normal;
   color: var(--volt);
 }
 .body {
@@ -149,7 +122,7 @@ body {
   letter-spacing: -0.01em;
   padding: 22px 34px;
 }
-.pill.volt { background: var(--volt); color: var(--ink); box-shadow: 0 0 60px rgb(212 255 58 / 0.35); }
+.pill.volt { background: var(--violet); color: #fff; box-shadow: 0 0 60px rgb(110 91 255 / 0.45); }
 .pill.ghost { border: 1.5px solid var(--line-strong); color: var(--paper); }
 
 .swipe {
@@ -164,7 +137,7 @@ body {
 }
 .swipe .arrow {
   width: 54px; height: 54px; border-radius: 50%;
-  background: var(--volt); color: var(--ink);
+  background: var(--violet); color: #fff;
   display: grid; place-items: center;
 }
 
@@ -308,7 +281,7 @@ body {
 /* ---------- Lighthouse-style score rings ---------- */
 .ring { position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .ring .dial { position: relative; width: var(--size, 170px); height: var(--size, 170px); }
-.ring svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 0 18px rgb(212 255 58 / 0.45)); }
+.ring svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 0 18px rgb(110 91 255 / 0.55)); }
 .ring .num {
   position: absolute; inset: 0;
   display: grid; place-items: center;

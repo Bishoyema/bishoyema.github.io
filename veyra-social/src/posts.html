@@ -17,7 +17,7 @@
 
   /* ---------- IG 2: the problem ---------- */
   #ig-2 .kicker { position: absolute; left: 64px; top: 176px; }
-  #ig-2 .big { position: absolute; left: 50px; top: 196px; font-size: 360px; font-weight: 800; letter-spacing: -0.07em; line-height: 1; color: var(--volt); text-shadow: 0 0 60px rgb(212 255 58 / 0.18); z-index: 5; }
+  #ig-2 .big { position: absolute; left: 50px; top: 196px; font-size: 360px; font-weight: 800; letter-spacing: -0.07em; line-height: 1; color: var(--volt); text-shadow: 0 0 60px rgb(110 91 255 / 0.18); z-index: 5; }
   #ig-2 .big span { font-size: 0.5em; letter-spacing: -0.03em; vertical-align: 0.62em; margin-left: 10px; }
   #ig-2 .claim { position: absolute; left: 64px; top: 586px; width: 952px; font-size: 50px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; z-index: 5; }
   #ig-2 .claim .m { color: var(--mute); }
@@ -58,28 +58,23 @@
   #ig-4 .foot .mono-note { max-width: 640px; line-height: 1.55; }
 
   /* ---------- IG 5: call to action ---------- */
-  #ig-5 .headline { position: absolute; left: 64px; right: 64px; top: 176px; text-align: center; font-size: 150px; z-index: 10; }
-  #ig-5 .portal { position: absolute; left: 50%; top: 520px; width: 250px; height: 430px; transform: translateX(-50%); border-radius: 125px 125px 14px 14px; z-index: 4;
-    background: linear-gradient(180deg, #f6ffd0 0%, var(--volt) 35%, #9fd400 100%);
-    box-shadow: 0 0 30px 4px rgb(212 255 58 / 0.85), 0 0 90px 20px rgb(212 255 58 / 0.35); }
-  #ig-5 .halo { position: absolute; left: 50%; top: 735px; width: 1000px; height: 900px; transform: translate(-50%, -50%); z-index: 2; background: radial-gradient(closest-side, rgb(212 255 58 / 0.30), rgb(212 255 58 / 0.10) 45%, transparent); }
-  #ig-5 .floorgrid { position: absolute; left: -540px; right: -540px; top: 950px; height: 700px; z-index: 1; transform-origin: top center; transform: perspective(500px) rotateX(62deg);
-    background-image: linear-gradient(rgb(212 255 58 / 0.22) 1.5px, transparent 1.5px), linear-gradient(90deg, rgb(212 255 58 / 0.22) 1.5px, transparent 1.5px); background-size: 90px 90px; background-position: center top;
-    mask-image: radial-gradient(ellipse 45% 70% at 50% 0%, #000 10%, transparent 70%); }
-  #ig-5 .floor { position: absolute; left: 50%; top: 946px; width: 900px; height: 260px; transform: translateX(-50%); z-index: 3; background: radial-gradient(ellipse 50% 40% at 50% 0%, rgb(212 255 58 / 0.55), rgb(212 255 58 / 0.08) 55%, transparent 75%); }
-  #ig-5 .reflect { position: absolute; left: 50%; top: 950px; width: 250px; height: 120px; transform: translateX(-50%); z-index: 3; border-radius: 14px 14px 125px 125px; background: linear-gradient(180deg, rgb(212 255 58 / 0.45), transparent 90%); filter: blur(4px); }
-  #ig-5 .horizon { position: absolute; left: 0; right: 0; top: 949px; height: 1.5px; z-index: 3; background: linear-gradient(90deg, transparent, rgb(212 255 58 / 0.6), transparent); }
-    #ig-5 .sub { position: absolute; left: 64px; right: 64px; top: 1010px; text-align: center; font-size: 33px; z-index: 10; }
-  #ig-5 .cta { position: absolute; left: 0; right: 0; top: 1112px; display: flex; justify-content: center; z-index: 10; }
-  #ig-5 .services { position: absolute; left: 64px; right: 64px; bottom: 56px; display: flex; justify-content: center; gap: 16px; z-index: 10; font-family: var(--mono); font-size: 17px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+  #ig-5 .char { position: absolute; left: 90px; top: 96px; width: 900px; z-index: 3;
+    -webkit-mask-image: radial-gradient(ellipse 54% 46% at 50% 36%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 54% 46% at 50% 36%, #000 62%, transparent 100%); }
+  #ig-5 .char img { display: block; width: 100%; }
+  #ig-5 .charglow { position: absolute; left: 540px; top: 470px; width: 1100px; height: 900px; transform: translate(-50%, -50%); z-index: 2; background: radial-gradient(closest-side, rgb(110 91 255 / 0.30), rgb(110 91 255 / 0.08) 50%, transparent); }
+  #ig-5 .scrim { position: absolute; left: 0; right: 0; top: 700px; height: 300px; z-index: 4; background: linear-gradient(180deg, transparent, rgb(7 7 10 / 0.92) 70%); }
+  #ig-5 .headline { position: absolute; left: 64px; right: 64px; top: 846px; text-align: center; font-size: 132px; z-index: 10; }
+  #ig-5 .sub { position: absolute; left: 64px; right: 64px; top: 1098px; text-align: center; font-size: 31px; z-index: 10; }
+  #ig-5 .cta { position: absolute; left: 0; right: 0; top: 1160px; display: flex; justify-content: center; z-index: 10; }
+  #ig-5 .services { position: absolute; left: 64px; right: 64px; bottom: 50px; display: flex; justify-content: center; gap: 16px; z-index: 10; font-family: var(--mono); font-size: 17px; letter-spacing: 0.1em; color: var(--mute); }
   #ig-5 .services i { color: var(--volt); font-style: normal; }
 
   /* ---------- Facebook ---------- */
   #fb .kicker { position: absolute; left: 64px; top: 176px; }
   #fb .headline { position: absolute; left: 60px; top: 222px; font-size: 118px; z-index: 10; }
-  #fb .sub { position: absolute; right: 64px; top: 440px; width: 330px; font-size: 28px; text-align: left; z-index: 10; }
-  #fb .laptop { left: 150px; top: 610px; width: 860px; transform: perspective(2400px) rotateY(-14deg) rotateX(4deg); }
-  #fb .phone { left: 48px; top: 660px; width: 236px; transform: perspective(1800px) rotateY(14deg) rotateZ(-2deg); }
+  #fb .sub { position: absolute; left: 64px; top: 566px; width: 760px; font-size: 30px; text-align: left; z-index: 10; }
+  #fb .laptop { left: 150px; top: 660px; width: 860px; transform: perspective(2400px) rotateY(-14deg) rotateX(4deg); }
+  #fb .phone { left: 48px; top: 712px; width: 236px; transform: perspective(1800px) rotateY(14deg) rotateZ(-2deg); }
   #fb .panel { position: absolute; left: 40px; right: 40px; bottom: 40px; height: 250px; z-index: 15; border-radius: 34px; background: linear-gradient(180deg, #121215, #0b0b0d); box-shadow: inset 0 0 0 1.5px var(--line-strong), 0 -20px 80px rgb(0 0 0 / 0.6); display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; padding: 0 20px; --size: 128px; }
   #fb .panel-label { position: absolute; left: 50%; top: -17px; transform: translateX(-50%); padding: 7px 16px; border-radius: 999px; background: var(--volt); color: var(--ink); font-family: var(--mono); font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
 
@@ -102,8 +97,8 @@
 
 <!-- ============ INSTAGRAM 1 / 5: COVER ============ -->
 <section class="frame" id="ig-1" data-tag="Case study &nbsp;<b>01</b>">
-  <div class="glow" style="left:180px;top:760px;width:900px;height:520px;--c:rgb(212 255 58 / 0.20)"></div>
-  <div class="glow" style="left:-200px;top:-260px;width:700px;height:600px;--c:rgb(212 255 58 / 0.07)"></div>
+  <div class="glow" style="left:180px;top:760px;width:900px;height:520px;--c:rgb(110 91 255 / 0.20)"></div>
+  <div class="glow" style="left:-200px;top:-260px;width:700px;height:600px;--c:rgb(110 91 255 / 0.07)"></div>
   <div class="streaks" data-seed="7" data-count="34" data-area="0,700,1080,1350" data-angle="-11"></div>
 
   <p class="kicker">Websites that win clients</p>
@@ -120,7 +115,7 @@
 
 <!-- ============ INSTAGRAM 2 / 5: THE PROBLEM ============ -->
 <section class="frame" id="ig-2" data-tag="The problem &nbsp;<b>02</b>">
-  <div class="glow" style="left:-140px;top:120px;width:820px;height:520px;--c:rgb(212 255 58 / 0.10)"></div>
+  <div class="glow" style="left:-140px;top:120px;width:820px;height:520px;--c:rgb(110 91 255 / 0.10)"></div>
   <div class="streaks" data-seed="21" data-count="26" data-area="0,120,1080,620" data-angle="0" data-dim="0.55"></div>
 
   <p class="kicker">The 3-second rule</p>
@@ -152,7 +147,7 @@
 
 <!-- ============ INSTAGRAM 3 / 5: THE CASE ============ -->
 <section class="frame" id="ig-3" data-tag="Case study &nbsp;<b>03</b>">
-  <div class="glow" style="left:120px;top:640px;width:860px;height:460px;--c:rgb(212 255 58 / 0.14)"></div>
+  <div class="glow" style="left:120px;top:640px;width:860px;height:460px;--c:rgb(110 91 255 / 0.14)"></div>
   <div class="grid-bg"></div>
 
   <p class="kicker">Portfolio website · Dubai</p>
@@ -173,7 +168,7 @@
 
 <!-- ============ INSTAGRAM 4 / 5: THE RESULT ============ -->
 <section class="frame" id="ig-4" data-tag="The result &nbsp;<b>04</b>">
-  <div class="glow" style="left:90px;top:520px;width:900px;height:420px;--c:rgb(212 255 58 / 0.13)"></div>
+  <div class="glow" style="left:90px;top:520px;width:900px;height:420px;--c:rgb(110 91 255 / 0.13)"></div>
 
   <p class="kicker">Tested on Google Lighthouse</p>
   <h2 class="headline">Four perfect<br><em>scores.</em></h2>
@@ -202,23 +197,19 @@
 
 <!-- ============ INSTAGRAM 5 / 5: CTA ============ -->
 <section class="frame" id="ig-5" data-tag="Your turn &nbsp;<b>05</b>">
-    <div class="halo"></div>
-  <div class="floorgrid"></div>
+  <div class="charglow"></div>
+  <div class="char"><img src="character/r2-03-closeup.jpg" alt=""></div>
+  <div class="scrim"></div>
 
   <h2 class="headline">Your website<br>is <em>next.</em></h2>
-  <div class="portal"></div>
-  <div class="reflect"></div>
-  <div class="floor"></div>
-  <div class="horizon"></div>
-
-  <p class="body sub">Fast, cinematic websites that turn visitors<br>into clients. <strong>Designed and built by Veyra AI.</strong></p>
+  <p class="body sub">Fast, cinematic websites that turn visitors into <strong>clients.</strong></p>
   <div class="cta"><span class="pill volt">DM us “WEBSITE” <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-  <div class="services"><span>Landing pages</span><i>/</i><span>Business sites</span><i>/</i><span>Portfolios</span><i>/</i><span>Campaign pages</span></div>
+  <div class="services"><span>@veyra_aistudio</span><i>/</i><span>DUBAI — WORKING WORLDWIDE</span></div>
 </section>
 
 <!-- ============ FACEBOOK ============ -->
 <section class="frame" id="fb" data-tag="Case study">
-  <div class="glow" style="left:160px;top:640px;width:880px;height:480px;--c:rgb(212 255 58 / 0.20)"></div>
+  <div class="glow" style="left:160px;top:640px;width:880px;height:480px;--c:rgb(110 91 255 / 0.20)"></div>
   <div class="streaks" data-seed="13" data-count="30" data-area="0,560,1080,1150" data-angle="-11"></div>
 
   <p class="kicker">Portfolio website · Dubai</p>
@@ -239,7 +230,7 @@
 
 <!-- ============ LINKEDIN ============ -->
 <section class="frame" id="li" data-tag="Case study &nbsp;<b>01</b>">
-  <div class="glow" style="left:60px;top:760px;width:960px;height:420px;--c:rgb(212 255 58 / 0.12)"></div>
+  <div class="glow" style="left:60px;top:760px;width:960px;height:420px;--c:rgb(110 91 255 / 0.12)"></div>
   <div class="grid-bg" style="opacity:.25"></div>
 
   <p class="kicker">Web design &amp; development</p>
@@ -265,7 +256,7 @@
 
 <script>
   // Shared chrome: logo top-left, section tag top-right.
-  const logo = `<div class="logo"><span class="mark"><svg viewBox="0 0 24 24"><path d="M2.5 4h4.6L12 15.2 16.9 4h4.6l-7.6 16.5h-3.8z" fill="#060607"/></svg></span>VEYRA <span class="ai">AI</span></div>`;
+  const logo = `<div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="198.05 210 1603.9 280"><g transform="translate(198.05 210) scale(0.538461)"><path fill="#F5F5F7" d="M282.23,520.00 L321.11,408.90 L178.00,0.00 L0.00,0.00 L182.00,520.00 Z M656.00,0.00 L555.77,0.00 L516.89,111.10 L590.84,322.40 L442.93,322.40 L428.93,362.40 L604.84,362.40 L660.00,520.00 L838.00,520.00 Z"/><path fill="#6E5BFF" d="M296.00,520.00 L360.00,520.00 L542.00,0.00 L478.00,0.00 Z"/></g><path transform="translate(750.08 276.47)" fill="#F5F5F7" d="M 45.48,147.05 L 0.00,1.05 L 31.58,1.05 L 68.47,125.88 L 60.50,121.95 L 81.50,121.95 L 73.17,125.88 L 107.35,1.05 L 137.95,1.05 L 95.57,147.05 Z M 183.85,147.05 L 183.85,1.05 L 213.70,1.05 L 213.70,147.05 Z M 209.70,147.05 L 209.70,121.45 L 274.75,121.45 L 274.75,147.05 Z M 209.70,85.65 L 209.70,60.05 L 269.80,60.05 L 269.80,85.65 Z M 209.70,26.65 L 209.70,1.05 L 273.25,1.05 L 273.25,26.65 Z M 354.62,91.50 L 311.35,1.05 L 342.75,1.05 L 374.83,70.33 L 368.73,68.38 L 386.58,68.38 L 380.08,70.33 L 409.25,1.05 L 438.95,1.05 L 398.98,91.50 Z M 361.83,147.05 L 361.83,87.00 L 391.78,87.00 L 391.78,147.05 Z M 482.05,147.05 L 482.05,0.00 L 512.65,0.00 L 512.65,147.05 Z M 570.88,147.05 L 527.10,83.93 L 560.98,83.93 L 606.55,147.05 Z M 504.00,99.25 L 504.00,74.85 L 540.58,74.85 C 545.62,74.85 549.98,73.83 553.62,71.80 C 557.27,69.77 560.11,66.91 562.14,63.24 C 564.16,59.56 565.18,55.32 565.18,50.50 C 565.18,45.60 564.16,41.31 562.14,37.64 C 560.11,33.96 557.27,31.10 553.62,29.04 C 549.98,26.98 545.62,25.95 540.58,25.95 L 504.00,25.95 L 504.00,0.00 L 537.85,0.00 C 549.77,0.00 560.10,1.79 568.85,5.36 C 577.60,8.94 584.34,14.29 589.08,21.41 C 593.81,28.54 596.18,37.49 596.18,48.28 L 596.18,51.48 C 596.18,62.26 593.77,71.17 588.98,78.21 C 584.18,85.25 577.43,90.52 568.75,94.01 C 560.07,97.50 549.77,99.25 537.85,99.25 Z M 636.95,147.05 L 685.93,1.05 L 735.62,1.05 L 786.20,147.05 L 754.62,147.05 L 712.75,22.10 L 722.98,26.40 L 697.62,26.40 L 708.20,22.10 L 667.55,147.05 Z M 672.60,109.58 L 682.08,83.98 L 740.33,83.98 L 749.80,109.58 Z"/><path transform="translate(1608.28 277.52)" fill="#9C90FF" d="M -0.00,146.00 L 53.80,0.00 L 81.13,0.00 L 136.67,146.00 L 121.00,146.00 L 69.33,9.53 L 77.47,13.73 L 56.53,13.73 L 65.07,9.53 L 15.20,146.00 Z M 28.80,99.60 L 33.93,85.87 L 101.67,85.87 L 106.87,99.60 Z M 178.47,146.00 L 178.47,0.00 L 193.67,0.00 L 193.67,146.00 Z"/></svg></div>`;
   document.querySelectorAll(".frame").forEach((frame) => {
     const top = document.createElement("div");
     top.className = "chrome-top";
@@ -276,8 +267,8 @@
   // Lighthouse-style score rings.
   const ringSvg = (score) => {
     const r = 52, c = 2 * Math.PI * r, len = (score / 100) * c;
-    return `<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="${r}" fill="rgb(212 255 58 / 0.07)" stroke="rgb(212 255 58 / 0.16)" stroke-width="8"/>` +
-      `<circle cx="60" cy="60" r="${r}" fill="none" stroke="#d4ff3a" stroke-width="8" stroke-linecap="round" stroke-dasharray="${len} ${c}" transform="rotate(-90 60 60)"/></svg>`;
+    return `<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="${r}" fill="rgb(110 91 255 / 0.07)" stroke="rgb(110 91 255 / 0.16)" stroke-width="8"/>` +
+      `<circle cx="60" cy="60" r="${r}" fill="none" stroke="#9C90FF" stroke-width="8" stroke-linecap="round" stroke-dasharray="${len} ${c}" transform="rotate(-90 60 60)"/></svg>`;
   };
   document.querySelectorAll("[data-ring]").forEach((el) => {
     const dial = document.createElement("div");
@@ -286,7 +277,7 @@
     el.prepend(dial);
   });
   document.querySelectorAll("[data-mini-ring]").forEach((el) => {
-    el.innerHTML = `<div style="position:relative;width:44px;height:44px">${ringSvg(100)}<div style="position:absolute;inset:0;display:grid;place-items:center;font-size:15px;font-weight:800;color:#d4ff3a">100</div></div>`;
+    el.innerHTML = `<div style="position:relative;width:44px;height:44px">${ringSvg(100)}<div style="position:absolute;inset:0;display:grid;place-items:center;font-size:15px;font-weight:800;color:#9C90FF">100</div></div>`;
     el.style.background = "transparent";
   });
 

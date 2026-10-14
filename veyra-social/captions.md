@@ -40,7 +40,7 @@ The result on Google Lighthouse (desktop):
 
 Plus: main content on screen in 0.7s, zero layout shift, and no broken layouts from phone to 1920px screens.
 
-Your website is next. DM us "WEBSITE" and let's build yours. 🚀
+Your website is next. DM us "WEBSITE" at @veyra_aistudio and let's build yours. 🚀
 
 #webdesign #websitedesign #webdevelopment #landingpage #seo #pagespeed #dubai #uae #dubaibusiness #smallbusiness #veyraai #تصميم_مواقع #مواقع_الكترونية
 
@@ -77,7 +77,7 @@ Your website is next. DM us "WEBSITE" and let's build yours. 🚀
 2. "53% of mobile visits are abandoned when a page takes longer than 3 seconds to load." A browser still loading after 3.0 seconds.
 3. Case study brief: win a client in 10 seconds. Screens of the portfolio's case-study pages and a list of what was built.
 4. "Four perfect scores." Google Lighthouse desktop report: 100 Performance, 100 Accessibility, 100 Best Practices, 100 SEO; 0.7s to main content; zero layout shift; 6 of 6 screen sizes.
-5. "Your website is next." A glowing doorway and the call to action: DM us "WEBSITE".
+5. "Your website is next." The Veyra AI character, lit in violet, above the call to action: DM us "WEBSITE".
 
 ---
 
@@ -173,7 +173,7 @@ frame near the end (around 18 s) as the cover.
 - **Instagram:** post the five slides in order as one carousel. Slide 1 works on its own in the grid.
 - **Facebook:** the single image is 4:5, which fills the feed on phones. A link to the live portfolio can go in the post or the first comment.
 - **LinkedIn:** the single image is the safe choice. For more reach, upload `linkedin-carousel.pdf` as a document post (Add a document), with the same caption.
-- **Logo:** the posts use a "VEYRA AI" wordmark with a V mark. If Veyra AI already has a logo file, swap it into `src/posts.html` (the `logo` constant in the script at the bottom) and re-render.
+- **Brand:** the posts use the Veyra AI logo, colours and character from your Canva Logo System and Character Directions. The logo vectors are in `src/brand/` (dark and light versions).
 
 ## Where the numbers come from
 
