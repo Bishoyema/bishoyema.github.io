@@ -162,6 +162,12 @@ If your website is slow, hard to use or invisible on Google, let's talk. Send us
 
 ---
 
+## Reel (`out/veyra-website-reel.mp4`)
+
+Post it as an Instagram / Facebook Reel or on TikTok, with the Instagram caption above (English or Arabic).
+The soundtrack is original and already mixed in, so don't add a trending sound on top. Pick the logo
+frame near the end (around 18 s) as the cover.
+
 ## Posting notes
 
 - **Instagram:** post the five slides in order as one carousel. Slide 1 works on its own in the grid.

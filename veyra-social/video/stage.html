@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Veyra AI reel stage</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root {
+    --ink: #060607; --paper: #f3f0ea; --mute: #a19d96; --volt: #d4ff3a;
+    --line: rgb(243 240 234 / 0.12); --line-strong: rgb(243 240 234 / 0.22);
+    --sans: "Inter", system-ui, sans-serif; --serif: "Instrument Serif", Georgia, serif; --mono: "JetBrains Mono", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+  body { font-family: var(--sans); color: var(--paper); -webkit-font-smoothing: antialiased; font-optical-sizing: auto; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); perspective: 2600px; }
+  #stage::after { /* grain */
+    content: ""; position: absolute; inset: 0; z-index: 90; pointer-events: none; opacity: 0.08; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .glow { position: absolute; pointer-events: none; background: radial-gradient(closest-side, var(--c), transparent); }
+  #floor { position: absolute; left: -600px; right: -600px; top: 1372px; height: 900px; transform-origin: top center; transform: perspective(520px) rotateX(64deg);
+    background-image: linear-gradient(rgb(212 255 58 / 0.20) 1.5px, transparent 1.5px), linear-gradient(90deg, rgb(212 255 58 / 0.20) 1.5px, transparent 1.5px);
+    background-size: 96px 96px; background-position: center top;
+    mask-image: radial-gradient(ellipse 42% 75% at 50% 0%, #000 10%, transparent 72%); }
+  #horizon { position: absolute; left: 0; right: 0; top: 1371px; height: 1.5px; background: linear-gradient(90deg, transparent, rgb(212 255 58 / 0.45), transparent); }
+
+  #cam { position: absolute; inset: 0; transform-origin: 0 0; transform-style: preserve-3d; }
+
+  /* Laptop */
+  #laptop { position: absolute; left: 80px; top: 690px; width: 920px; transform-style: preserve-3d; }
+  #laptop .lid { position: relative; padding: 18px 18px 26px; margin: 0 -18px; border-radius: 30px 30px 8px 8px;
+    background: linear-gradient(160deg, #232327, #0b0b0d 60%);
+    box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.13), inset 0 2px 0 rgb(255 255 255 / 0.1), 0 0 0 1px #000, 0 0 90px rgb(212 255 58 / 0.10); }
+  #laptop .lid::before { content: ""; position: absolute; top: 7px; left: 50%; width: 7px; height: 7px; transform: translateX(-50%); border-radius: 50%; background: #1c1f26; }
+  #laptop .base { position: relative; height: 26px; margin: 0 -84px; border-radius: 3px 3px 24px 24px;
+    background: linear-gradient(180deg, #6b6b72 0%, #3a3a40 22%, #1d1d21 70%, #0d0d0f 100%); box-shadow: 0 40px 80px rgb(0 0 0 / 0.75); }
+  #laptop .base::before { content: ""; position: absolute; top: 0; left: 50%; width: 17%; height: 9px; transform: translateX(-50%); border-radius: 0 0 12px 12px; background: linear-gradient(#18181b, #2a2a2f); }
+  .screen { position: relative; overflow: hidden; background: #000; }
+  #laptop .screen { width: 920px; height: 575px; border-radius: 8px; }
+  #laptop iframe { position: absolute; left: 0; top: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; transform: scale(0.638889); }
+  .screen .glare { position: absolute; inset: 0; pointer-events: none; z-index: 3;
+    background: linear-gradient(115deg, rgb(255 255 255 / 0.09) 0%, rgb(255 255 255 / 0.025) 32%, transparent 48%); }
+  .screen .wipe { position: absolute; inset: 0; z-index: 2; background: #000; }
+
+  /* Phone */
+  #phone { position: absolute; left: 640px; top: 760px; width: 300px; padding: 12px; border-radius: 58px; z-index: 5;
+    background: linear-gradient(160deg, #2a2a2f, #0a0a0b 55%);
+    box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.16), inset 0 0 0 5px #050506, 0 0 0 1.5px #000, 0 40px 90px rgb(0 0 0 / 0.75); }
+  #phone .screen { width: 276px; height: 597px; border-radius: 46px; background: #140d0c; }
+  #phone iframe { position: absolute; left: 0; top: 34px; width: 390px; height: 796px; border: 0; transform-origin: 0 0; transform: scale(0.707692); }
+  #phone .status { position: absolute; top: 0; left: 0; right: 0; height: 34px; z-index: 4; display: flex; align-items: center; justify-content: space-between; padding: 4px 28px 0 32px; font-size: 13px; font-weight: 600; }
+  #phone .island { position: absolute; top: 8px; left: 50%; width: 84px; height: 24px; transform: translateX(-50%); background: #000; border-radius: 20px; z-index: 5; }
+
+  /* HUD */
+  #hud { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
+  #scrim { position: absolute; left: 0; right: 0; top: 0; height: 700px; z-index: 15; pointer-events: none; background: linear-gradient(180deg, rgb(6 6 7 / 0.96) 0%, rgb(6 6 7 / 0.9) 62%, transparent); }
+  #scrimBottom { position: absolute; left: 0; right: 0; bottom: 0; height: 560px; z-index: 15; pointer-events: none; background: linear-gradient(0deg, rgb(6 6 7 / 0.95) 0%, rgb(6 6 7 / 0.85) 55%, transparent); }
+  .logo { position: absolute; left: 64px; top: 140px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 30px; letter-spacing: 0.1em; }
+  .mark { display: grid; place-items: center; background: var(--volt); border-radius: 12px; }
+  .logo .mark { width: 42px; height: 42px; }
+  .logo .mark svg { width: 24px; height: 24px; }
+  .ai { font-family: var(--mono); font-weight: 500; font-size: 17px; letter-spacing: 0.08em; color: var(--ink); background: var(--paper); border-radius: 999px; padding: 5px 11px 4px; }
+  .tag { position: absolute; right: 64px; top: 150px; font-family: var(--mono); font-size: 19px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); display: flex; align-items: center; gap: 12px; }
+  .tag .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--volt); box-shadow: 0 0 16px var(--volt); }
+
+  .cap { position: absolute; left: 64px; right: 64px; top: 262px; }
+  .cap .kicker { font-family: var(--mono); font-size: 21px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--volt); margin-bottom: 22px; }
+  .cap h2 { font-size: 104px; font-weight: 800; letter-spacing: -0.045em; line-height: 0.95; }
+  .cap h2 .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .cap h2 .w > span { display: inline-block; will-change: transform; }
+  .cap em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.02em; color: var(--volt); }
+
+  #chip { position: absolute; left: 50%; top: 1430px; display: flex; align-items: center; gap: 16px; padding: 18px 28px 18px 18px; border-radius: 999px; white-space: nowrap;
+    background: linear-gradient(180deg, #141417, #0c0c0e); box-shadow: inset 0 0 0 1.5px var(--line-strong), 0 24px 60px rgb(0 0 0 / 0.6); }
+  #chip .n { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--ink); background: var(--volt); border-radius: 999px; padding: 8px 12px; }
+  #chip .t { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
+
+  #rings { position: absolute; left: 50px; right: 50px; top: 1300px; height: 290px; border-radius: 40px; display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; padding: 0 18px;
+    background: linear-gradient(180deg, #131316, #0b0b0d); box-shadow: inset 0 0 0 1.5px var(--line-strong), 0 -20px 80px rgb(0 0 0 / 0.6); }
+  #rings .label-top { position: absolute; left: 50%; top: -18px; transform: translateX(-50%); padding: 8px 18px; border-radius: 999px; background: var(--volt); color: var(--ink); font-family: var(--mono); font-size: 16px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+  .ring { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .dial { position: relative; width: 150px; height: 150px; }
+  .dial svg { width: 100%; height: 100%; filter: drop-shadow(0 0 16px rgb(212 255 58 / 0.45)); }
+  .dial .num { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; font-size: 52px; letter-spacing: -0.04em; color: var(--volt); font-variant-numeric: tabular-nums; }
+  .ring .label { font-size: 21px; font-weight: 500; white-space: nowrap; }
+
+  /* Logo scene */
+  #end { position: absolute; inset: 0; z-index: 40; background: var(--ink); display: grid; place-items: center; }
+  #end .stack { display: flex; flex-direction: column; align-items: center; }
+  #end .big { width: 230px; height: 230px; border-radius: 62px; box-shadow: 0 0 80px rgb(212 255 58 / 0.55), 0 0 220px rgb(212 255 58 / 0.25); }
+  #end .big svg { width: 132px; height: 132px; }
+  #end .markwrap { position: relative; }
+  #end .burst { position: absolute; inset: 0; border-radius: 62px; border: 3px solid var(--volt); }
+  #end .word { margin-top: 64px; display: flex; align-items: center; gap: 22px; font-weight: 800; font-size: 104px; letter-spacing: 0.08em; }
+  #end .word .l { display: inline-block; }
+  #end .word .ai { font-size: 44px; padding: 10px 22px 8px; }
+  #end .sub { margin-top: 34px; font-family: var(--mono); font-size: 26px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mute); }
+  #end .cta { margin-top: 90px; display: inline-flex; align-items: center; gap: 16px; padding: 26px 40px; border-radius: 999px; background: var(--volt); color: var(--ink); font-weight: 700; font-size: 38px; letter-spacing: -0.01em; box-shadow: 0 0 70px rgb(212 255 58 / 0.35); }
+  #end .glowend { position: absolute; left: 50%; top: 50%; width: 1300px; height: 1300px; margin: -650px 0 0 -650px; }
+  #flash { position: absolute; inset: 0; z-index: 60; background: radial-gradient(circle at 50% 50%, #f6ffd0, var(--volt) 40%, rgb(212 255 58 / 0.6)); pointer-events: none; }
+  #black { position: absolute; inset: 0; z-index: 35; background: #000; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="glow" id="glowMain" style="left:-90px;top:470px;width:1260px;height:1060px;--c:rgb(212 255 58 / 0.30)"></div>
+  <div class="glow" style="left:140px;top:1300px;width:800px;height:200px;--c:rgb(212 255 58 / 0.22)"></div>
+  <div class="glow" style="left:-300px;top:-300px;width:900px;height:800px;--c:rgb(212 255 58 / 0.06)"></div>
+  <div id="floor"></div>
+  <div id="horizon"></div>
+
+  <div id="cam">
+    <div id="laptop">
+      <div class="lid"><div class="screen"><iframe id="siteDesk" src="/" scrolling="no"></iframe><div class="wipe"></div><div class="glare"></div></div></div>
+      <div class="base"></div>
+    </div>
+    <div id="phone">
+      <div class="screen"><div class="status"><span>9:41</span><span>●●● ▮</span></div><div class="island"></div><iframe id="siteMob" src="/" scrolling="no"></iframe><div class="glare"></div></div>
+    </div>
+  </div>
+
+  <div id="scrim"></div><div id="scrimBottom"></div>
+  <div id="hud">
+    <div class="logo"><span class="mark"><svg viewBox="0 0 24 24"><path d="M2.5 4h4.6L12 15.2 16.9 4h4.6l-7.6 16.5h-3.8z" fill="#060607"/></svg></span>VEYRA <span class="ai">AI</span></div>
+    <div class="tag"><span class="dot"></span><span id="tagText">Case study</span></div>
+    <div class="cap" id="cap1"><p class="kicker">Websites that win clients</p><h2></h2></div>
+    <div class="cap" id="cap2"><p class="kicker">What we built</p><h2></h2></div>
+    <div class="cap" id="cap3"><p class="kicker">Responsive</p><h2></h2></div>
+    <div class="cap" id="cap4"><p class="kicker">Google Lighthouse · desktop</p><h2></h2></div>
+    <div class="cap" id="cap5"><p class="kicker">Veyra AI websites</p><h2></h2></div>
+    <div id="chip"><span class="n">01</span><span class="t">Cinematic hero</span></div>
+    <div id="rings">
+      <span class="label-top">Google Lighthouse · desktop</span>
+      <div class="ring"><div class="dial"></div><div class="label">Performance</div></div>
+      <div class="ring"><div class="dial"></div><div class="label">Accessibility</div></div>
+      <div class="ring"><div class="dial"></div><div class="label">Best Practices</div></div>
+      <div class="ring"><div class="dial"></div><div class="label">SEO</div></div>
+    </div>
+  </div>
+
+  <div id="black"></div>
+  <div id="end">
+    <div class="glow glowend" style="--c:rgb(212 255 58 / 0.25)"></div>
+    <div class="stack">
+      <div class="markwrap"><div class="burst"></div><div class="mark big"><svg viewBox="0 0 24 24"><path d="M2.5 4h4.6L12 15.2 16.9 4h4.6l-7.6 16.5h-3.8z" fill="#060607"/></svg></div></div>
+      <div class="word"><span class="l">V</span><span class="l">E</span><span class="l">Y</span><span class="l">R</span><span class="l">A</span><span class="ai l">AI</span></div>
+      <div class="sub">AI Creative Studio</div>
+      <div class="cta">DM us “WEBSITE” <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    </div>
+  </div>
+  <div id="flash"></div>
+</div>
+
+<script>
+// ---------- Timeline (shared with the music: 115 BPM, 4/4) ----------
+const BPM = 115, B = 60 / BPM;
+const beat = (n) => n * B;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, k) => a + (b - a) * k;
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const easeInOut = (k) => (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
+const easeOut = (k) => 1 - Math.pow(1 - k, 3);
+const easeIn = (k) => k * k * k;
+const easeOutBack = (k) => { const c1 = 1.6, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
+const $ = (s) => document.querySelector(s);
+
+// Kick drum hits (beats), mirrored from music.py, used to pulse the glow.
+const KICKS = [];
+for (let b = 4; b < 31; b++) { const p = b % 4; if (p === 0 || p === 2) KICKS.push(b); if (p === 1 && b >= 16) KICKS.push(b + 0.5); }
+KICKS.push(32);
+
+// ---------- Captions: words revealed on beats ----------
+const CAPS = {
+  cap1: { words: [["Your", 0], ["website", 0], ["has", 1], ["<em>3</em>", 2], ["<em>seconds.</em>", 2]], in: 0, out: beat(11.5) },
+  cap2: { words: [["Every", 12], ["section", 12], ["built", 13], ["<em>to</em>", 14], ["<em>sell.</em>", 14]], in: beat(12), out: beat(19.5) },
+  cap3: { words: [["Perfect", 20], ["on", 20], ["<em>every</em>", 21], ["<em>screen.</em>", 21]], in: beat(20), out: beat(23.5) },
+  cap4: { words: [["Four", 24], ["perfect", 24], ["<em>scores.</em>", 25]], in: beat(24), out: beat(27.6) },
+  cap5: { words: [["Fast.", 28], ["Findable.", 29], ["Built", 30], ["to", 30], ["<em>win.</em>", 30]], in: beat(28), out: 99 },
+};
+for (const [id, c] of Object.entries(CAPS)) {
+  $(`#${id} h2`).innerHTML = c.words.map(([w]) => `<span class="w"><span>${w}</span></span>`).join(" ");
+}
+function renderCaps(t) {
+  for (const [id, c] of Object.entries(CAPS)) {
+    const el = $(`#${id}`);
+    const outK = easeIn(prog(t, c.out, c.out + 0.22));
+    const visible = t >= c.in - 0.3 && outK < 1;
+    el.style.display = visible ? "block" : "none";
+    if (!visible) continue;
+    const kick = el.querySelector(".kicker");
+    const kIn = easeOut(prog(t, c.in - 0.12, c.in + 0.25));
+    kick.style.opacity = kIn * (1 - outK);
+    kick.style.transform = `translateY(${(1 - kIn) * 14}px)`;
+    el.querySelectorAll(".w > span").forEach((s, i) => {
+      const at = beat(c.words[i][1]) - 0.06;
+      const k = easeOut(prog(t, at, at + 0.32));
+      s.style.transform = `translateY(${(1 - k) * 110 - outK * 40}%)`;
+      s.style.opacity = (k > 0 ? 1 : 0) * (1 - outK);
+    });
+  }
+}
+
+// ---------- Annotation chips ----------
+const CHIPS = [
+  [4, "01", "Cinematic hero"],
+  [8, "02", "The character, front and centre"],
+  [12, "03", "Featured film"],
+  [14, "04", "Selected work"],
+  [16, "05", "AI video gallery"],
+  [18, "06", "Services"],
+  [20, "07", "Mobile-first"],
+  [22, "08", "One-tap WhatsApp"],
+];
+function renderChip(t) {
+  const chip = $("#chip");
+  let cur = -1;
+  for (let i = 0; i < CHIPS.length; i++) if (t >= beat(CHIPS[i][0]) - 0.05) cur = i;
+  const endT = beat(23.6);
+  if (cur < 0 || t > endT + 0.2) { chip.style.opacity = 0; return; }
+  const [b, n, txt] = CHIPS[cur];
+  chip.querySelector(".n").textContent = n;
+  chip.querySelector(".t").textContent = txt;
+  const k = prog(t, beat(b) - 0.05, beat(b) + 0.22);
+  const s = lerp(0.6, 1, easeOutBack(k));
+  const next = cur + 1 < CHIPS.length ? beat(CHIPS[cur + 1][0]) - 0.05 : endT;
+  const out = prog(t, next - 0.1, next);
+  chip.style.opacity = clamp(k * 3) * (1 - out);
+  chip.style.transform = `translate(-50%, ${(1 - easeOut(k)) * 24}px) scale(${s * (1 - out * 0.1)})`;
+}
+
+// ---------- Lighthouse rings ----------
+const R = 52, C = 2 * Math.PI * R;
+document.querySelectorAll("#rings .dial").forEach((d) => {
+  d.innerHTML = `<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="${R}" fill="rgb(212 255 58 / 0.07)" stroke="rgb(212 255 58 / 0.16)" stroke-width="8"/><circle class="arc" cx="60" cy="60" r="${R}" fill="none" stroke="#d4ff3a" stroke-width="8" stroke-linecap="round" stroke-dasharray="0 ${C}" transform="rotate(-90 60 60)"/></svg><div class="num">0</div>`;
+});
+function renderRings(t) {
+  const panel = $("#rings");
+  const pin = easeOut(prog(t, beat(23.75), beat(24.05)));
+  const pout = easeIn(prog(t, beat(27.6), beat(27.95)));
+  panel.style.opacity = pin * (1 - pout);
+  panel.style.transform = `translateY(${(1 - pin) * 60 + pout * 40}px)`;
+  document.querySelectorAll("#rings .ring").forEach((r, i) => {
+    const at = beat(24 + i) - 0.04;
+    const k = prog(t, at, at + 0.36);
+    const pop = easeOutBack(prog(t, at, at + 0.26));
+    const v = Math.round(100 * easeOut(k));
+    r.querySelector(".arc").setAttribute("stroke-dasharray", `${(v / 100) * C} ${C}`);
+    r.querySelector(".num").textContent = v;
+    r.style.transform = `scale(${lerp(0.7, 1, pop)})`;
+    r.style.opacity = clamp(k * 4);
+  });
+}
+
+// ---------- Site iframes ----------
+const desk = () => $("#siteDesk").contentWindow;
+const mob = () => $("#siteMob").contentWindow;
+const S = { desk: {}, mob: {} }; // filled by setup(): section offsets, hero card rect
+
+function scrollAt(t, stops, D = 0.44) {
+  let y = stops[0][1];
+  for (let i = 1; i < stops.length; i++) {
+    const [tl, ty] = stops[i];
+    if (t >= tl - D) y = lerp(y, ty, easeInOut(prog(t, tl - D, tl)));
+  }
+  return y;
+}
+// Hero teaser: three shots, each cut placed on a downbeat.
+function heroTeaserTime(t) {
+  if (t < beat(4)) return 0.02 + (t / beat(4)) * 2.2;
+  if (t < beat(8)) return 2.34 + (t - beat(4));
+  return Math.min(10.85, 7.83 + (t - beat(8)));
+}
+
+const TEASERS = { "brand-film-teaser": 1, "skincare-film-teaser": 1, "serum-reel-teaser": 1, "serum-ingredients-teaser": 1 };
+async function setupSite(win, key) {
+  const doc = win.document;
+  // Trigger every scroll reveal once, then return to the top.
+  const H = doc.documentElement.scrollHeight;
+  for (let y = 0; y < H; y += 300) { win.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); }
+  win.scrollTo(0, 0);
+  await new Promise((r) => setTimeout(r, 1500));
+  // Swap each looping preview to a WebM copy we can seek frame by frame.
+  const vids = [];
+  for (const v of doc.querySelectorAll("video")) {
+    const img = v.parentElement.querySelector("img");
+    const name = img && (img.currentSrc || img.src).split("/").pop().replace(/-poster.*$/, "");
+    if (!name || !TEASERS[name]) continue;
+    v.removeAttribute("loop");
+    v.preload = "auto";
+    v.src = `/_reel/${name}.webm`;
+    v.style.transition = "none";
+    v.style.opacity = "1";
+    await new Promise((r) => { v.addEventListener("loadeddata", r, { once: true }); setTimeout(r, 4000); });
+    v.pause();
+    vids.push({ v, name, hero: !!v.closest("#top") });
+  }
+  S[key].vids = vids;
+  const off = (sel) => { const el = doc.querySelector(sel); return el ? Math.round(el.getBoundingClientRect().top + win.scrollY) : 0; };
+  S[key].y = { showreel: off("#showreel"), work: off("#work"), ai: off("#ai-video"), services: off("#services"), contact: off("#contact"), about: off("#about") };
+  const card = vids.find((x) => x.hero);
+  if (card) { const r = card.v.parentElement.getBoundingClientRect(); S[key].card = { x: r.left + r.width / 2, y: r.top + r.height / 2, h: r.height }; }
+  S[key].anims = doc.getAnimations();
+  S[key].animBase = doc.timeline.currentTime;
+  return S[key];
+}
+
+async function driveSite(win, key, t, scrollY, heroTime) {
+  const st = S[key];
+  win.scrollTo({ top: Math.round(scrollY), behavior: "instant" });
+  // CSS animations (REC dot, slow zoom) follow the video clock, not wall time.
+  for (const a of win.document.getAnimations()) { a.pause(); a.currentTime = st.animBase + t * 1000; }
+  const vh = win.innerHeight, waits = [];
+  for (const { v, hero } of st.vids) {
+    const r = v.getBoundingClientRect();
+    if (r.bottom < -50 || r.top > vh + 50) continue;
+    const dur = v.duration || 10;
+    const target = hero && heroTime != null ? heroTime : (t % (dur - 0.05));
+    if (Math.abs(v.currentTime - target) > 0.004) {
+      waits.push(new Promise((res) => { v.addEventListener("seeked", res, { once: true }); setTimeout(res, 2000); }));
+      v.currentTime = target;
+    }
+  }
+  await Promise.all(waits);
+}
+
+// ---------- Camera and devices ----------
+const SCREEN = { x: 80, y: 690 + 18 }; // top-left of the laptop screen in stage px
+const SC = 0.638889;
+function camera(t) {
+  // Intro tilt settles by beat 2.
+  const intro = easeOut(prog(t, 0, beat(2)));
+  let rotX = lerp(14, 0, intro), rotY = lerp(-16, 0, intro), lift = lerp(70, 0, intro);
+  // Push-in to the hero film card (beats 2-4), hold, pull out (beats 10-11.5).
+  const card = S.desk.card || { x: 1080, y: 380, h: 480 };
+  const cx = SCREEN.x + card.x * SC, cy = SCREEN.y + card.y * SC;
+  const Z = 740 / (card.h * SC);
+  const kin = easeInOut(prog(t, beat(2), beat(4)));
+  const kout = easeInOut(prog(t, beat(10), beat(11.6)));
+  let k = kin * (1 - kout);
+  let z = lerp(1, Z, k) * (1 + 0.035 * prog(t, beat(4), beat(10)) * (1 - kout));
+  const fx = lerp(540, cx, k), fy = lerp(1010, cy, k);
+  const dx = 540, dy = lerp(1010, 1050, k);
+  // Final rush into the screen (beat 31 -> 32).
+  const rush = easeIn(prog(t, beat(30.9), beat(32)));
+  z *= lerp(1, 7, rush);
+  // Gentle breathing drift between moves.
+  const drift = Math.sin(t * 0.9) * 4;
+  return { z, fx, fy, dx, dy: dy + drift + lift, rotX, rotY, rush };
+}
+
+function renderDevices(t) {
+  const cam = camera(t);
+  $("#cam").style.transform = `translate(${cam.dx - cam.fx * cam.z}px, ${cam.dy - cam.fy * cam.z}px) scale(${cam.z})`;
+  // Phone in at beat 20; laptop steps back. Both rise for the rings at beat 24.
+  const ph = easeOut(prog(t, beat(19.55), beat(20.05)));
+  const ringsUp = easeInOut(prog(t, beat(23.5), beat(24))) * (1 - easeInOut(prog(t, beat(27.6), beat(28.2))));
+  const lapX = lerp(0, -120, ph), lapS = lerp(1, 0.86, ph);
+  $("#laptop").style.transform = `translate(${lapX}px, ${-ringsUp * 110}px) rotateX(${cam.rotX}deg) rotateY(${cam.rotY + ph * 6}deg) scale(${lapS})`;
+  $("#laptop").style.opacity = clamp(t / 0.25);
+  $("#phone").style.transform = `translate(${lerp(560, 0, ph)}px, ${lerp(80, 0, ph) - ringsUp * 110}px) rotateY(${lerp(-30, -8, ph)}deg) rotateZ(${lerp(8, 0, ph)}deg)`;
+  $("#phone").style.opacity = ph;
+  // Website reveal: the screen wipes on during the first beat.
+  const w = easeOut(prog(t, 0.05, beat(0.85)));
+  $("#laptop .wipe").style.clipPath = `inset(${w * 100}% 0 0 0)`;
+  // Glow pulses with the kick drum.
+  let pulse = 0;
+  for (const kb of KICKS) { const dt = t - beat(kb); if (dt >= 0 && dt < 0.6) pulse = Math.max(pulse, Math.exp(-dt * 7)); }
+  $("#glowMain").style.opacity = 0.75 + 0.35 * pulse;
+  $("#black").style.opacity = easeIn(prog(t, beat(31.35), beat(31.95)));
+  const zk = easeInOut(prog(t, beat(2), beat(4))) * (1 - easeInOut(prog(t, beat(10), beat(11.6))));
+  $("#scrim").style.opacity = 0.35 + 0.65 * zk;
+  $("#scrimBottom").style.opacity = zk;
+  return cam;
+}
+
+// ---------- Logo reveal ----------
+function renderEnd(t) {
+  const t0 = beat(32);
+  const end = $("#end"), flash = $("#flash");
+  if (t < t0 - 0.02) { end.style.display = "none"; flash.style.opacity = 0; return; }
+  end.style.display = "grid";
+  const dt = t - t0;
+  flash.style.opacity = 0.85 * Math.exp(-dt * 9);
+  const m = $("#end .big");
+  const km = prog(dt, 0, 0.5);
+  m.style.transform = `scale(${lerp(0.35, 1, easeOutBack(km))}) rotate(${lerp(-14, 0, easeOut(km))}deg)`;
+  m.style.opacity = clamp(dt / 0.08);
+  const burst = $("#end .burst"), kb = prog(dt, 0, 0.55);
+  burst.style.transform = `scale(${lerp(0.95, 4.2, easeOut(kb))})`;
+  burst.style.opacity = 0.9 * Math.pow(1 - kb, 2);
+  document.querySelectorAll("#end .word .l").forEach((l, i) => {
+    const k = easeOut(prog(dt, 0.14 + i * 0.05, 0.5 + i * 0.05));
+    l.style.transform = `translateY(${(1 - k) * 60}px)`;
+    l.style.opacity = k;
+  });
+  const ks = easeOut(prog(t, beat(33) - 0.05, beat(33) + 0.35));
+  $("#end .sub").style.opacity = ks;
+  $("#end .sub").style.letterSpacing = `${lerp(0.5, 0.3, ks)}em`;
+  const kc = prog(t, beat(34) - 0.05, beat(34) + 0.3);
+  $("#end .cta").style.transform = `scale(${lerp(0.6, 1, easeOutBack(kc))})`;
+  $("#end .cta").style.opacity = clamp(kc * 3);
+  $("#end .glowend").style.opacity = 0.6 + 0.4 * Math.exp(-dt * 2.5);
+}
+
+// ---------- Frame renderer ----------
+window.setupStage = async function () {
+  await document.fonts.ready;
+  await setupSite(desk(), "desk");
+  await setupSite(mob(), "mob");
+  return { desk: { y: S.desk.y, card: S.desk.card, vids: S.desk.vids.length }, mob: { y: S.mob.y, vids: S.mob.vids.length } };
+};
+
+window.renderFrame = async function (t) {
+  const y = S.desk.y, ym = S.mob.y;
+  const deskScroll = scrollAt(t, [[0, 0], [beat(12), y.showreel], [beat(14), y.work], [beat(16), y.ai], [beat(18), y.services]]);
+  const mobScroll = scrollAt(t, [[0, 0], [beat(22), ym.contact]]);
+  await Promise.all([
+    driveSite(desk(), "desk", t, deskScroll, heroTeaserTime(t)),
+    t > beat(19) ? driveSite(mob(), "mob", t, mobScroll, null) : Promise.resolve(),
+  ]);
+  renderDevices(t);
+  renderCaps(t);
+  renderChip(t);
+  renderRings(t);
+  renderEnd(t);
+  $("#tagText").textContent = t < beat(24) ? "Case study" : "The result";
+  await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+};
+</script>
+</body>
+</html>
