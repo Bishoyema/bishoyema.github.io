@@ -22,7 +22,7 @@
   .glow { position: absolute; pointer-events: none; background: radial-gradient(closest-side, var(--c), transparent); }
   .watermark { position: absolute; left: 50%; top: 50%; width: 1500px; transform: translate(-50%, -50%) rotate(-8deg); opacity: 0.045; }
 
-  /* Character shots */
+  /* Character */
   .char { position: absolute; transform-origin: 0 0; }
   .char img { position: absolute; left: 0; top: 0; width: 100%; display: block; }
   .char .bloom { filter: blur(14px) brightness(1.7); mix-blend-mode: screen; }
@@ -32,16 +32,16 @@
     -webkit-mask-image: radial-gradient(ellipse 50% 58% at 50% 46%, #000 52%, transparent 100%); mask-image: radial-gradient(ellipse 50% 58% at 50% 46%, #000 52%, transparent 100%); }
 
   /* Devices */
-  #floor { position: absolute; left: -600px; right: -600px; top: 1372px; height: 900px; transform-origin: top center; transform: perspective(520px) rotateX(64deg);
+  .floor { position: absolute; left: -600px; right: -600px; top: 1372px; height: 900px; transform-origin: top center; transform: perspective(520px) rotateX(64deg);
     background-image: linear-gradient(rgb(110 91 255 / 0.22) 1.5px, transparent 1.5px), linear-gradient(90deg, rgb(110 91 255 / 0.22) 1.5px, transparent 1.5px);
     background-size: 96px 96px; background-position: center top;
     mask-image: radial-gradient(ellipse 42% 75% at 50% 0%, #000 10%, transparent 72%); }
-  #horizon { position: absolute; left: 0; right: 0; top: 1371px; height: 1.5px; background: linear-gradient(90deg, transparent, rgb(156 144 255 / 0.5), transparent); }
+  .horizon { position: absolute; left: 0; right: 0; top: 1371px; height: 1.5px; background: linear-gradient(90deg, transparent, rgb(156 144 255 / 0.5), transparent); }
   #cam { position: absolute; inset: 0; transform-origin: 0 0; transform-style: preserve-3d; }
   #laptop { position: absolute; left: 80px; top: 690px; width: 920px; transform-style: preserve-3d; }
   #laptop .lid { position: relative; padding: 18px 18px 26px; margin: 0 -18px; border-radius: 30px 30px 8px 8px;
     background: linear-gradient(160deg, #232327, #0b0b0d 60%);
-    box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.13), inset 0 2px 0 rgb(255 255 255 / 0.1), 0 0 0 1px #000, 0 0 90px rgb(110 91 255 / 0.16); }
+    box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.13), inset 0 2px 0 rgb(255 255 255 / 0.1), 0 0 0 1px #000, 0 0 120px rgb(110 91 255 / 0.22); }
   #laptop .lid::before { content: ""; position: absolute; top: 7px; left: 50%; width: 7px; height: 7px; transform: translateX(-50%); border-radius: 50%; background: #1c1f26; }
   #laptop .base { position: relative; height: 26px; margin: 0 -84px; border-radius: 3px 3px 24px 24px;
     background: linear-gradient(180deg, #6b6b72 0%, #3a3a40 22%, #1d1d21 70%, #0d0d0f 100%); box-shadow: 0 40px 80px rgb(0 0 0 / 0.75); }
@@ -51,15 +51,43 @@
   #laptop iframe { position: absolute; left: 0; top: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; transform: scale(0.638889); }
   .screen .glare { position: absolute; inset: 0; pointer-events: none; z-index: 3; background: linear-gradient(115deg, rgb(255 255 255 / 0.09) 0%, rgb(255 255 255 / 0.025) 32%, transparent 48%); }
   .screen .wipe { position: absolute; inset: 0; z-index: 2; background: #000; }
-  #phone { position: absolute; left: 640px; top: 760px; width: 300px; padding: 12px; border-radius: 58px; z-index: 5;
-    background: linear-gradient(160deg, #2a2a2f, #0a0a0b 55%);
-    box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.16), inset 0 0 0 5px #050506, 0 0 0 1.5px #000, 0 40px 90px rgb(0 0 0 / 0.75); }
-  #phone .screen { width: 276px; height: 597px; border-radius: 46px; background: #140d0c; }
-  #phone iframe { position: absolute; left: 0; top: 34px; width: 390px; height: 796px; border: 0; transform-origin: 0 0; transform: scale(0.707692); }
-  #phone .status { position: absolute; top: 0; left: 0; right: 0; height: 34px; z-index: 4; display: flex; align-items: center; justify-content: space-between; padding: 4px 30px 0 34px; font-size: 13px; font-weight: 600; }
-  #phone .status .bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid rgb(255 255 255 / 0.7); position: relative; }
-  #phone .status .bat::after { content: ""; position: absolute; inset: 1.5px; right: 5px; background: #fff; border-radius: 1px; }
-  #phone .island { position: absolute; top: 8px; left: 50%; width: 84px; height: 24px; transform: translateX(-50%); background: #000; border-radius: 20px; z-index: 5; }
+
+  /* Big phone */
+  #phone { position: absolute; left: 50%; top: 560px; width: 520px; padding: 18px; border-radius: 92px; transform-origin: 50% 50%;
+    background: linear-gradient(160deg, #3a3a44, #0c0c0f 50%, #1d1d24);
+    box-shadow: inset 0 0 0 2.5px rgb(255 255 255 / 0.22), inset 0 0 0 8px #050506, 0 0 0 2px #000, 0 0 0 3px rgb(156 144 255 / 0.55), 0 0 160px rgb(110 91 255 / 0.55), 0 60px 120px rgb(0 0 0 / 0.8); }
+  #phone .screen { width: 484px; height: 1048px; border-radius: 76px; background: #f3ebdf; }
+  #phone iframe { position: absolute; left: 0; top: 56px; width: 390px; height: 799px; border: 0; transform-origin: 0 0; transform: scale(1.241026); }
+  #phone .status { position: absolute; top: 0; left: 0; right: 0; height: 56px; z-index: 4; display: flex; align-items: center; justify-content: space-between; padding: 8px 52px 0 58px; font-size: 22px; font-weight: 600; color: #1d140c; background: #f3ebdf; }
+  #phone .status .bat { width: 36px; height: 17px; border-radius: 5px; border: 2px solid rgb(29 20 12 / 0.7); position: relative; }
+  #phone .status .bat::after { content: ""; position: absolute; inset: 2px; right: 8px; background: #1d140c; border-radius: 2px; }
+  #phone .island { position: absolute; top: 14px; left: 50%; width: 150px; height: 40px; transform: translateX(-50%); background: #000; border-radius: 24px; z-index: 5; }
+
+  /* SEO */
+  #sSeo .search { position: absolute; left: 64px; right: 64px; top: 670px; height: 104px; border-radius: 52px; background: #fff; display: flex; align-items: center; gap: 22px; padding: 0 36px; box-shadow: 0 30px 80px rgb(0 0 0 / 0.5), 0 0 0 4px rgb(110 91 255 / 0.35); }
+  #sSeo .search svg { flex: none; }
+  #sSeo .q { font-size: 38px; color: #202124; letter-spacing: -0.01em; white-space: nowrap; }
+  #sSeo .caret { width: 3px; height: 44px; background: var(--violet); margin-left: -16px; }
+  #sSeo .result { position: absolute; left: 64px; right: 64px; top: 810px; border-radius: 34px; background: #fff; color: #202124; padding: 36px 40px 34px; box-shadow: 0 40px 100px rgb(0 0 0 / 0.55); }
+  #sSeo .site { display: flex; align-items: center; gap: 16px; }
+  #sSeo .fav { width: 52px; height: 52px; border-radius: 50%; background: #1d140c; color: #d6a868; display: grid; place-items: center; font-family: Georgia, serif; font-size: 26px; }
+  #sSeo .site b { display: block; font-size: 24px; font-weight: 600; }
+  #sSeo .site span { font-size: 20px; color: #5f6368; }
+  #sSeo .rt { margin-top: 18px; font-size: 35px; line-height: 1.2; color: #4b33e6; font-weight: 500; letter-spacing: -0.01em; }
+  #sSeo .rd { margin-top: 12px; font-size: 23px; line-height: 1.45; color: #4d5156; }
+  #sSeo .links { margin-top: 20px; display: flex; gap: 12px; }
+  #sSeo .links span { padding: 10px 20px; border-radius: 999px; background: #f1effe; color: #4b33e6; font-size: 20px; font-weight: 600; }
+  #sSeo .checks { position: absolute; left: 64px; right: 64px; top: 1202px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 30px; }
+  #sSeo .check { display: flex; align-items: center; gap: 16px; font-size: 27px; font-weight: 600; letter-spacing: -0.01em; }
+  #sSeo .check i { width: 42px; height: 42px; flex: none; border-radius: 50%; background: var(--violet); display: grid; place-items: center; box-shadow: 0 0 24px rgb(110 91 255 / 0.6); }
+  #sSeo .rings { position: absolute; left: 64px; right: 64px; top: 1370px; height: 270px; border-radius: 40px; display: grid; grid-template-columns: repeat(3, 1fr); align-items: center; padding: 10px 18px 0;
+    background: linear-gradient(180deg, #131317, #0b0b0e); box-shadow: inset 0 0 0 1.5px var(--line-strong), 0 -20px 80px rgb(0 0 0 / 0.6); }
+  #sSeo .rings .label-top { position: absolute; left: 50%; top: -18px; transform: translateX(-50%); padding: 8px 18px; border-radius: 999px; background: var(--violet); color: #fff; font-family: var(--mono); font-size: 16px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+  .ring { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .dial { position: relative; width: 150px; height: 150px; }
+  .dial svg { width: 100%; height: 100%; filter: drop-shadow(0 0 16px rgb(110 91 255 / 0.6)); }
+  .dial .num { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; font-size: 52px; letter-spacing: -0.04em; color: var(--lav); font-variant-numeric: tabular-nums; }
+  .ring .label { font-size: 22px; font-weight: 500; white-space: nowrap; }
 
   /* HUD */
   #hud { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
@@ -78,14 +106,6 @@
     background: linear-gradient(180deg, #141418, #0c0c0f); box-shadow: inset 0 0 0 1.5px var(--line-strong), 0 24px 60px rgb(0 0 0 / 0.6); }
   #chip .n { font-family: var(--mono); font-size: 18px; font-weight: 700; color: #fff; background: var(--violet); border-radius: 999px; padding: 8px 12px; }
   #chip .t { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; }
-  #rings { position: absolute; left: 50px; right: 50px; top: 1300px; height: 290px; border-radius: 40px; display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; padding: 0 18px;
-    background: linear-gradient(180deg, #131317, #0b0b0e); box-shadow: inset 0 0 0 1.5px var(--line-strong), 0 -20px 80px rgb(0 0 0 / 0.6); }
-  #rings .label-top { position: absolute; left: 50%; top: -18px; transform: translateX(-50%); padding: 8px 18px; border-radius: 999px; background: var(--violet); color: #fff; font-family: var(--mono); font-size: 16px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
-  .ring { display: flex; flex-direction: column; align-items: center; gap: 14px; }
-  .dial { position: relative; width: 150px; height: 150px; }
-  .dial svg { width: 100%; height: 100%; filter: drop-shadow(0 0 16px rgb(110 91 255 / 0.6)); }
-  .dial .num { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; font-size: 52px; letter-spacing: -0.04em; color: var(--lav); font-variant-numeric: tabular-nums; }
-  .ring .label { font-size: 21px; font-weight: 500; white-space: nowrap; }
 
   /* Logo reveal */
   #end { position: absolute; inset: 0; z-index: 40; background: var(--ink); display: none; }
@@ -102,7 +122,7 @@
 </head>
 <body>
 <div id="stage">
-  <!-- 1 / 7: character close-up -->
+  <!-- Character close-up (wake-up and finale) -->
   <section class="shot" id="sClose">
     <div class="glow" style="left:-60px;top:380px;width:1200px;height:1100px;--c:rgb(110 91 255 / 0.22)"></div>
     <div class="char" id="close">
@@ -114,7 +134,7 @@
     </div>
   </section>
 
-  <!-- 3: the turn -->
+  <!-- The turn -->
   <section class="shot" id="sTurn">
     <div class="glow" style="left:-100px;top:420px;width:1280px;height:1300px;--c:rgb(110 91 255 / 0.2)"></div>
     <div class="watermark" data-mark></div>
@@ -123,20 +143,53 @@
     <div class="char view" id="vFront"><img src="char/view-front-off.jpg" alt=""><img class="seam" src="char/view-front-seam.png" alt=""><img class="seam bloom" src="char/view-front-seam.png" alt=""></div>
   </section>
 
-  <!-- 2, 4-6: the website -->
-  <section class="shot" id="sSite">
+  <!-- Concept website on the laptop -->
+  <section class="shot" id="sDesk">
     <div class="glow" id="glowMain" style="left:-90px;top:470px;width:1260px;height:1060px;--c:rgb(110 91 255 / 0.30)"></div>
     <div class="glow" style="left:140px;top:1300px;width:800px;height:200px;--c:rgb(110 91 255 / 0.22)"></div>
-    <div id="floor"></div>
-    <div id="horizon"></div>
+    <div class="floor"></div>
+    <div class="horizon"></div>
     <div id="cam">
       <div id="laptop">
-        <div class="lid"><div class="screen"><iframe id="siteDesk" src="/" scrolling="no"></iframe><div class="wipe"></div><div class="glare"></div></div></div>
+        <div class="lid"><div class="screen"><iframe id="siteDesk" src="concept/?dpr=1" scrolling="no"></iframe><div class="wipe"></div><div class="glare"></div></div></div>
         <div class="base"></div>
       </div>
-      <div id="phone">
-        <div class="screen"><div class="status"><span>9:41</span><span class="bat"></span></div><div class="island"></div><iframe id="siteMob" src="/" scrolling="no"></iframe><div class="glare"></div></div>
-      </div>
+    </div>
+  </section>
+
+  <!-- Mobile -->
+  <section class="shot" id="sMob">
+    <div class="glow" style="left:-160px;top:560px;width:1400px;height:1300px;--c:rgb(110 91 255 / 0.32)"></div>
+    <div class="watermark" data-mark></div>
+    <div id="phone">
+      <div class="screen"><div class="status"><span>9:41</span><span class="bat"></span></div><div class="island"></div><iframe id="siteMob" src="concept/?dpr=2" scrolling="no"></iframe><div class="glare"></div></div>
+    </div>
+  </section>
+
+  <!-- SEO -->
+  <section class="shot" id="sSeo">
+    <div class="glow" style="left:-200px;top:520px;width:1480px;height:1200px;--c:rgb(110 91 255 / 0.24)"></div>
+    <div class="search">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <span class="q"></span><span class="caret"></span>
+    </div>
+    <div class="result">
+      <div class="site"><div class="fav">O</div><div><b>Oudelle</b><span>https://oudelle.example › collection</span></div></div>
+      <div class="rt">Oudelle | Amber Noir Eau de Parfum, crafted in Dubai</div>
+      <div class="rd">Amber Noir by Oudelle: saffron, Taif rose and aged agarwood, bottled by hand in Dubai. Discover the collection and find your signature scent.</div>
+      <div class="links"><span>Collection</span><span>Notes</span><span>Maison</span></div>
+    </div>
+    <div class="checks">
+      <div class="check"><i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Title + meta description</div>
+      <div class="check"><i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Product schema markup</div>
+      <div class="check"><i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Open Graph link previews</div>
+      <div class="check"><i><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Mobile-friendly, one H1</div>
+    </div>
+    <div class="rings">
+      <span class="label-top">Google Lighthouse</span>
+      <div class="ring"><div class="dial"></div><div class="label">SEO</div></div>
+      <div class="ring"><div class="dial"></div><div class="label">Accessibility</div></div>
+      <div class="ring"><div class="dial"></div><div class="label">Best Practices</div></div>
     </div>
   </section>
 
@@ -145,19 +198,12 @@
     <div class="hudlogo" data-logo></div>
     <div class="tag"><span class="dot"></span><span>AI Creative Studio</span></div>
     <div class="cap" id="cap1"><p class="kicker">Veyra AI · Web design</p><h2></h2></div>
-    <div class="cap" id="cap2"><p class="kicker">Meet the studio</p><h2></h2></div>
-    <div class="cap" id="cap3"><p class="kicker">Case study · Portfolio website</p><h2></h2></div>
+    <div class="cap" id="cap2"><p class="kicker">Concept website · by Veyra AI</p><h2></h2></div>
+    <div class="cap" id="cap3"><p class="kicker">Meet the studio</p><h2></h2></div>
     <div class="cap" id="cap4"><p class="kicker">Responsive</p><h2></h2></div>
-    <div class="cap" id="cap5"><p class="kicker">Google Lighthouse · desktop</p><h2></h2></div>
+    <div class="cap" id="cap5"><p class="kicker">SEO-friendly</p><h2></h2></div>
     <div class="cap" id="cap6"><p class="kicker">Veyra AI websites</p><h2></h2></div>
-    <div id="chip"><span class="n">01</span><span class="t">Cinematic hero</span></div>
-    <div id="rings">
-      <span class="label-top">Google Lighthouse · desktop</span>
-      <div class="ring"><div class="dial"></div><div class="label">Performance</div></div>
-      <div class="ring"><div class="dial"></div><div class="label">Accessibility</div></div>
-      <div class="ring"><div class="dial"></div><div class="label">Best Practices</div></div>
-      <div class="ring"><div class="dial"></div><div class="label">SEO</div></div>
-    </div>
+    <div id="chip"><span class="n">01</span><span class="t">3D product hero</span></div>
   </div>
 
   <div id="end">
@@ -180,8 +226,7 @@ const WORD = "M 45.48,147.05 L 0.00,1.05 L 31.58,1.05 L 68.47,125.88 L 60.50,121
 const WORD_AI = "M -0.00,146.00 L 53.80,0.00 L 81.13,0.00 L 136.67,146.00 L 121.00,146.00 L 69.33,9.53 L 77.47,13.73 L 56.53,13.73 L 65.07,9.53 L 15.20,146.00 Z M 28.80,99.60 L 33.93,85.87 L 101.67,85.87 L 106.87,99.60 Z M 178.47,146.00 L 178.47,0.00 L 193.67,0.00 L 193.67,146.00 Z";
 const markSvg = (w = "#F5F5F7", v = "#6E5BFF") => `<svg viewBox="0 0 838 520" width="100%"><path fill="${w}" d="${MARK_A} ${MARK_B}"/><path fill="${v}" d="${MARK_V}"/></svg>`;
 const s = 451.23 / 838;
-const fullLogo = `<svg viewBox="198.05 210 1603.9 280"><g transform="translate(198.05 210) scale(${s})"><path fill="#F5F5F7" d="${MARK_A} ${MARK_B}"/><path fill="#6E5BFF" d="${MARK_V}"/></g><path transform="translate(750.08 276.47)" fill="#F5F5F7" d="${WORD}"/><path transform="translate(1608.28 277.52)" fill="#9C90FF" d="${WORD_AI}"/></svg>`;
-document.querySelector("[data-logo]").innerHTML = fullLogo;
+document.querySelector("[data-logo]").innerHTML = `<svg viewBox="198.05 210 1603.9 280"><g transform="translate(198.05 210) scale(${s})"><path fill="#F5F5F7" d="${MARK_A} ${MARK_B}"/><path fill="#6E5BFF" d="${MARK_V}"/></g><path transform="translate(750.08 276.47)" fill="#F5F5F7" d="${WORD}"/><path transform="translate(1608.28 277.52)" fill="#9C90FF" d="${WORD_AI}"/></svg>`;
 document.querySelectorAll("[data-mark]").forEach((el) => (el.innerHTML = markSvg("#F5F5F7", "#F5F5F7")));
 document.getElementById("mA").setAttribute("d", MARK_A);
 document.getElementById("mB").setAttribute("d", MARK_B);
@@ -190,7 +235,7 @@ document.getElementById("wV").setAttribute("d", WORD);
 document.getElementById("wA").setAttribute("d", WORD_AI);
 
 // ---------- Timeline: 115 BPM, shared with music2.py ----------
-const BPM = 115, B = 60 / BPM, FPS = 30;
+const BPM = 115, B = 60 / BPM;
 const beat = (n) => n * B;
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, k) => a + (b - a) * k;
@@ -202,36 +247,37 @@ const easeIn = (k) => k * k * k;
 const easeOutBack = (k) => { const c1 = 1.6, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
 const $ = (q) => document.querySelector(q);
 const show = (el, on) => { el.style.display = on ? "block" : "none"; };
+const SHOTS = { close: [[0, 4], [28, 32]], desk: [[4, 12]], turn: [[12, 16]], mob: [[16, 20]], seo: [[20, 28]] };
+const inShot = (t, name) => SHOTS[name].some(([a, b]) => t >= beat(a) && t < beat(b));
 
-// Cuts land on these beats; each gets a short flash.
-const CUTS = [4, 8, 9, 10, 12, 18, 22, 28];
-// Kick hits, mirrored from music2.py, pulse the glow.
+const CUTS = [4, 12, 13, 14, 16, 20, 28];
 const KICKS = [];
-for (let b = 4; b < 31; b++) { const p = b % 4; if (p === 0 || p === 2) KICKS.push(b); if (p === 1 && b >= 16) KICKS.push(b + 0.5); }
+for (let b = 4; b < 31; b++) { if (b >= 12 && b < 16) continue; const p = b % 4; if (p === 0 || p === 2) KICKS.push(b); if (p === 1 && b >= 16) KICKS.push(b + 0.5); }
 
 // ---------- Captions ----------
 const CAPS = {
-  cap1: { words: [["Your", 2], ["website", 2], ["has", 2.5], ["<em>3</em>", 3], ["<em>seconds.</em>", 3]], in: beat(2), out: beat(7.6) },
-  cap2: { words: [["We", 8], ["make", 8], ["them", 9], ["<em>count.</em>", 10]], in: beat(8), out: beat(11.6) },
-  cap3: { words: [["Every", 12], ["section", 12], ["built", 13], ["<em>to</em>", 14], ["<em>sell.</em>", 14]], in: beat(12), out: beat(19.6) },
-  cap4: { words: [["Perfect", 20], ["on", 20], ["<em>every</em>", 21], ["<em>screen.</em>", 21]], in: beat(20), out: beat(23.6) },
-  cap5: { words: [["Four", 24], ["perfect", 24], ["<em>scores.</em>", 25]], in: beat(24), out: beat(27.6) },
+  cap1: { words: [["Your", 2], ["website", 2], ["has", 2.5], ["<em>3</em>", 3], ["<em>seconds.</em>", 3]], in: beat(2), out: beat(4), hard: true },
+  cap2: { words: [["Websites", 4], ["that", 4.5], ["<em>move.</em>", 5]], in: beat(4), out: beat(11.6) },
+  cap3: { words: [["We", 12], ["make", 12], ["them", 13], ["<em>count.</em>", 14]], in: beat(12), out: beat(15.6) },
+  cap4: { words: [["Perfect", 16], ["on", 16], ["<em>every</em>", 17], ["<em>screen.</em>", 17]], in: beat(16), out: beat(19.6) },
+  cap5: { words: [["Built", 20], ["to", 20], ["be", 20.5], ["<em>found.</em>", 21]], in: beat(20), out: beat(27.6) },
   cap6: { words: [["Fast.", 28], ["Findable.", 29], ["Built", 30], ["to", 30], ["<em>win.</em>", 30]], in: beat(28), out: beat(30.9) },
 };
 for (const [id, c] of Object.entries(CAPS)) $(`#${id} h2`).innerHTML = c.words.map(([w]) => `<span class="w"><span>${w}</span></span>`).join(" ");
 function renderCaps(t) {
   for (const [id, c] of Object.entries(CAPS)) {
     const el = $(`#${id}`);
-    const outK = easeIn(prog(t, c.out, c.out + 0.2));
-    const visible = t >= c.in - 0.3 && outK < 1;
+    // A caption that ends on a hard cut leaves with the cut; the others fade out.
+    const outK = c.hard ? (t >= c.out ? 1 : 0) : easeIn(prog(t, c.out, c.out + 0.2));
+    const visible = t >= c.in - 0.05 && outK < 1;
     show(el, visible);
     if (!visible) continue;
-    const kIn = easeOut(prog(t, c.in - 0.1, c.in + 0.25));
+    const kIn = easeOut(prog(t, c.in, c.in + 0.3));
     const kick = el.querySelector(".kicker");
     kick.style.opacity = kIn * (1 - outK);
     kick.style.transform = `translateY(${(1 - kIn) * 14}px)`;
     el.querySelectorAll(".w > span").forEach((sp, i) => {
-      const at = beat(c.words[i][1]) - 0.05;
+      const at = Math.max(c.in, beat(c.words[i][1]) - 0.05);
       const k = easeOut(prog(t, at, at + 0.3));
       sp.style.transform = `translateY(${(1 - k) * 110}%)`;
       sp.style.opacity = (k > 0 ? 1 : 0) * (1 - outK);
@@ -240,48 +286,25 @@ function renderCaps(t) {
 }
 
 // ---------- Chips ----------
-const CHIPS = [[4.25, "01", "Cinematic hero"], [12, "02", "Featured film"], [14, "03", "Selected work"], [16, "04", "8 case studies"], [18, "05", "Services"], [20, "06", "Mobile-first"], [22, "07", "One-tap WhatsApp"]];
+const CHIPS = [[4.25, "01", "3D product hero", 6], [6, "02", "Scroll-driven story", 8], [8, "03", "Interactive collection", 10], [10, "04", "Kinetic type", 11.6], [16.25, "05", "Mobile-first", 18], [18, "06", "Same story, every screen", 19.6]];
 function renderChip(t) {
   const chip = $("#chip");
-  const inSite = (t >= beat(4) && t < beat(7.6)) || (t >= beat(12) && t < beat(23.6));
   let cur = -1;
-  for (let i = 0; i < CHIPS.length; i++) if (t >= beat(CHIPS[i][0]) - 0.05) cur = i;
-  if (!inSite || cur < 0) { chip.style.opacity = 0; return; }
-  const [b, n, txt] = CHIPS[cur];
+  for (let i = 0; i < CHIPS.length; i++) if (t >= beat(CHIPS[i][0]) - 0.05 && t < beat(CHIPS[i][3])) cur = i;
+  if (cur < 0) { chip.style.opacity = 0; return; }
+  const [b, n, txt, until] = CHIPS[cur];
   chip.querySelector(".n").textContent = n;
   chip.querySelector(".t").textContent = txt;
+  chip.style.top = inShot(t, "mob") ? "1700px" : "1430px";
   const k = prog(t, beat(b) - 0.05, beat(b) + 0.22);
-  const endT = cur === 0 ? beat(7.6) : (cur + 1 < CHIPS.length ? beat(CHIPS[cur + 1][0]) - 0.05 : beat(23.6));
-  const out = prog(t, endT - 0.12, endT);
+  const out = prog(t, beat(until) - 0.12, beat(until));
   chip.style.opacity = clamp(k * 3) * (1 - out);
   chip.style.transform = `translate(-50%, ${(1 - easeOut(k)) * 24}px) scale(${lerp(0.6, 1, easeOutBack(k)) * (1 - out * 0.1)})`;
 }
 
-// ---------- Rings ----------
-const R = 52, C = 2 * Math.PI * R;
-document.querySelectorAll("#rings .dial").forEach((d) => {
-  d.innerHTML = `<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="${R}" fill="rgb(110 91 255 / 0.1)" stroke="rgb(110 91 255 / 0.22)" stroke-width="8"/><circle class="arc" cx="60" cy="60" r="${R}" fill="none" stroke="#9C90FF" stroke-width="8" stroke-linecap="round" stroke-dasharray="0 ${C}" transform="rotate(-90 60 60)"/></svg><div class="num">0</div>`;
-});
-function renderRings(t) {
-  const panel = $("#rings");
-  const pin = easeOut(prog(t, beat(23.75), beat(24.05)));
-  const pout = easeIn(prog(t, beat(27.6), beat(27.95)));
-  panel.style.opacity = pin * (1 - pout);
-  panel.style.transform = `translateY(${(1 - pin) * 60 + pout * 40}px)`;
-  document.querySelectorAll("#rings .ring").forEach((r, i) => {
-    const at = beat(24 + i) - 0.04;
-    const k = prog(t, at, at + 0.36);
-    const v = Math.round(100 * easeOut(k));
-    r.querySelector(".arc").setAttribute("stroke-dasharray", `${(v / 100) * C} ${C}`);
-    r.querySelector(".num").textContent = v;
-    r.style.transform = `scale(${lerp(0.7, 1, easeOutBack(prog(t, at, at + 0.26)))})`;
-    r.style.opacity = clamp(k * 4);
-  });
-}
-
-// ---------- Character shots ----------
-const EYE = { x: 775, y: 437 }; // eye bar centre in the close-up render (1208 x 1500)
-function eyeLevel(t, on) { // flicker on, then hold
+// ---------- Character ----------
+const EYE = { x: 775, y: 437 };
+function eyeLevel(t, on) {
   if (t < on) return 0;
   const d = t - on;
   if (d < 0.05) return 1; if (d < 0.1) return 0.15; if (d < 0.16) return 1; if (d < 0.2) return 0.5;
@@ -296,7 +319,6 @@ function renderClose(t) {
   const sc = 1300 / 1208;
   let seam, eye, z, fx, fy;
   if (first) {
-    // Wake-up: seams light top to bottom on beat 1, the eye flickers on at beat 2.
     const sweep = easeInOut(prog(t, beat(1) - 0.05, beat(2) - 0.05));
     seam = sweep;
     c.querySelectorAll(".seam").forEach((im) => { im.style.webkitMaskImage = im.style.maskImage = `linear-gradient(180deg, #000 ${sweep * 100}%, transparent ${sweep * 100 + 6}%)`; });
@@ -308,7 +330,6 @@ function renderClose(t) {
     c.querySelectorAll(".seam").forEach((im) => { im.style.webkitMaskImage = im.style.maskImage = "none"; });
     seam = 1; eye = 1;
     el.style.opacity = 1;
-    // Slow push, then rush into the eye bar (beat 30.9 -> 32).
     const rush = easeIn(prog(t, beat(30.9), beat(32)));
     z = lerp(1.04, 1.12, prog(t, beat(28), beat(30.9))) * lerp(1, 9, rush);
     const ex = -110 + EYE.x * sc, ey = 430 + EYE.y * sc;
@@ -316,9 +337,7 @@ function renderClose(t) {
     fy = lerp(960, ey, easeInOut(prog(t, beat(30.6), beat(31.6))));
     eye = 1 + 1.5 * rush;
   }
-  // Scale about the focus point (fx, fy) in stage coordinates.
-  c.style.transform = `translate(${fx - (fx - (-110)) * z - (-110)}px, ${fy - (fy - 430) * z - 430}px) scale(${z})`;
-  c.style.transformOrigin = "0 0";
+  c.style.transform = `translate(${(fx + 110) * (1 - z)}px, ${(fy - 430) * (1 - z)}px) scale(${z})`;
   c.querySelectorAll(".seam")[0].style.opacity = seam;
   c.querySelectorAll(".seam")[1].style.opacity = seam * 0.85;
   c.querySelectorAll(".eye")[0].style.opacity = Math.min(1, eye);
@@ -326,77 +345,113 @@ function renderClose(t) {
   c.querySelectorAll(".eye")[1].style.filter = `blur(${14 + 30 * Math.max(0, eye - 1)}px) brightness(${1.7 + Math.max(0, eye - 1)})`;
 }
 function renderTurn(t) {
-  const on = t >= beat(8) && t < beat(12);
+  const on = inShot(t, "turn");
   show($("#sTurn"), on);
   if (!on) return;
-  const views = [["#vSide", 8, 9], ["#vThree", 9, 10], ["#vFront", 10, 12]];
-  views.forEach(([id, a, b], i) => {
+  [["#vSide", 12, 13], ["#vThree", 13, 14], ["#vFront", 14, 16]].forEach(([id, a, b], i) => {
     const el = $(id);
     const vis = t >= beat(a) && t < beat(b);
     show(el, vis);
     if (!vis) return;
-    const dt = t - beat(a);
-    const z = 1 + i * 0.05 + 0.04 * prog(t, beat(a), beat(b));
-    el.style.transform = `scale(${z})`;
-    const pulse = 0.55 + 0.45 * Math.exp(-dt * 5);
+    el.style.transform = `scale(${1 + i * 0.05 + 0.04 * prog(t, beat(a), beat(b))})`;
+    const pulse = 0.55 + 0.45 * Math.exp(-(t - beat(a)) * 5);
     el.querySelectorAll(".seam")[0].style.opacity = pulse;
     el.querySelectorAll(".seam")[1].style.opacity = pulse * 0.9;
   });
-  $("#sTurn .watermark").style.transform = `translate(-50%, -50%) rotate(-8deg) scale(${1 + 0.05 * prog(t, beat(8), beat(12))})`;
+  $("#sTurn .watermark").style.transform = `translate(-50%, -50%) rotate(-8deg) scale(${1 + 0.05 * prog(t, beat(12), beat(16))})`;
 }
 
-// ---------- Website ----------
+// ---------- Concept website (laptop + phone) ----------
 const desk = () => $("#siteDesk").contentWindow;
 const mob = () => $("#siteMob").contentWindow;
-const S = { desk: {}, mob: {} };
 function scrollAt(t, stops) {
   let y = stops[0][1];
   for (let i = 1; i < stops.length; i++) {
-    const [tl, ty, mode, D = 0.5] = stops[i];
-    if (mode === "cut") { if (t >= tl) y = ty; continue; }
+    const [tl, ty, D = 0.5] = stops[i];
     if (t >= tl - D) y = lerp(y, ty, easeInOut(prog(t, tl - D, tl)));
   }
   return y;
 }
-async function setupSite(win, key) {
-  const doc = win.document;
-  const H = doc.documentElement.scrollHeight;
-  for (let y = 0; y < H; y += 300) { win.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); }
-  win.scrollTo(0, 0);
-  await new Promise((r) => setTimeout(r, 1500));
-  const off = (sel) => { const el = doc.querySelector(sel); return el ? Math.round(el.getBoundingClientRect().top + win.scrollY) : 0; };
-  S[key].y = { showreel: off("#showreel"), work: off("#work"), services: off("#services"), contact: off("#contact") };
-  S[key].animBase = doc.timeline.currentTime;
-  return S[key].y;
-}
-function driveSite(win, key, t, scrollY) {
+const VH_D = 900, VH_M = 799;
+const DESK_STOPS = [[0, 0], [beat(6), VH_D], [beat(8), VH_D * 2], [beat(10), VH_D * 3]];
+const MOB_STOPS = [[0, 0], [beat(18), VH_M * 2, 0.55]];
+function driveConcept(win, t, scrollY, intro) {
   win.scrollTo({ top: Math.round(scrollY), behavior: "instant" });
-  for (const a of win.document.getAnimations()) { a.pause(); a.currentTime = S[key].animBase + t * 1000; }
+  win.CONCEPT.frame(t, intro);
 }
-const SITE_STOPS = () => { const y = S.desk.y; return [[0, 0], [beat(12), y.showreel], [beat(14), y.work], [beat(16), y.work + 1300], [beat(18), y.services, "cut"]]; };
-const MOB_STOPS = () => [[0, 0], [beat(22), S.mob.y.contact, "cut"]];
 
-function renderSite(t) {
-  const on = (t >= beat(4) && t < beat(8)) || (t >= beat(12) && t < beat(28));
-  show($("#sSite"), on);
+function renderDesk(t) {
+  const on = inShot(t, "desk");
+  show($("#sDesk"), on);
   if (!on) return;
-  // Laptop entrance (beat 4): tilt settles, screen wipes on.
   const intro = easeOut(prog(t, beat(4), beat(5.5)));
   const rotX = lerp(12, 0, intro), rotY = lerp(-14, 0, intro), lift = lerp(60, 0, intro);
-  const push = t < beat(8) ? lerp(1, 1.05, prog(t, beat(4), beat(8))) : lerp(1, 1.04, prog(t, beat(12), beat(20)));
-  const z = push, fx = 540, fy = 1010;
+  const z = lerp(1, 1.06, prog(t, beat(4), beat(12))), fx = 540, fy = 1010;
   $("#cam").style.transform = `translate(${fx - fx * z}px, ${fy - fy * z + Math.sin(t * 0.9) * 4}px) scale(${z})`;
-  const ph = easeOut(prog(t, beat(19.55), beat(20.05)));
-  const ringsUp = easeInOut(prog(t, beat(23.5), beat(24))) * (1 - easeInOut(prog(t, beat(27.6), beat(28.2))));
-  const lapX = lerp(0, -120, ph), lapS = lerp(1, 0.86, ph);
-  $("#laptop").style.transform = `translate(${lapX}px, ${lift - ringsUp * 110}px) rotateX(${rotX}deg) rotateY(${rotY + ph * 6}deg) scale(${lapS})`;
-  $("#phone").style.transform = `translate(${lerp(560, 0, ph)}px, ${lerp(80, 0, ph) - ringsUp * 110}px) rotateY(${lerp(-30, -8, ph)}deg) rotateZ(${lerp(8, 0, ph)}deg)`;
-  $("#phone").style.opacity = ph;
+  $("#laptop").style.transform = `translate(0px, ${lift}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
   const w = easeOut(prog(t, beat(4) + 0.03, beat(4.85)));
   $("#laptop .wipe").style.clipPath = `inset(${w * 100}% 0 0 0)`;
   let pulse = 0;
   for (const kb of KICKS) { const dt = t - beat(kb); if (dt >= 0 && dt < 0.6) pulse = Math.max(pulse, Math.exp(-dt * 7)); }
   $("#glowMain").style.opacity = 0.75 + 0.35 * pulse;
+  driveConcept(desk(), t, scrollAt(t, DESK_STOPS), t - beat(4) + 0.15);
+}
+
+function renderMob(t) {
+  const on = inShot(t, "mob");
+  show($("#sMob"), on);
+  if (!on) return;
+  const k = easeOutExpo(prog(t, beat(16) - 0.02, beat(16) + 0.5));
+  const sc = lerp(0.82, 1, k) + 0.03 * prog(t, beat(16.5), beat(20));
+  $("#phone").style.transform = `translateX(-50%) translateY(${(1 - k) * 700 + Math.sin(t * 1.1) * 6}px) rotate(${lerp(-10, 0, k) + Math.sin(t * 0.8) * 0.6}deg) scale(${sc})`;
+  $("#sMob .watermark").style.transform = `translate(-50%, -50%) rotate(-8deg) scale(${1 + 0.05 * prog(t, beat(16), beat(20))})`;
+  // The phone lands with the hero already composing, so the title reads before the scroll.
+  driveConcept(mob(), t, scrollAt(t, MOB_STOPS), t - beat(16) + 0.7);
+}
+
+// ---------- SEO ----------
+const QUERY = "oud perfume dubai";
+const R = 52, C = 2 * Math.PI * R;
+document.querySelectorAll("#sSeo .dial").forEach((d) => {
+  d.innerHTML = `<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="${R}" fill="rgb(110 91 255 / 0.1)" stroke="rgb(110 91 255 / 0.22)" stroke-width="8"/><circle class="arc" cx="60" cy="60" r="${R}" fill="none" stroke="#9C90FF" stroke-width="8" stroke-linecap="round" stroke-dasharray="0 ${C}" transform="rotate(-90 60 60)"/></svg><div class="num">0</div>`;
+});
+function renderSeo(t) {
+  const on = inShot(t, "seo");
+  show($("#sSeo"), on);
+  if (!on) return;
+  const sIn = easeOutExpo(prog(t, beat(20) - 0.02, beat(20) + 0.35));
+  $("#sSeo .search").style.transform = `translateY(${(1 - sIn) * 120}px)`;
+  const typed = Math.round(QUERY.length * prog(t, beat(20.15), beat(21) - 0.05));
+  $("#sSeo .q").textContent = QUERY.slice(0, typed);
+  $("#sSeo .caret").style.opacity = t < beat(21) || Math.floor(t * 2.4) % 2 === 0 ? 1 : 0;
+  const rIn = easeOutExpo(prog(t, beat(21), beat(21) + 0.45));
+  $("#sSeo .result").style.transform = `translateY(${(1 - rIn) * 160}px) scale(${lerp(0.94, 1, rIn)})`;
+  $("#sSeo .result").style.opacity = clamp(rIn * 1.6);
+  document.querySelectorAll("#sSeo .check").forEach((el, i) => {
+    const k = easeOutBack(prog(t, beat(22 + i * 0.5) - 0.03, beat(22 + i * 0.5) + 0.3));
+    el.style.opacity = clamp(prog(t, beat(22 + i * 0.5) - 0.03, beat(22 + i * 0.5) + 0.12));
+    el.style.transform = `translateX(${(1 - clamp(k)) * -40}px)`;
+    el.querySelector("i").style.transform = `scale(${lerp(0.3, 1, k)})`;
+  });
+  // Checklist and rings share the lower half: the rings rise in at beat 24.
+  const up = easeInOut(prog(t, beat(23.8), beat(24.2)));
+  $("#sSeo .checks").style.transform = `translateY(${-up * 210}px)`;
+  $("#sSeo .result").style.marginTop = `${-up * 210}px`;
+  // The search bar has done its job: it fades away as the result card takes its place.
+  $("#sSeo .search").style.marginTop = `${-up * 120}px`;
+  $("#sSeo .search").style.opacity = sIn * (1 - up);
+  const pin = easeOut(prog(t, beat(23.9), beat(24.2)));
+  $("#sSeo .rings").style.opacity = pin;
+  $("#sSeo .rings").style.transform = `translateY(${(1 - pin) * 80 - up * 170}px)`;
+  document.querySelectorAll("#sSeo .ring").forEach((r, i) => {
+    const at = beat(24 + i) - 0.04;
+    const k = prog(t, at, at + 0.36);
+    const v = Math.round(100 * easeOut(k));
+    r.querySelector(".arc").setAttribute("stroke-dasharray", `${(v / 100) * C} ${C}`);
+    r.querySelector(".num").textContent = v;
+    r.style.transform = `scale(${lerp(0.7, 1, easeOutBack(prog(t, at, at + 0.26)))})`;
+    r.style.opacity = clamp(k * 4);
+  });
 }
 
 // ---------- Logo reveal ----------
@@ -409,7 +464,7 @@ function renderEnd(t) {
   $("#mA").setAttribute("transform", `translate(${lerp(-260, 0, k)} ${lerp(-160, 0, k)})`);
   $("#mB").setAttribute("transform", `translate(${lerp(260, 0, k)} ${lerp(160, 0, k)})`);
   $("#mA").style.opacity = $("#mB").style.opacity = clamp(dt / 0.08);
-  const kv = easeOut(prog(dt, 0.18, 0.5)); // violet stroke draws upward
+  const kv = easeOut(prog(dt, 0.18, 0.5));
   $("#mV").style.clipPath = `inset(${(1 - kv) * 100}% 0 0 0)`;
   $("#mV").style.filter = `drop-shadow(0 0 ${lerp(30, 10, kv)}px rgb(110 91 255 / ${0.9 * kv}))`;
   const kw = easeOut(prog(t, beat(33) - 0.05, beat(33) + 0.4));
@@ -425,13 +480,12 @@ function renderEnd(t) {
   $("#end .glowend").style.opacity = 0.65 + 0.35 * Math.exp(-dt * 2.2) + 0.08 * Math.sin(dt * 2);
 }
 
-// ---------- HUD + flashes ----------
 function renderHud(t) {
-  const site = (t >= beat(4) && t < beat(8)) || (t >= beat(12) && t < beat(28));
   const vis = t < beat(32);
   $("#hud .hudlogo").style.opacity = vis ? 1 : 0;
   $("#hud .tag").style.opacity = vis ? 1 : 0;
-  $("#capScrim").style.opacity = t >= beat(32) ? 0 : site ? 0.55 : 1;
+  const light = inShot(t, "desk") || inShot(t, "seo") || inShot(t, "mob");
+  $("#capScrim").style.opacity = t >= beat(32) ? 0 : light ? 0.55 : 1;
   let f = 0;
   for (const b of CUTS) { const dt = t - beat(b); if (dt >= 0 && dt < 0.3) f = Math.max(f, 0.32 * Math.exp(-dt * 16)); }
   const dt32 = t - beat(32);
@@ -441,29 +495,27 @@ function renderHud(t) {
 
 // Frames that need motion blur (fast moves): number of sub-samples.
 window.samplesAt = function (t) {
-  const fast = [[beat(12) - 0.5, beat(12)], [beat(14) - 0.5, beat(14)], [beat(16) - 0.5, beat(16)], [beat(19.55), beat(20.05)], [beat(30.9), beat(32)], [beat(32), beat(32) + 0.32]];
-  return fast.some(([a, b]) => t >= a && t <= b) ? 6 : 1;
+  const fast = [[beat(6) - 0.5, beat(6)], [beat(8) - 0.5, beat(8)], [beat(10) - 0.5, beat(10)], [beat(16), beat(16) + 0.4], [beat(18) - 0.55, beat(18)], [beat(30.9), beat(32)], [beat(32), beat(32) + 0.32]];
+  return fast.some(([a, b]) => t >= a && t <= b) ? 5 : 1;
 };
 
 window.setupStage = async function () {
   await document.fonts.ready;
-  show($("#sSite"), true); // iframes only lay out while visible
-  $("#phone").style.opacity = 1;
-  await new Promise((r) => setTimeout(r, 300));
-  const d = await setupSite(desk(), "desk");
-  const m = await setupSite(mob(), "mob");
-  return { desk: d, mob: m };
+  for (const id of ["sDesk", "sMob"]) show($("#" + id), true);
+  await new Promise((r) => setTimeout(r, 400));
+  for (const w of [desk(), mob()]) { w.CONCEPT.manual(); await w.CONCEPT.ready; }
+  for (const id of ["sDesk", "sMob"]) show($("#" + id), false);
+  return { ok: true };
 };
 
 window.renderFrame = async function (t) {
-  driveSite(desk(), "desk", t, scrollAt(t, SITE_STOPS()));
-  if (t > beat(19)) driveSite(mob(), "mob", t, scrollAt(t, MOB_STOPS()));
   renderClose(t);
   renderTurn(t);
-  renderSite(t);
+  renderDesk(t);
+  renderMob(t);
+  renderSeo(t);
   renderCaps(t);
   renderChip(t);
-  renderRings(t);
   renderEnd(t);
   renderHud(t);
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));

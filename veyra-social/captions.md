@@ -164,9 +164,38 @@ If your website is slow, hard to use or invisible on Google, let's talk. Send us
 
 ## Reel (`out/veyra-website-reel.mp4`)
 
-Post it as an Instagram / Facebook Reel or on TikTok, with the Instagram caption above (English or Arabic).
-The soundtrack is original and already mixed in, so don't add a trending sound on top. Pick the logo
-frame near the end (around 18 s) as the cover.
+Post it as an Instagram / Facebook Reel or on TikTok with the caption below. The soundtrack is original
+and already mixed in, so don't add a trending sound on top. Pick the logo frame near the end (around 18 s)
+as the cover.
+
+The website in the reel is Oudelle, a concept site Veyra AI designed and built as a demo (the fictional
+perfume brand is not a client). The caption says so, and so does the reel ("Concept website").
+
+### English
+
+Websites that move. ✨
+
+This is Oudelle, a concept website we designed and built to show what's possible: a 3D bottle that follows your scroll, a story that unfolds section by section, and a collection that comes alive.
+
+📱 Perfect on every screen
+🔎 Built to be found: 100 SEO, 100 Accessibility, 100 Best Practices on Google Lighthouse
+
+Want a website like this for your brand? DM us "WEBSITE" at @veyra_aistudio. 🚀
+
+#webdesign #3dwebsite #webdevelopment #creativeweb #seo #dubai #uae #dubaibusiness #veyraai #تصميم_مواقع
+
+### العربي
+
+مواقع بتتحرك. ✨
+
+ده Oudelle، موقع تجريبي صممناه وبنيناه عشان نوريك اللي ممكن نعمله: زجاجة 3D بتتحرك مع السكرول، قصة بتتحكي سكشن ورا سكشن، وكولكشن بيصحى قدامك.
+
+📱 مظبوط على كل الشاشات
+🔎 معمول عشان يظهر على جوجل: ١٠٠ SEO و١٠٠ Accessibility و١٠٠ Best Practices على Google Lighthouse
+
+عايز موقع زي ده لبراندك؟ ابعتلنا "WEBSITE" على @veyra_aistudio 🚀
+
+#تصميم_مواقع #مواقع_الكترونية #webdesign #3dwebsite #dubai #veyraai
 
 ## Posting notes
 
@@ -182,3 +211,4 @@ frame near the end (around 18 s) as the cover.
 - **6 of 6 screen sizes:** the home page checked at 360, 390, 820, 1366, 1440 and 1920px wide, with no horizontal scrolling at any of them.
 - **53%:** Google / DoubleClick, "The Need for Mobile Speed" (2016): 53% of mobile site visits are abandoned if a page takes longer than 3 seconds to load.
 - **8 case studies, films that play on their own, one-tap WhatsApp/email, SEO and link previews:** features of the portfolio site in this repository.
+- **Reel, 100 SEO / Accessibility / Best Practices:** Google Lighthouse 12.8, desktop and mobile presets, run on the Oudelle concept site (`concept-site/`) on 17 October 2026. Its Performance score isn't shown because the test machine draws the 3D scene in software, which says nothing about a real phone or laptop.

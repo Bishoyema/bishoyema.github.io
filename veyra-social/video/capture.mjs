@@ -1,7 +1,7 @@
 // Captures the Veyra AI reel frame by frame from stage.html.
 // Needs the portfolio built (`npm run build`) and served at http://localhost:4173
 // (`npx serve out -l 4173`), plus the `playwright` package with Chromium.
-// Usage: node veyra-social/video/capture.mjs <framesDir> [t1 t2 ...]   (times = test frames only)
+// Usage: node veyra-social/video/capture.mjs <framesDir> [t1 t2 ...]   (times = single test frames, no blur)
 //
 // Fast moves are rendered as several sub-frames inside a 180° shutter and averaged later by
 // blend.py, which gives natural motion blur instead of jumpy, strobing frames.
@@ -29,8 +29,17 @@ copyFileSync(path.join(here, "stage.html"), path.join(reelDir, "stage.html"));
 cpSync(path.join(root, "veyra-social", "src", "fonts"), path.join(reelDir, "fonts"), { recursive: true });
 copyFileSync(path.join(root, "veyra-social", "src", "fonts.css"), path.join(reelDir, "fonts.css"));
 cpSync(path.join(root, "veyra-social", "src", "character"), path.join(reelDir, "char"), { recursive: true });
+// The Oudelle concept site plays inside the laptop and the phone (build it first: npm run build in concept-site).
+const concept = path.join(root, "veyra-social", "concept-site");
+mkdirSync(path.join(reelDir, "concept"), { recursive: true });
+for (const f of ["index.html", "style.css", "fonts.css", "concept.js"]) copyFileSync(path.join(concept, f), path.join(reelDir, "concept", f));
+cpSync(path.join(concept, "fonts"), path.join(reelDir, "concept", "fonts"), { recursive: true });
 
-const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
+// Software WebGL so the concept site's 3D scene renders in headless Chromium.
+const browser = await chromium.launch({
+  executablePath: process.env.CHROMIUM_PATH || undefined,
+  args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"],
+});
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 page.on("pageerror", (e) => console.error("page error:", e.message));
 await page.goto("http://localhost:4173/_reel/stage.html", { waitUntil: "load" });
@@ -42,7 +51,7 @@ const started = Date.now();
 for (let i = 0; i < times.length; i++) {
   const t = times[i];
   const base = testTimes.length ? `test_${t.toFixed(2)}` : `f_${String(i).padStart(4, "0")}`;
-  const n = await page.evaluate((time) => window.samplesAt(time), t);
+  const n = testTimes.length ? 1 : await page.evaluate((time) => window.samplesAt(time), t);
   for (let k = 0; k < n; k++) {
     const tk = n === 1 ? t : t + ((k + 0.5) / n - 0.5) * SHUTTER;
     await page.evaluate((time) => window.renderFrame(time), tk);
