@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
-"""Soundtrack v2 for the Veyra AI reel: an original arrangement played on real instrument
+"""Soundtrack for the Veyra AI reel: an original arrangement played on real instrument
 samples (FluidSynth + the MuseScore General soundfont, MIT licence), mixed with Pedalboard.
 
-115 BPM, F major, 20 s, on the same beat grid as stage.html:
+115 BPM, F major, 28.5 s, on the same beat grid as stage.html:
   0-4   character wakes up: pad + Rhodes, seams light (beat 1), eye flickers on (beat 2)
-  4     drop: drums and bass enter as the concept website wipes onto the laptop
-  4-12  website tour: groove, scroll whooshes land on 6, 8, 10
+  4     drop: drums and bass enter as the Oudelle concept site wipes onto the laptop
+  4-12  Oudelle: groove, scroll whooshes land on 6, 8, 10
   12-14 the character turns to camera: three stop-time hits, one per cut; snare roll into 16
-  16-20 the phone springs up on 16, its page scrolls on 18
-  20-28 SEO: typing clicks, the search result lands on 21, four checklist ticks (22-23.5),
-        then one celesta note per Lighthouse ring (24, 25, 26)
-  28-31 back to the character, build and snare roll, one beat of drop-out
-  32    logo hit: impact, final F major chord, celesta arpeggio; rings out to silence by 20 s
+  16-24 ImpactX case study: the portfolio scrolls on 18, swipes to the case page on 20, scrolls on 22
+  24-32 Halo concept site: swipe in on 24, the tower builds itself, scrolls land on 26, 28, 30;
+        a lead motif comes in
+  32-36 the phone springs up on 32, swipes from Oudelle to Halo on 34
+  36-44 SEO: typing clicks, the search result lands on 37, four checklist ticks (38-39.5),
+        then one celesta note per Lighthouse ring (40, 41, 42)
+  44-47 back to the character, build and snare roll, one beat of drop-out
+  48    logo hit: impact, final F major chord, celesta arpeggio; rings out to silence by 28.5 s
 
 Usage: python3 music2.py out.wav
 Needs: fluidsynth, the MuseScore General soundfont (SF2 env var to override the path),
@@ -31,10 +34,12 @@ from scipy import signal
 SR = 48000
 BPM = 115
 B = 60 / BPM
-DUR = 20.0
+DUR = 28.5
 N = int(SR * DUR)
 SF2 = os.environ.get("SF2", "/usr/share/sounds/sf2/MuseScore_General_Full.sf2")
 rng = np.random.default_rng(32)
+LOGO = 48       # beat of the logo hit
+DROP_OUT = 47   # the beat of silence before it
 
 
 def sec(beats):
@@ -63,11 +68,18 @@ def note(stem, start, length, pitch, vel):
 FMAJ9 = (41, [57, 60, 64, 67])
 AM7 = (45, [55, 60, 64, 69])
 BBMAJ9 = (34, [57, 60, 62, 65])
+DM7 = (38, [57, 60, 62, 65])
 CSUS = (36, [55, 60, 65, 67])
 C = (36, [55, 60, 64, 67])
-# (start beat, length, chord) for bars 0-7, then the final chord at 32.
-HARMONY = [(0, 4, FMAJ9), (4, 4, FMAJ9), (8, 4, AM7), (12, 4, BBMAJ9), (16, 2, CSUS), (18, 2, C),
-           (20, 4, FMAJ9), (24, 4, AM7), (28, 2, BBMAJ9), (30, 1, C)]
+# (start beat, length, chord) up to the logo; the final chord is added at LOGO.
+HARMONY = [(0, 4, FMAJ9),                       # intro
+           (4, 4, FMAJ9), (8, 4, AM7),          # Oudelle
+           (12, 4, BBMAJ9),                     # stop-time turn
+           (16, 4, DM7), (20, 4, BBMAJ9),       # ImpactX
+           (24, 4, FMAJ9), (28, 4, AM7),        # Halo
+           (32, 2, BBMAJ9), (34, 2, CSUS),      # phone
+           (36, 4, FMAJ9), (40, 4, AM7),        # SEO
+           (44, 2, BBMAJ9), (46, 1, C)]         # finale, then the drop-out
 STABS = (12, 13, 14)
 
 for start, length, (root, chord) in HARMONY:
@@ -98,50 +110,53 @@ for start, length, (root, chord) in HARMONY:
             note("bass", 15.5, 0.45, root + 7, 92)
         else:
             for hit, hl, octv in ((0, 0.85, 0), (1.5, 0.4, 0), (2.0, 0.9, 0), (3.5, 0.4, 12)):
-                if hit < length and start + hit < 31:
+                if hit < length and start + hit < DROP_OUT:
                     note("bass", start + hit, min(hl, length - hit), root + octv, 100 if hit == 0 else 88)
     # Vibraphone arpeggio, eighth notes (starts with the eye at beat 2, rests during the stabs).
     arp = [0, 2, 1, 3, 2, 1, 3, 2]
     for e in range(int(length * 2)):
         b = start + e / 2
-        if b < 2 or 12 <= b < 14.5 or b >= 31:
+        if b < 2 or 12 <= b < 14.5 or b >= DROP_OUT:
             continue
         note("vib", b, 0.5, chord[arp[int(b * 2) % 8]] + 12, 66 if e % 2 == 0 else 54)
 
-# Celesta accents: eye (2), turn (12, 13, 14), rings (24, 25, 26), logo (32+).
+# Celesta accents: eye (2), turn (12, 13, 14), rings (40, 41, 42), logo.
+L = LOGO
 for b, m, v in [(2, 84, 70), (2, 89, 58), (12, 81, 72), (13, 84, 72), (14, 89, 80),
-                (24, 88, 84), (25, 91, 84), (26, 93, 88),
-                (32, 77, 92), (32.25, 81, 88), (32.5, 84, 88), (32.75, 89, 92), (33, 96, 70), (34, 89, 66), (34, 93, 60)]:
+                (40, 88, 84), (41, 91, 84), (42, 93, 88),
+                (L, 77, 92), (L + 0.25, 81, 88), (L + 0.5, 84, 88), (L + 0.75, 89, 92), (L + 1, 96, 70), (L + 2, 89, 66), (L + 2, 93, 60)]:
     note("celesta", b, 1.5, m, v)
 
-# Counter-melody over the SEO shot and the build (resolves into the logo).
-for b, l, m in [(20, 1.5, 84), (21.5, 0.5, 81), (22, 1, 79), (23, 1, 77), (24, 1.5, 76), (25.5, 0.5, 79),
-                (26, 2, 81), (28, 1.5, 86), (29.5, 0.5, 84), (30, 1, 81)]:
+# Lead: a rising motif over the Halo site, then the counter-melody over SEO and the build.
+for b, l, m in [(24, 1, 72), (25, 1, 76), (26, 2, 79), (28, 1, 76), (29, 1, 79), (30, 2, 84),
+                (36, 1.5, 84), (37.5, 0.5, 81), (38, 1, 79), (39, 1, 77), (40, 1.5, 76), (41.5, 0.5, 79),
+                (42, 2, 81), (44, 1.5, 86), (45.5, 0.5, 84), (46, 1, 81)]:
     note("lead", b, l, m, 70)
 
 # Final chord on the logo hit.
 for m in [53, 57, 60, 64, 67, 72]:
-    note("pad", 32, 3.2, m, 70)
-    note("strings", 32, 3.2, m + 12, 56)
-    note("ep", 32, 3.0, m, 86)
-note("bass", 32, 3.0, 29, 110)
+    note("pad", L, 3.2, m, 70)
+    note("strings", L, 3.2, m + 12, 56)
+    note("ep", L, 3.0, m, 86)
+note("bass", L, 3.0, 29, 110)
 
-# Drums (TR-808): kick, clap, hats, shaker, rolls.
+# Drums (TR-808): kick, clap, hats, shaker, rolls. Bars 1-11 (beats 4-47); bar 3 is the stop-time turn.
 KICK, SNARE, CLAP, CH, OH, SHAKER = 36, 38, 39, 42, 46, 70
+LAST = LOGO // 4 - 1
 kicks = []
-for bar in range(1, 8):
+for bar in range(1, LOGO // 4):
     s0 = bar * 4
     for b in range(4):
         beat_ = s0 + b
         if bar == 3:
             continue
-        if bar == 7 and b == 3:
+        if bar == LAST and b == 3:
             continue
         if b in (0, 2):
             kicks.append(beat_)
         if b == 1 and bar >= 4:
             kicks.append(beat_ + 0.5)
-        if b in (1, 3) and not (bar == 7 and b >= 2):
+        if b in (1, 3) and not (bar == LAST and b >= 2):
             note("drums", beat_, 0.25, CLAP, 96)
         for s16 in range(4):
             t16 = beat_ + s16 / 4 + (0.03 if s16 % 2 else 0)
@@ -150,17 +165,17 @@ for bar in range(1, 8):
                 note("drums", t16, 0.25, OH if open_ else CH, 52 if s16 == 2 else 36)
             if bar >= 2:
                 note("drums", t16, 0.1, SHAKER, 28 if s16 % 2 else 20)
-kicks += list(STABS) + [15.5, 32]
+kicks += list(STABS) + [15.5, LOGO]
 for k in kicks:
-    note("drums", k, 0.4, KICK, 120 if k in STABS or k == 32 else 104)
+    note("drums", k, 0.4, KICK, 120 if k in STABS or k == LOGO else 104)
 for b in STABS:
     note("drums", b, 0.25, CLAP, 108)
 for i in range(4, 8):  # shaker in the intro
     note("drums", i / 2, 0.1, SHAKER, 24 + 3 * i)
-for k in range(8):  # rolls into the phone (16) and into the drop-out
+for k in range(8):  # rolls into the ImpactX cut (16) and into the drop-out
     note("drums", 15 + k / 8, 0.1, SNARE, 50 + 7 * k)
-    note("drums", 30 + k / 8, 0.1, SNARE, 50 + 8 * k)
-for b, v in [(4, 92), (12, 84), (16, 78), (20, 70), (28, 76), (32, 118)]:
+    note("drums", DROP_OUT - 1 + k / 8, 0.1, SNARE, 50 + 8 * k)
+for b, v in [(4, 92), (12, 84), (16, 78), (24, 74), (32, 78), (36, 70), (44, 76), (LOGO, 118)]:
     note("cymbals", b, 2.0, 49, v)
 
 
@@ -227,6 +242,11 @@ def tick(freq, length=0.12):
     return np.sin(2 * np.pi * freq * t) * np.exp(-t * 45) * (1 - np.exp(-t * 3000))
 
 
+def thump(gain_t=0.6):
+    t = tvec(gain_t)
+    return np.sin(2 * np.pi * np.cumsum(42 + 30 * np.exp(-t * 12)) / SR) * np.exp(-t * 7) * (1 - np.exp(-t * 900))
+
+
 sfx = np.zeros((N, 2), dtype=np.float32)
 # Seams light (beat 1 -> 2): soft rising power-up.
 t = tvec(sec(1.1))
@@ -237,42 +257,50 @@ place(sfx, up * 0.5 + 0.6 * swept_noise(sec(1.1), 800, 7000, peak=0.95), sec(1) 
 for d in (0, 0.05, 0.1, 0.16):
     c = signal.lfilter(*signal.butter(2, 3000, "highpass", fs=SR), rng.standard_normal(int(0.012 * SR))) * np.exp(-tvec(0.012) * 400)
     place(sfx, c, sec(2) - 0.03 + d, 0.05, pan=0.2)
-# Transitions: drop (4), scroll landings (6, 8, 10), turn cuts (12, 13, 14), phone (16),
-# phone scroll (18), cut to SEO (20).
+# Full-frame cuts: drop (4), ImpactX (16), SEO (36).
 place(sfx, swept_noise(0.6, 300, 5000, peak=0.85), sec(4) - 0.5, 0.06)
-for k, b in enumerate((6, 8, 10)):
+place(sfx, swept_noise(0.6, 300, 5000, peak=0.85), sec(16) - 0.5, 0.05, pan=-0.2)
+place(sfx, swept_noise(0.3, 600, 5000, peak=0.8), sec(36) - 0.24, 0.035)
+# Scroll landings on the laptop: Oudelle (6, 8, 10), ImpactX (18, 22), Halo (26, 28, 30).
+for k, b in enumerate((6, 8, 10, 18, 22, 26, 28, 30)):
     place(sfx, swept_noise(0.55, 350, 4200, peak=0.85), sec(b) - 0.48, 0.05, pan=-0.3 if k % 2 else 0.3)
-for b in (12, 13, 14):
+# In-screen swipes: case page (20), Halo (24), Halo on the phone (34).
+for k, b in enumerate((20, 24, 34)):
+    place(sfx, swept_noise(0.36, 900, 7000, peak=0.8), sec(b) - 0.34, 0.04, pan=0.4 if k % 2 else -0.4)
+# The turn: one swish per cut.
+for b in STABS:
     place(sfx, swept_noise(0.22, 1500, 6000, peak=0.6), sec(b) - 0.12, 0.03, pan=-0.3 + 0.3 * (b - 12))
-place(sfx, swept_noise(0.6, 400, 3000, peak=0.85), sec(16) - 0.5, 0.05, pan=0.6)
-t = tvec(0.6)  # the phone lands: a soft sub thump under the kick
-place(sfx, np.sin(2 * np.pi * np.cumsum(42 + 30 * np.exp(-t * 12)) / SR) * np.exp(-t * 7) * (1 - np.exp(-t * 900)), sec(16), 0.12)
-place(sfx, swept_noise(0.6, 350, 4200, peak=0.85), sec(18) - 0.53, 0.045, pan=-0.3)
-place(sfx, swept_noise(0.3, 600, 5000, peak=0.8), sec(20) - 0.24, 0.035)
-for b in (4.25, 6, 8, 10, 16.25, 18):  # annotation chips
+# The phone lands (32): whoosh and a soft sub thump under the kick.
+place(sfx, swept_noise(0.6, 400, 3000, peak=0.85), sec(32) - 0.5, 0.05, pan=0.6)
+place(sfx, thump(), sec(32), 0.12)
+# Halo's tower builds itself floor by floor (beat 24 + 0.05 s to + 1.5 s): rising soft ticks.
+for i in range(14):
+    place(sfx, tick(900 * 2 ** (i / 9), 0.06), sec(24) + 0.12 + i * 0.09, 0.012, pan=-0.3 + 0.6 * i / 13)
+CHIPS = (4.25, 6, 8, 10, 16.25, 18, 20, 22, 24.25, 26, 28, 30, 32.25, 34)
+for b in CHIPS:  # annotation chips
     place(sfx, tick(2093), sec(b), 0.02, pan=0.15)
-# SEO: one key click per typed letter (same timing as the stage), the result lands on 21,
+# SEO: one key click per typed letter (same timing as the stage), the result lands on 37,
 # then a rising tick per checklist item.
 QUERY = "oud perfume dubai"
-k0, k1 = sec(20.15), sec(21) - 0.05
+k0, k1 = sec(36.15), sec(37) - 0.05
 hp = signal.butter(2, 2500, "highpass", fs=SR)
 for i in range(1, len(QUERY) + 1):
     c = signal.lfilter(*hp, rng.standard_normal(int(0.018 * SR))) * np.exp(-tvec(0.018) * 260)
     place(sfx, c + 0.3 * tick(1800 + 300 * rng.random(), 0.018), k0 + (i - 0.5) / len(QUERY) * (k1 - k0), 0.035, pan=rng.uniform(-0.25, 0.25))
-place(sfx, swept_noise(0.32, 500, 4500, peak=0.75), sec(21) - 0.22, 0.04, pan=-0.2)
+place(sfx, swept_noise(0.32, 500, 4500, peak=0.75), sec(37) - 0.22, 0.04, pan=-0.2)
 for i, freq in enumerate((2093, 2349, 2637, 2794)):
-    place(sfx, tick(freq, 0.2), sec(22 + i * 0.5), 0.03, pan=-0.2 + 0.4 * (i % 2))
-# Rush into the eye (30.9 -> 32) and reverse swell.
-place(sfx, swept_noise(sec(1.1), 300, 9000, peak=0.98), sec(30.9), 0.06)
+    place(sfx, tick(freq, 0.2), sec(38 + i * 0.5), 0.03, pan=-0.2 + 0.4 * (i % 2))
+# Rush into the eye (46.9 -> 48) and reverse swell.
+place(sfx, swept_noise(sec(1.1), 300, 9000, peak=0.98), sec(LOGO - 1.1), 0.06)
 t = tvec(sec(1))
 swell = signal.lfilter(*signal.butter(2, 1500, "highpass", fs=SR), rng.standard_normal(len(t))) * (t / t[-1]) ** 3
-place(sfx, swell, sec(31), 0.08)
+place(sfx, swell, sec(DROP_OUT), 0.08)
 # Logo hit: sub drop and a soft low burst; shimmer as the violet line draws.
 t = tvec(1.8)
 sub = np.sin(2 * np.pi * np.cumsum(34 + 26 * np.exp(-t * 3)) / SR) * np.exp(-t * 2.2)
 burst = signal.lfilter(*signal.butter(2, 900, "lowpass", fs=SR), rng.standard_normal(len(t))) * np.exp(-t * 10)
-place(sfx, np.tanh(1.2 * sub) + 0.4 * burst, sec(32), 0.32)
-place(sfx, swept_noise(0.4, 2500, 12000, peak=0.5), sec(32) + 0.18, 0.025)
+place(sfx, np.tanh(1.2 * sub) + 0.4 * burst, sec(LOGO), 0.32)
+place(sfx, swept_noise(0.4, 2500, 12000, peak=0.5), sec(LOGO) + 0.18, 0.025)
 
 # ------------------------------------------------------------------ mix
 kick_env = np.ones(N, dtype=np.float32)

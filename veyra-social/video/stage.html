@@ -48,6 +48,7 @@
   #laptop .base::before { content: ""; position: absolute; top: 0; left: 50%; width: 17%; height: 9px; transform: translateX(-50%); border-radius: 0 0 12px 12px; background: linear-gradient(#18181b, #2a2a2f); }
   .screen { position: relative; overflow: hidden; background: #000; }
   #laptop .screen { width: 920px; height: 575px; border-radius: 8px; }
+  .layer { position: absolute; inset: 0; overflow: hidden; display: none; }
   #laptop iframe { position: absolute; left: 0; top: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; transform: scale(0.638889); }
   .screen .glare { position: absolute; inset: 0; pointer-events: none; z-index: 3; background: linear-gradient(115deg, rgb(255 255 255 / 0.09) 0%, rgb(255 255 255 / 0.025) 32%, transparent 48%); }
   .screen .wipe { position: absolute; inset: 0; z-index: 2; background: #000; }
@@ -57,10 +58,12 @@
     background: linear-gradient(160deg, #3a3a44, #0c0c0f 50%, #1d1d24);
     box-shadow: inset 0 0 0 2.5px rgb(255 255 255 / 0.22), inset 0 0 0 8px #050506, 0 0 0 2px #000, 0 0 0 3px rgb(156 144 255 / 0.55), 0 0 160px rgb(110 91 255 / 0.55), 0 60px 120px rgb(0 0 0 / 0.8); }
   #phone .screen { width: 484px; height: 1048px; border-radius: 76px; background: #f3ebdf; }
+  #mH { background: #070b16; }
   #phone iframe { position: absolute; left: 0; top: 56px; width: 390px; height: 799px; border: 0; transform-origin: 0 0; transform: scale(1.241026); }
   #phone .status { position: absolute; top: 0; left: 0; right: 0; height: 56px; z-index: 4; display: flex; align-items: center; justify-content: space-between; padding: 8px 52px 0 58px; font-size: 22px; font-weight: 600; color: #1d140c; background: #f3ebdf; }
-  #phone .status .bat { width: 36px; height: 17px; border-radius: 5px; border: 2px solid rgb(29 20 12 / 0.7); position: relative; }
-  #phone .status .bat::after { content: ""; position: absolute; inset: 2px; right: 8px; background: #1d140c; border-radius: 2px; }
+  #phone .status .bat { width: 36px; height: 17px; border-radius: 5px; border: 2px solid currentColor; position: relative; opacity: 0.8; }
+  #phone .status .bat::after { content: ""; position: absolute; inset: 2px; right: 8px; background: currentColor; border-radius: 2px; }
+  #mH .status { color: #eef2fa; background: #070b16; }
   #phone .island { position: absolute; top: 14px; left: 50%; width: 150px; height: 40px; transform: translateX(-50%); background: #000; border-radius: 24px; z-index: 5; }
 
   /* SEO */
@@ -151,7 +154,12 @@
     <div class="horizon"></div>
     <div id="cam">
       <div id="laptop">
-        <div class="lid"><div class="screen"><iframe id="siteDesk" src="concept/?dpr=1" scrolling="no"></iframe><div class="wipe"></div><div class="glare"></div></div></div>
+        <div class="lid"><div class="screen">
+          <div class="layer" id="lO"><iframe id="siteO" src="concepts/oudelle/?dpr=1" scrolling="no"></iframe></div>
+          <div class="layer" id="lIx"><iframe id="siteIx" src="/" scrolling="no"></iframe></div>
+          <div class="layer" id="lIc"><iframe id="siteIc" src="/work/impactx-brand-launch" scrolling="no"></iframe></div>
+          <div class="layer" id="lH"><iframe id="siteH" src="concepts/halo/?dpr=1" scrolling="no"></iframe></div>
+          <div class="wipe"></div><div class="glare"></div></div></div>
         <div class="base"></div>
       </div>
     </div>
@@ -162,7 +170,10 @@
     <div class="glow" style="left:-160px;top:560px;width:1400px;height:1300px;--c:rgb(110 91 255 / 0.32)"></div>
     <div class="watermark" data-mark></div>
     <div id="phone">
-      <div class="screen"><div class="status"><span>9:41</span><span class="bat"></span></div><div class="island"></div><iframe id="siteMob" src="concept/?dpr=2" scrolling="no"></iframe><div class="glare"></div></div>
+      <div class="screen">
+        <div class="layer" id="mO"><div class="status"><span>9:41</span><span class="bat"></span></div><iframe id="siteMO" src="concepts/oudelle/?dpr=2" scrolling="no"></iframe></div>
+        <div class="layer" id="mH"><div class="status"><span>9:41</span><span class="bat"></span></div><iframe id="siteMH" src="concepts/halo/?dpr=2" scrolling="no"></iframe></div>
+        <div class="island"></div><div class="glare"></div></div>
     </div>
   </section>
 
@@ -200,6 +211,8 @@
     <div class="cap" id="cap1"><p class="kicker">Veyra AI · Web design</p><h2></h2></div>
     <div class="cap" id="cap2"><p class="kicker">Concept website · by Veyra AI</p><h2></h2></div>
     <div class="cap" id="cap3"><p class="kicker">Meet the studio</p><h2></h2></div>
+    <div class="cap" id="capIx"><p class="kicker">Case study · ImpactX</p><h2></h2></div>
+    <div class="cap" id="capHalo"><p class="kicker">Concept website · by Veyra AI</p><h2></h2></div>
     <div class="cap" id="cap4"><p class="kicker">Responsive</p><h2></h2></div>
     <div class="cap" id="cap5"><p class="kicker">SEO-friendly</p><h2></h2></div>
     <div class="cap" id="cap6"><p class="kicker">Veyra AI websites</p><h2></h2></div>
@@ -247,21 +260,25 @@ const easeIn = (k) => k * k * k;
 const easeOutBack = (k) => { const c1 = 1.6, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
 const $ = (q) => document.querySelector(q);
 const show = (el, on) => { el.style.display = on ? "block" : "none"; };
-const SHOTS = { close: [[0, 4], [28, 32]], desk: [[4, 12]], turn: [[12, 16]], mob: [[16, 20]], seo: [[20, 28]] };
+const SHOTS = { close: [[0, 4], [44, 48]], turn: [[12, 16]], desk: [[4, 12]], ix: [[16, 24]], halo: [[24, 32]], mob: [[32, 36]], seo: [[36, 44]] };
 const inShot = (t, name) => SHOTS[name].some(([a, b]) => t >= beat(a) && t < beat(b));
+const onLaptop = (t) => inShot(t, "desk") || inShot(t, "ix") || inShot(t, "halo");
+const LOGO = 48;
 
-const CUTS = [4, 12, 13, 14, 16, 20, 28];
+const CUTS = [4, 12, 13, 14, 16, 32, 36, 44];
 const KICKS = [];
-for (let b = 4; b < 31; b++) { if (b >= 12 && b < 16) continue; const p = b % 4; if (p === 0 || p === 2) KICKS.push(b); if (p === 1 && b >= 16) KICKS.push(b + 0.5); }
+for (let b = 4; b < LOGO - 1; b++) { if (b >= 12 && b < 16) continue; const p = b % 4; if (p === 0 || p === 2) KICKS.push(b); if (p === 1 && b >= 16) KICKS.push(b + 0.5); }
 
 // ---------- Captions ----------
 const CAPS = {
   cap1: { words: [["Your", 2], ["website", 2], ["has", 2.5], ["<em>3</em>", 3], ["<em>seconds.</em>", 3]], in: beat(2), out: beat(4), hard: true },
   cap2: { words: [["Websites", 4], ["that", 4.5], ["<em>move.</em>", 5]], in: beat(4), out: beat(11.6) },
   cap3: { words: [["We", 12], ["make", 12], ["them", 13], ["<em>count.</em>", 14]], in: beat(12), out: beat(15.6) },
-  cap4: { words: [["Perfect", 16], ["on", 16], ["<em>every</em>", 17], ["<em>screen.</em>", 17]], in: beat(16), out: beat(19.6) },
-  cap5: { words: [["Built", 20], ["to", 20], ["be", 20.5], ["<em>found.</em>", 21]], in: beat(20), out: beat(27.6) },
-  cap6: { words: [["Fast.", 28], ["Findable.", 29], ["Built", 30], ["to", 30], ["<em>win.</em>", 30]], in: beat(28), out: beat(30.9) },
+  capIx: { words: [["Built", 16], ["for", 16.5], ["<em>real</em>", 17], ["<em>brands.</em>", 17]], in: beat(16), out: beat(23.6) },
+  capHalo: { words: [["Any", 24], ["industry.", 24.5], ["<em>Any</em>", 25], ["<em>idea.</em>", 25.5]], in: beat(24), out: beat(31.6) },
+  cap4: { words: [["Perfect", 32], ["on", 32], ["<em>every</em>", 33], ["<em>screen.</em>", 33]], in: beat(32), out: beat(35.6) },
+  cap5: { words: [["Built", 36], ["to", 36], ["be", 36.5], ["<em>found.</em>", 37]], in: beat(36), out: beat(43.6) },
+  cap6: { words: [["Fast.", 44], ["Findable.", 45], ["Built", 46], ["to", 46], ["<em>win.</em>", 46]], in: beat(44), out: beat(46.9) },
 };
 for (const [id, c] of Object.entries(CAPS)) $(`#${id} h2`).innerHTML = c.words.map(([w]) => `<span class="w"><span>${w}</span></span>`).join(" ");
 function renderCaps(t) {
@@ -285,8 +302,13 @@ function renderCaps(t) {
   }
 }
 
-// ---------- Chips ----------
-const CHIPS = [[4.25, "01", "3D product hero", 6], [6, "02", "Scroll-driven story", 8], [8, "03", "Interactive collection", 10], [10, "04", "Kinetic type", 11.6], [16.25, "05", "Mobile-first", 18], [18, "06", "Same story, every screen", 19.6]];
+// ---------- Chips (numbered per website) ----------
+const CHIPS = [
+  [4.25, "01", "3D product hero", 6], [6, "02", "Scroll-driven story", 8], [8, "03", "Interactive collection", 10], [10, "04", "Kinetic type", 11.6],
+  [16.25, "01", "Cinematic hero", 18], [18, "02", "Featured brand film", 20], [20, "03", "Case-study pages", 22], [22, "04", "Campaign showcase", 23.6],
+  [24.25, "01", "3D tower that builds itself", 26], [26, "02", "Residence cards", 28], [28, "03", "Scroll-driven camera", 30], [30, "04", "Animated map", 31.6],
+  [32.25, "01", "Mobile-first", 34], [34, "02", "Every site, every screen", 35.6],
+];
 function renderChip(t) {
   const chip = $("#chip");
   let cur = -1;
@@ -311,7 +333,7 @@ function eyeLevel(t, on) {
   return 1;
 }
 function renderClose(t) {
-  const first = t < beat(4), finale = t >= beat(28) && t < beat(32);
+  const first = t < beat(4), finale = t >= beat(44) && t < beat(48);
   const el = $("#sClose");
   show(el, first || finale);
   if (!(first || finale)) return;
@@ -330,11 +352,11 @@ function renderClose(t) {
     c.querySelectorAll(".seam").forEach((im) => { im.style.webkitMaskImage = im.style.maskImage = "none"; });
     seam = 1; eye = 1;
     el.style.opacity = 1;
-    const rush = easeIn(prog(t, beat(30.9), beat(32)));
-    z = lerp(1.04, 1.12, prog(t, beat(28), beat(30.9))) * lerp(1, 9, rush);
+    const rush = easeIn(prog(t, beat(46.9), beat(48)));
+    z = lerp(1.04, 1.12, prog(t, beat(44), beat(46.9))) * lerp(1, 9, rush);
     const ex = -110 + EYE.x * sc, ey = 430 + EYE.y * sc;
-    fx = lerp(540, ex, easeInOut(prog(t, beat(30.6), beat(31.6))));
-    fy = lerp(960, ey, easeInOut(prog(t, beat(30.6), beat(31.6))));
+    fx = lerp(540, ex, easeInOut(prog(t, beat(46.6), beat(47.6))));
+    fy = lerp(960, ey, easeInOut(prog(t, beat(46.6), beat(47.6))));
     eye = 1 + 1.5 * rush;
   }
   c.style.transform = `translate(${(fx + 110) * (1 - z)}px, ${(fy - 430) * (1 - z)}px) scale(${z})`;
@@ -361,9 +383,10 @@ function renderTurn(t) {
   $("#sTurn .watermark").style.transform = `translate(-50%, -50%) rotate(-8deg) scale(${1 + 0.05 * prog(t, beat(12), beat(16))})`;
 }
 
-// ---------- Concept website (laptop + phone) ----------
-const desk = () => $("#siteDesk").contentWindow;
-const mob = () => $("#siteMob").contentWindow;
+// ---------- Websites (laptop + phone) ----------
+// Concept sites expose window.CONCEPT (frame-exact 3D and motion); the portfolio pages are
+// driven by pausing their Web Animations at the reel's time.
+const win = (id) => $("#" + id).contentWindow;
 function scrollAt(t, stops) {
   let y = stops[0][1];
   for (let i = 1; i < stops.length; i++) {
@@ -373,40 +396,92 @@ function scrollAt(t, stops) {
   return y;
 }
 const VH_D = 900, VH_M = 799;
-const DESK_STOPS = [[0, 0], [beat(6), VH_D], [beat(8), VH_D * 2], [beat(10), VH_D * 3]];
-const MOB_STOPS = [[0, 0], [beat(18), VH_M * 2, 0.55]];
-function driveConcept(win, t, scrollY, intro) {
-  win.scrollTo({ top: Math.round(scrollY), behavior: "instant" });
-  win.CONCEPT.frame(t, intro);
+const site = { ix: {}, ic: {} };
+const O_STOPS = [[0, 0], [beat(6), VH_D], [beat(8), VH_D * 2], [beat(10), VH_D * 3]];
+const IX_STOPS = () => [[0, 0], [beat(18), site.ix.showreel]];
+const IC_STOPS = [[0, 0], [beat(22), 860]];
+const H_STOPS = [[0, 0], [beat(26), VH_D], [beat(28), VH_D * 2], [beat(30), VH_D * 3]];
+function driveConcept(w, t, scrollY, intro) {
+  w.scrollTo({ top: Math.round(scrollY), behavior: "instant" });
+  w.CONCEPT.frame(t, intro);
+}
+async function setupPage(w, key) {
+  const doc = w.document;
+  const H = doc.documentElement.scrollHeight;
+  for (let y = 0; y < H; y += 300) { w.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); }
+  w.scrollTo(0, 0);
+  await new Promise((r) => setTimeout(r, 1500));
+  const off = (sel) => { const el = doc.querySelector(sel); return el ? Math.round(el.getBoundingClientRect().top + w.scrollY) : 0; };
+  site[key].showreel = off("#showreel");
+  site[key].animBase = doc.timeline.currentTime;
+  return { key, showreel: site[key].showreel, height: H };
+}
+function drivePage(w, key, t, scrollY) {
+  w.scrollTo({ top: Math.round(scrollY), behavior: "instant" });
+  for (const a of w.document.getAnimations()) { a.pause(); a.currentTime = site[key].animBase + t * 1000; }
+}
+// Push transition inside a screen: the old layer slides out left as the new one lands on the beat.
+function swipe(t, at, oldEl, newEl, D = 0.34) {
+  const k = easeInOut(prog(t, beat(at) - D, beat(at)));
+  oldEl.style.transform = `translateX(${-k * 100}%)`;
+  newEl.style.transform = `translateX(${(1 - k) * 100}%)`;
+  return k;
 }
 
-function renderDesk(t) {
-  const on = inShot(t, "desk");
+function renderLaptop(t) {
+  const on = onLaptop(t);
   show($("#sDesk"), on);
   if (!on) return;
-  const intro = easeOut(prog(t, beat(4), beat(5.5)));
+  // The laptop settles in after each full-frame cut (beats 4 and 16).
+  const entry = t < beat(16) ? 4 : 16, end = t < beat(16) ? 12 : 32;
+  const intro = easeOut(prog(t, beat(entry), beat(entry + 1.5)));
   const rotX = lerp(12, 0, intro), rotY = lerp(-14, 0, intro), lift = lerp(60, 0, intro);
-  const z = lerp(1, 1.06, prog(t, beat(4), beat(12))), fx = 540, fy = 1010;
+  // A small bounce as the Halo site swipes in on beat 24.
+  const bump = t >= beat(24) ? Math.exp(-(t - beat(24)) * 6) * Math.sin((t - beat(24)) * 18) * 6 : 0;
+  const z = lerp(1, 1.06, prog(t, beat(entry), beat(end))), fx = 540, fy = 1010;
   $("#cam").style.transform = `translate(${fx - fx * z}px, ${fy - fy * z + Math.sin(t * 0.9) * 4}px) scale(${z})`;
-  $("#laptop").style.transform = `translate(0px, ${lift}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-  const w = easeOut(prog(t, beat(4) + 0.03, beat(4.85)));
+  $("#laptop").style.transform = `translate(0px, ${lift - bump}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+  const w = easeOut(prog(t, beat(entry) + 0.03, beat(entry + 0.85)));
   $("#laptop .wipe").style.clipPath = `inset(${w * 100}% 0 0 0)`;
   let pulse = 0;
   for (const kb of KICKS) { const dt = t - beat(kb); if (dt >= 0 && dt < 0.6) pulse = Math.max(pulse, Math.exp(-dt * 7)); }
   $("#glowMain").style.opacity = 0.75 + 0.35 * pulse;
-  driveConcept(desk(), t, scrollAt(t, DESK_STOPS), t - beat(4) + 0.15);
+
+  const L = { o: $("#lO"), ix: $("#lIx"), ic: $("#lIc"), h: $("#lH") };
+  // Inside the ImpactX section the portfolio home swipes to the case-study page on beat 20,
+  // and that swipes to the Halo site on beat 24.
+  const sw20 = t >= beat(20) - 0.34 && t < beat(20), sw24 = t >= beat(24) - 0.34 && t < beat(24);
+  const vis = {
+    o: inShot(t, "desk"),
+    ix: inShot(t, "ix") && t < beat(20),
+    ic: inShot(t, "ix") && t >= beat(20) - 0.34,
+    h: inShot(t, "halo") || sw24,
+  };
+  for (const k in L) { show(L[k], vis[k]); L[k].style.transform = "none"; }
+  if (sw20) swipe(t, 20, L.ix, L.ic);
+  if (sw24) swipe(t, 24, L.ic, L.h);
+  if (vis.o) driveConcept(win("siteO"), t, scrollAt(t, O_STOPS), t - beat(4) + 0.15);
+  if (vis.ix) drivePage(win("siteIx"), "ix", t, scrollAt(t, IX_STOPS()));
+  if (vis.ic) drivePage(win("siteIc"), "ic", t, scrollAt(t, IC_STOPS));
+  if (vis.h) driveConcept(win("siteH"), t, scrollAt(t, H_STOPS), t - beat(24) + 0.1);
 }
 
 function renderMob(t) {
   const on = inShot(t, "mob");
   show($("#sMob"), on);
   if (!on) return;
-  const k = easeOutExpo(prog(t, beat(16) - 0.02, beat(16) + 0.5));
-  const sc = lerp(0.82, 1, k) + 0.03 * prog(t, beat(16.5), beat(20));
+  const k = easeOutExpo(prog(t, beat(32) - 0.02, beat(32) + 0.5));
+  const sc = lerp(0.82, 1, k) + 0.03 * prog(t, beat(32.5), beat(36));
   $("#phone").style.transform = `translateX(-50%) translateY(${(1 - k) * 700 + Math.sin(t * 1.1) * 6}px) rotate(${lerp(-10, 0, k) + Math.sin(t * 0.8) * 0.6}deg) scale(${sc})`;
-  $("#sMob .watermark").style.transform = `translate(-50%, -50%) rotate(-8deg) scale(${1 + 0.05 * prog(t, beat(16), beat(20))})`;
-  // The phone lands with the hero already composing, so the title reads before the scroll.
-  driveConcept(mob(), t, scrollAt(t, MOB_STOPS), t - beat(16) + 0.7);
+  $("#sMob .watermark").style.transform = `translate(-50%, -50%) rotate(-8deg) scale(${1 + 0.05 * prog(t, beat(32), beat(36))})`;
+  const mO = $("#mO"), mH = $("#mH");
+  const sw = t >= beat(34) - 0.34;
+  show(mO, t < beat(34)); show(mH, sw);
+  mO.style.transform = mH.style.transform = "none";
+  if (sw && t < beat(34)) swipe(t, 34, mO, mH);
+  // Each site lands with its hero already composing, so the headline reads at once.
+  if (t < beat(34)) driveConcept(win("siteMO"), t, 0, t - beat(32) + 0.7);
+  if (sw) driveConcept(win("siteMH"), t, 0, t - beat(34) + 1.1);
 }
 
 // ---------- SEO ----------
@@ -419,32 +494,32 @@ function renderSeo(t) {
   const on = inShot(t, "seo");
   show($("#sSeo"), on);
   if (!on) return;
-  const sIn = easeOutExpo(prog(t, beat(20) - 0.02, beat(20) + 0.35));
+  const sIn = easeOutExpo(prog(t, beat(36) - 0.02, beat(36) + 0.35));
   $("#sSeo .search").style.transform = `translateY(${(1 - sIn) * 120}px)`;
-  const typed = Math.round(QUERY.length * prog(t, beat(20.15), beat(21) - 0.05));
+  const typed = Math.round(QUERY.length * prog(t, beat(36.15), beat(37) - 0.05));
   $("#sSeo .q").textContent = QUERY.slice(0, typed);
-  $("#sSeo .caret").style.opacity = t < beat(21) || Math.floor(t * 2.4) % 2 === 0 ? 1 : 0;
-  const rIn = easeOutExpo(prog(t, beat(21), beat(21) + 0.45));
+  $("#sSeo .caret").style.opacity = t < beat(37) || Math.floor(t * 2.4) % 2 === 0 ? 1 : 0;
+  const rIn = easeOutExpo(prog(t, beat(37), beat(37) + 0.45));
   $("#sSeo .result").style.transform = `translateY(${(1 - rIn) * 160}px) scale(${lerp(0.94, 1, rIn)})`;
   $("#sSeo .result").style.opacity = clamp(rIn * 1.6);
   document.querySelectorAll("#sSeo .check").forEach((el, i) => {
-    const k = easeOutBack(prog(t, beat(22 + i * 0.5) - 0.03, beat(22 + i * 0.5) + 0.3));
-    el.style.opacity = clamp(prog(t, beat(22 + i * 0.5) - 0.03, beat(22 + i * 0.5) + 0.12));
+    const k = easeOutBack(prog(t, beat(38 + i * 0.5) - 0.03, beat(38 + i * 0.5) + 0.3));
+    el.style.opacity = clamp(prog(t, beat(38 + i * 0.5) - 0.03, beat(38 + i * 0.5) + 0.12));
     el.style.transform = `translateX(${(1 - clamp(k)) * -40}px)`;
     el.querySelector("i").style.transform = `scale(${lerp(0.3, 1, k)})`;
   });
-  // Checklist and rings share the lower half: the rings rise in at beat 24.
-  const up = easeInOut(prog(t, beat(23.8), beat(24.2)));
+  // Checklist and rings share the lower half: the rings rise in at beat 40.
+  const up = easeInOut(prog(t, beat(39.8), beat(40.2)));
   $("#sSeo .checks").style.transform = `translateY(${-up * 210}px)`;
   $("#sSeo .result").style.marginTop = `${-up * 210}px`;
   // The search bar has done its job: it fades away as the result card takes its place.
   $("#sSeo .search").style.marginTop = `${-up * 120}px`;
   $("#sSeo .search").style.opacity = sIn * (1 - up);
-  const pin = easeOut(prog(t, beat(23.9), beat(24.2)));
+  const pin = easeOut(prog(t, beat(39.9), beat(40.2)));
   $("#sSeo .rings").style.opacity = pin;
   $("#sSeo .rings").style.transform = `translateY(${(1 - pin) * 80 - up * 170}px)`;
   document.querySelectorAll("#sSeo .ring").forEach((r, i) => {
-    const at = beat(24 + i) - 0.04;
+    const at = beat(40 + i) - 0.04;
     const k = prog(t, at, at + 0.36);
     const v = Math.round(100 * easeOut(k));
     r.querySelector(".arc").setAttribute("stroke-dasharray", `${(v / 100) * C} ${C}`);
@@ -456,7 +531,7 @@ function renderSeo(t) {
 
 // ---------- Logo reveal ----------
 function renderEnd(t) {
-  const t0 = beat(32), end = $("#end");
+  const t0 = beat(LOGO), end = $("#end");
   show(end, t >= t0);
   if (t < t0) return;
   const dt = t - t0;
@@ -467,51 +542,56 @@ function renderEnd(t) {
   const kv = easeOut(prog(dt, 0.18, 0.5));
   $("#mV").style.clipPath = `inset(${(1 - kv) * 100}% 0 0 0)`;
   $("#mV").style.filter = `drop-shadow(0 0 ${lerp(30, 10, kv)}px rgb(110 91 255 / ${0.9 * kv}))`;
-  const kw = easeOut(prog(t, beat(33) - 0.05, beat(33) + 0.4));
+  const kw = easeOut(prog(t, beat(LOGO + 1) - 0.05, beat(LOGO + 1) + 0.4));
   $("#end .word").style.opacity = kw;
   $("#end .word").style.transform = `translate(-50%, ${(1 - kw) * 40}px)`;
-  const ks = easeOut(prog(t, beat(33.5), beat(33.5) + 0.35));
+  const ks = easeOut(prog(t, beat(LOGO + 1.5), beat(LOGO + 1.5) + 0.35));
   $("#end .sub").style.opacity = ks;
   $("#end .sub").style.letterSpacing = `${lerp(0.5, 0.32, ks)}em`;
-  const kc = prog(t, beat(34) - 0.05, beat(34) + 0.3);
+  const kc = prog(t, beat(LOGO + 2) - 0.05, beat(LOGO + 2) + 0.3);
   $("#end .cta").style.transform = `translateX(-50%) scale(${lerp(0.6, 1, easeOutBack(kc))})`;
   $("#end .cta").style.opacity = clamp(kc * 3);
-  $("#end .handle").style.opacity = easeOut(prog(t, beat(34.5), beat(34.5) + 0.4));
+  $("#end .handle").style.opacity = easeOut(prog(t, beat(LOGO + 2.5), beat(LOGO + 2.5) + 0.4));
   $("#end .glowend").style.opacity = 0.65 + 0.35 * Math.exp(-dt * 2.2) + 0.08 * Math.sin(dt * 2);
 }
 
 function renderHud(t) {
-  const vis = t < beat(32);
+  const vis = t < beat(LOGO);
   $("#hud .hudlogo").style.opacity = vis ? 1 : 0;
   $("#hud .tag").style.opacity = vis ? 1 : 0;
-  const light = inShot(t, "desk") || inShot(t, "seo") || inShot(t, "mob");
-  $("#capScrim").style.opacity = t >= beat(32) ? 0 : light ? 0.55 : 1;
+  const light = onLaptop(t) || inShot(t, "seo") || inShot(t, "mob");
+  $("#capScrim").style.opacity = t >= beat(LOGO) ? 0 : light ? 0.55 : 1;
   let f = 0;
   for (const b of CUTS) { const dt = t - beat(b); if (dt >= 0 && dt < 0.3) f = Math.max(f, 0.32 * Math.exp(-dt * 16)); }
-  const dt32 = t - beat(32);
-  if (dt32 >= -0.12) f = Math.max(f, dt32 < 0 ? easeIn(prog(dt32, -0.12, 0)) : Math.exp(-dt32 * 7));
+  const dtl = t - beat(LOGO);
+  if (dtl >= -0.12) f = Math.max(f, dtl < 0 ? easeIn(prog(dtl, -0.12, 0)) : Math.exp(-dtl * 7));
   $("#flash").style.opacity = f;
 }
 
 // Frames that need motion blur (fast moves): number of sub-samples.
 window.samplesAt = function (t) {
-  const fast = [[beat(6) - 0.5, beat(6)], [beat(8) - 0.5, beat(8)], [beat(10) - 0.5, beat(10)], [beat(16), beat(16) + 0.4], [beat(18) - 0.55, beat(18)], [beat(30.9), beat(32)], [beat(32), beat(32) + 0.32]];
+  const before = (b, d = 0.5) => [beat(b) - d, beat(b)];
+  const fast = [before(6), before(8), before(10), before(18), before(20, 0.34), before(22), before(24, 0.34), before(26), before(28), before(30),
+    [beat(32), beat(32) + 0.4], before(34, 0.34), [beat(46.9), beat(LOGO)], [beat(LOGO), beat(LOGO) + 0.32]];
   return fast.some(([a, b]) => t >= a && t <= b) ? 5 : 1;
 };
 
 window.setupStage = async function () {
   await document.fonts.ready;
+  // Iframes only lay out while visible.
   for (const id of ["sDesk", "sMob"]) show($("#" + id), true);
-  await new Promise((r) => setTimeout(r, 400));
-  for (const w of [desk(), mob()]) { w.CONCEPT.manual(); await w.CONCEPT.ready; }
-  for (const id of ["sDesk", "sMob"]) show($("#" + id), false);
-  return { ok: true };
+  for (const id of ["lO", "lIx", "lIc", "lH", "mO", "mH"]) show($("#" + id), true);
+  await new Promise((r) => setTimeout(r, 600));
+  for (const id of ["siteO", "siteH", "siteMO", "siteMH"]) { const w = win(id); w.CONCEPT.manual(); await w.CONCEPT.ready; }
+  const pages = [await setupPage(win("siteIx"), "ix"), await setupPage(win("siteIc"), "ic")];
+  for (const id of ["sDesk", "sMob", "lO", "lIx", "lIc", "lH", "mO", "mH"]) show($("#" + id), false);
+  return { ok: true, pages };
 };
 
 window.renderFrame = async function (t) {
   renderClose(t);
   renderTurn(t);
-  renderDesk(t);
+  renderLaptop(t);
   renderMob(t);
   renderSeo(t);
   renderCaps(t);

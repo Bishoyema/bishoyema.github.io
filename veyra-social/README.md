@@ -6,7 +6,7 @@ service, using the portfolio site in this repository as the case study.
 - **Ready to post:** `out/` (PNG images and a PDF carousel)
 - **Captions, alt text and sources for every number:** [`captions.md`](captions.md)
 - **Reel with music:** `out/veyra-website-reel.mp4` (20 s, 1080 × 1920). How it was made and how to rebuild it: [`video/README.md`](video/README.md)
-- **Concept website shown in the reel:** [`concept-site/`](concept-site/README.md), Oudelle, an original 3D, scroll-driven demo site for a fictional perfume house
+- **Concept websites shown in the reel:** [`concepts/`](concepts/README.md): Oudelle (a perfume house) and Halo Residences (a Dubai Marina tower), two original 3D, scroll-driven demo sites
 
 ## Editing and re-rendering
 

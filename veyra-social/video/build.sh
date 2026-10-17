@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Builds veyra-social/out/veyra-website-reel.mp4: 1080x1920, 30 fps, 20 s, music mixed in.
-# Needs: the site built (npm run build) and served on port 4173 (npx serve out -l 4173),
+# Builds veyra-social/out/veyra-website-reel.mp4: 1080x1920, 30 fps, 28.5 s, music mixed in.
+# Needs: the site built (npm run build) and served on port 4173 (npx serve out -l 4173), the
+# concept sites built (npm run build in veyra-social/concepts),
 # ffmpeg, Node with the `playwright` package, fluidsynth with the MuseScore General soundfont
 # (apt: fluidsynth musescore-general-soundfont-lossless), and Python 3 with numpy, scipy,
 # soundfile, pretty_midi, pedalboard and Pillow.

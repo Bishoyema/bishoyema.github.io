@@ -19,7 +19,7 @@ const reelDir = path.join(root, "out", "_reel");
 const framesDir = path.resolve(process.argv[2] ?? path.join(here, "frames"));
 const testTimes = process.argv.slice(3).map(Number);
 const FPS = 30;
-const DURATION = 20;
+const DURATION = 28.5;
 const SHUTTER = 0.5 / FPS;
 
 // Serve the stage, fonts and character renders next to the site (same origin as the iframes).
@@ -29,11 +29,13 @@ copyFileSync(path.join(here, "stage.html"), path.join(reelDir, "stage.html"));
 cpSync(path.join(root, "veyra-social", "src", "fonts"), path.join(reelDir, "fonts"), { recursive: true });
 copyFileSync(path.join(root, "veyra-social", "src", "fonts.css"), path.join(reelDir, "fonts.css"));
 cpSync(path.join(root, "veyra-social", "src", "character"), path.join(reelDir, "char"), { recursive: true });
-// The Oudelle concept site plays inside the laptop and the phone (build it first: npm run build in concept-site).
-const concept = path.join(root, "veyra-social", "concept-site");
-mkdirSync(path.join(reelDir, "concept"), { recursive: true });
-for (const f of ["index.html", "style.css", "fonts.css", "concept.js"]) copyFileSync(path.join(concept, f), path.join(reelDir, "concept", f));
-cpSync(path.join(concept, "fonts"), path.join(reelDir, "concept", "fonts"), { recursive: true });
+// The concept sites play inside the laptop and the phone (build them first: npm run build in concepts/).
+for (const name of ["oudelle", "halo"]) {
+  const src = path.join(root, "veyra-social", "concepts", name), dst = path.join(reelDir, "concepts", name);
+  mkdirSync(dst, { recursive: true });
+  for (const f of ["index.html", "style.css", "fonts.css", "concept.js"]) copyFileSync(path.join(src, f), path.join(dst, f));
+  cpSync(path.join(src, "fonts"), path.join(dst, "fonts"), { recursive: true });
+}
 
 // Software WebGL so the concept site's 3D scene renders in headless Chromium.
 const browser = await chromium.launch({

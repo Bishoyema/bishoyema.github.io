@@ -12,9 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Bundled output of the Veyra concept site (built with esbuild).
-    "veyra-social/concept-site/concept.js",
-    "veyra-social/concept-site/node_modules/**",
+    // Bundled output of the Veyra concept sites (built with esbuild).
+    "veyra-social/concepts/*/concept.js",
+    "veyra-social/concepts/node_modules/**",
   ]),
 ]);
 
