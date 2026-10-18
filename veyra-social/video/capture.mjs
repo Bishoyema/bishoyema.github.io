@@ -4,6 +4,7 @@
 // Usage: node veyra-social/video/capture.mjs <framesDir> [t1 t2 ...]   (times = single test frames, no blur)
 // A full render resumes where an interrupted one stopped: earlier frames are replayed without
 // saving, so scroll reveals inside the sites start at exactly the same moments.
+// PREVIEW="from,to" (seconds) renders only that stretch, the same way.
 //
 // Fast moves are rendered as several sub-frames inside a 180° shutter and averaged later by
 // blend.py, which gives natural motion blur instead of jumpy, strobing frames.
@@ -21,7 +22,7 @@ const reelDir = path.join(root, "out", "_reel");
 const framesDir = path.resolve(process.argv[2] ?? path.join(here, "frames"));
 const testTimes = process.argv.slice(3).map(Number);
 const FPS = 30;
-const DURATION = 43;
+const DURATION = 45;
 const SHUTTER = 0.5 / FPS;
 
 // Serve the stage, fonts and character renders next to the site (same origin as the iframes).
@@ -69,12 +70,14 @@ async function shoot(file) {
     }
   }
 }
-let start = 0;
-if (!testTimes.length) while (start < times.length && (await frameDone(start))) start++;
+const preview = (process.env.PREVIEW || "").split(",").map(Number);
+let start = 0, stop = times.length;
+if (preview.length === 2) [start, stop] = [Math.floor(preview[0] * FPS), Math.min(times.length, Math.ceil(preview[1] * FPS))];
+if (!testTimes.length) while (start < stop && (await frameDone(start))) start++;
 if (start) console.log(`resuming at frame ${start}`);
 for (let i = 0; i < start; i++) await page.evaluate((time) => window.renderFrame(time), times[i]);
 const started = Date.now();
-for (let i = start; i < times.length; i++) {
+for (let i = start; i < stop; i++) {
   const t = times[i];
   const n = await samples(t);
   for (let k = 0; k < n; k++) {

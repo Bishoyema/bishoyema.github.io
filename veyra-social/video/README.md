@@ -1,6 +1,6 @@
 # Veyra AI website reel (with music)
 
-`../out/veyra-website-reel.mp4`: a 43-second vertical reel (1080 × 1920, 30 fps) with the
+`../out/veyra-website-reel.mp4`: a 45-second vertical reel (1080 × 1920, 30 fps) with the
 Veyra AI character, three websites on a laptop and a phone, an SEO section, and the real Veyra
 AI logo. Made for Instagram Reels, TikTok and Facebook Reels.
 
@@ -22,8 +22,8 @@ Brand assets come from Veyra AI's own files: the logo vectors from the Canva "Lo
 115 BPM in F major, matched to the reference reel's tempo (114.8 BPM), key centre and warm,
 bass-led mood. One beat is 0.522 s.
 
-Every website page holds a full bar (4 beats, 2.1 s) and rests on screen for about 1.6 s
-between scrolls, so each picture can be read.
+Every website page holds a full bar (4 beats, 2.1 s). Scrolls and swipes take about a second
+with a gentle ease, so nothing rushes and each picture can be read.
 
 | Beat (time) | Picture | Sound |
 | --- | --- | --- |
@@ -33,14 +33,14 @@ between scrolls, so each picture can be read.
 | 20, 24 | The character turns to camera: three-quarter view, then front, a bar each. "We make them count." | A stop-time hit per view, snare roll into 28 |
 | 28 (14.61 s) | Cut to the laptop with the portfolio site: the hero, then the ImpactX brand film (32). "Built for real brands." | Crash, whoosh |
 | 36 | The screens swipe to the ImpactX "Your Ads Aren't Failing" case-study page, on its campaign poster | Swipe |
-| 40 (20.87 s) | The screens swipe to WAVY: the lime can drops in spinning and lands on 41, bursting out lime slices and ice. "Any industry. Any idea." | Swipe, a falling swish, a metal clink and fizz on 41, a lead motif comes in |
+| 40 (20.87 s) | The screens swipe to WAVY: the lime can falls spinning and lands on 42, bursting out lime slices and ice. "Any industry. Any idea." | Swipe, a falling swish, a metal clink and fizz on 42, a lead motif comes in |
 | 44, 48, 52 | WAVY scrolls: an orange colour wipe to Mango Wave, a purple one to Berry Blast, then the three cans line up over the counters | Whoosh into each landing |
-| 56 (29.22 s) | A large phone springs up with Oudelle, then swipes to WAVY on 60, whose can lands on 61. "Perfect on every screen." | Whoosh and a soft sub thump as it lands, a swipe, clink and fizz |
-| 64–67.5 | SEO: "oud perfume dubai" is typed into a search bar, Oudelle's real title and meta description appear as the search result (65), then four checks: title + meta description, Product schema, Open Graph, mobile-friendly with one H1. "Built to be found." | A key click per letter, a whoosh for the result, four rising ticks |
-| 68, 69, 70 | Google Lighthouse rings fill to 100: SEO, Accessibility, Best Practices | Celesta notes E, G, A |
-| 72–75 | Back to the character, "Fast. Findable. Built to win.", then a rush into the eye bar | Build, snare roll, one beat of drop-out |
-| 76 (39.65 s) | The VA mark snaps together on the hit, the violet line draws, then VEYRA AI, AI Creative Studio, DM us "WEBSITE", @veyra_aistudio | Impact, final F major chord, celesta arpeggio |
-| to 43 s | Logo holds | The chord rings out to silence by the last frame |
+| 56 (29.22 s) | A large phone rises with Oudelle, then swipes to WAVY on 60, whose can lands on 62. "Perfect on every screen." | Whoosh and a soft sub thump as it lands, a swipe, clink and fizz |
+| 64–69.25 | SEO: "oud perfume dubai" is typed into a search bar, Oudelle's real title and meta description appear as the search result (66), then four checks: title + meta description, Product schema, Open Graph, mobile-friendly with one H1. "Built to be found." | A key click per letter, a whoosh for the result, four rising ticks |
+| 71, 72, 73 | Google Lighthouse rings fill to 100: SEO, Accessibility, Best Practices | Celesta notes E, G, A |
+| 76–79 | Back to the character, "Fast. Findable. Built to win.", then a rush into the eye bar | Build, snare roll, one beat of drop-out |
+| 80 (41.74 s) | The VA mark comes together on the hit, the violet line draws, then VEYRA AI, AI Creative Studio, DM us "WEBSITE", @veyra_aistudio | Impact, final F major chord, celesta arpeggio |
+| to 45 s | Logo holds | The chord rings out to silence by the last frame |
 
 The Lighthouse scores shown are Oudelle's own results from Lighthouse 12 (desktop and
 mobile: SEO 100, Accessibility 100, Best Practices 100). Performance is not shown: it can only

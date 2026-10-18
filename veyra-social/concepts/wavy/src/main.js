@@ -311,9 +311,9 @@ function sceneFrame(time, intro) {
   const p = clamp(window.scrollY / window.innerHeight, 0, L.length - 1);
   const i0 = Math.floor(p), i1 = Math.min(L.length - 1, i0 + 1), k = smooth(p - i0);
   // Intro: the lime can drops in spinning and bounces to a stop; the fruit bursts out as it lands.
-  const kd = clamp((intro - 0.1) / 0.52);
+  const kd = clamp((intro - 0.1) / 1.04);
   const drop = (1 - easeOutBounce(kd)) * 7;
-  const burst = easeOutBack(clamp((intro - 0.55) / 0.6));
+  const burst = easeOutBack(clamp((intro - 1.05) / 0.8));
   const centres = [];
   cans.forEach((c, n) => {
     const [x0, y0, s0, r0] = L[i0][n], [x1, y1, s1, r1] = L[i1][n];
@@ -360,7 +360,7 @@ function sceneFrame(time, intro) {
     pos[i * 3 + 2] = bubbleBase[i * 4 + 2];
   }
   bubbles.geometry.attributes.position.needsUpdate = true;
-  bubbles.material.opacity = 0.8 * clamp((intro - 0.5) / 0.6) * clamp(1 - Math.max(0, p - 2.5));
+  bubbles.material.opacity = 0.8 * clamp((intro - 0.9) / 0.8) * clamp(1 - Math.max(0, p - 2.5));
   renderer.render(scene, camera);
 }
 
