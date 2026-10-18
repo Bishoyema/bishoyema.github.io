@@ -36,6 +36,7 @@ function domFrame(time, intro) {
   }
   revealEls.forEach((el, n) => {
     const top = layoutTops[n] - window.scrollY;
+    if (el.__enter !== undefined && time < el.__enter) el.__enter = undefined; // the clock went back
     if (el.__enter === undefined && top < vh * 0.9) el.__enter = time;
     const k = el.__enter === undefined ? 0 : easeOut(clamp((time - el.__enter - el.__idx * 0.12) / 0.9));
     el.style.opacity = k;
@@ -327,6 +328,7 @@ measure();
 
 window.CONCEPT = {
   ready,
-  manual() { manual = true; },
+  // Hand the clock to the caller: forget reveal times taken from the page's own clock.
+  manual() { manual = true; measure(); revealEls.forEach((el) => { el.__enter = undefined; }); },
   frame(time, intro) { domFrame(time, intro); sceneFrame(time); },
 };

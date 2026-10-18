@@ -165,7 +165,7 @@ If your website is slow, hard to use or invisible on Google, let's talk. Send us
 ## Reel (`out/veyra-website-reel.mp4`)
 
 Post it as an Instagram / Facebook Reel or on TikTok with the caption below. The soundtrack is original
-and already mixed in, so don't add a trending sound on top. Pick the logo frame near the end (around 27 s)
+and already mixed in, so don't add a trending sound on top. Pick the logo frame near the end (around 41 s)
 as the cover.
 
 The reel shows three websites: the ImpactX case study on the portfolio site, and two concept sites

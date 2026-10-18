@@ -21,7 +21,7 @@ const reelDir = path.join(root, "out", "_reel");
 const framesDir = path.resolve(process.argv[2] ?? path.join(here, "frames"));
 const testTimes = process.argv.slice(3).map(Number);
 const FPS = 30;
-const DURATION = 28.5;
+const DURATION = 43;
 const SHUTTER = 0.5 / FPS;
 
 // Serve the stage, fonts and character renders next to the site (same origin as the iframes).
