@@ -2,12 +2,14 @@
 // Needs the portfolio built (`npm run build`) and served at http://localhost:4173
 // (`npx serve out -l 4173`), plus the `playwright` package with Chromium.
 // Usage: node veyra-social/video/capture.mjs <framesDir> [t1 t2 ...]   (times = single test frames, no blur)
+// A full render resumes where an interrupted one stopped: earlier frames are replayed without
+// saving, so scroll reveals inside the sites start at exactly the same moments.
 //
 // Fast moves are rendered as several sub-frames inside a 180° shutter and averaged later by
 // blend.py, which gives natural motion blur instead of jumpy, strobing frames.
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
-import { copyFileSync, cpSync, mkdirSync } from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
 
 const require = createRequire(import.meta.url);
@@ -43,22 +45,42 @@ const browser = await chromium.launch({
   args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"],
 });
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
+page.setDefaultTimeout(120000); // three software-rendered 3D scenes can make one screenshot slow
 page.on("pageerror", (e) => console.error("page error:", e.message));
 await page.goto("http://localhost:4173/_reel/stage.html", { waitUntil: "load" });
 await page.waitForTimeout(2500);
 console.log("setup", JSON.stringify(await page.evaluate(() => window.setupStage())));
 
 const times = testTimes.length ? testTimes : Array.from({ length: FPS * DURATION }, (_, i) => i / FPS);
+const frameBase = (i) => (testTimes.length ? `test_${times[i].toFixed(2)}` : `f_${String(i).padStart(4, "0")}`);
+const samples = (t) => (testTimes.length ? 1 : page.evaluate((time) => window.samplesAt(time), t));
+async function frameDone(i) {
+  const n = await samples(times[i]);
+  if (n === 1) return existsSync(path.join(framesDir, `${frameBase(i)}.jpg`));
+  return existsSync(path.join(framesDir, `${frameBase(i)}.jpg`)) || Array.from({ length: n }, (_, k) => `${frameBase(i)}.sub${k}.png`).every((f) => existsSync(path.join(framesDir, f)));
+}
+async function shoot(file) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await page.screenshot({ path: file, type: file.endsWith(".png") ? "png" : "jpeg", ...(file.endsWith(".jpg") ? { quality: 94 } : {}) });
+    } catch (e) {
+      if (attempt === 3) throw e;
+      console.error(`screenshot retry ${attempt}: ${e.message.split("\n")[0]}`);
+    }
+  }
+}
+let start = 0;
+if (!testTimes.length) while (start < times.length && (await frameDone(start))) start++;
+if (start) console.log(`resuming at frame ${start}`);
+for (let i = 0; i < start; i++) await page.evaluate((time) => window.renderFrame(time), times[i]);
 const started = Date.now();
-for (let i = 0; i < times.length; i++) {
+for (let i = start; i < times.length; i++) {
   const t = times[i];
-  const base = testTimes.length ? `test_${t.toFixed(2)}` : `f_${String(i).padStart(4, "0")}`;
-  const n = testTimes.length ? 1 : await page.evaluate((time) => window.samplesAt(time), t);
+  const n = await samples(t);
   for (let k = 0; k < n; k++) {
     const tk = n === 1 ? t : t + ((k + 0.5) / n - 0.5) * SHUTTER;
     await page.evaluate((time) => window.renderFrame(time), tk);
-    const name = n === 1 ? `${base}.jpg` : `${base}.sub${k}.png`;
-    await page.screenshot({ path: path.join(framesDir, name), type: name.endsWith(".png") ? "png" : "jpeg", ...(name.endsWith(".jpg") ? { quality: 94 } : {}) });
+    await shoot(path.join(framesDir, n === 1 ? `${frameBase(i)}.jpg` : `${frameBase(i)}.sub${k}.png`));
   }
   if (i % 60 === 0) console.log(`frame ${i}/${times.length} (${((Date.now() - started) / 1000).toFixed(0)}s)`);
 }
