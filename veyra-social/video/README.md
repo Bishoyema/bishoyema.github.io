@@ -25,7 +25,7 @@ bass-led mood. One beat is 0.522 s.
 | Beat (time) | Picture | Sound |
 | --- | --- | --- |
 | 0–4 (0–2.1 s) | The character wakes up: violet seams light top to bottom (beat 1), the eye bar flickers on (beat 2). "Your website has 3 seconds." | Warm pad and Rhodes, power-up swell, eye clicks, celesta ping |
-| 4 (2.09 s) | Drop: hard cut to the laptop, the Oudelle site wipes on and its hero animates in. "Websites that move." | Drums and bass enter, crash |
+| 4 (2.09 s) | Drop: hard cut to the laptop, the Oudelle site wipes on and its hero animates in, and a phone slides in beside it with the same site's mobile layout. From here to beat 32 the phone always shows the laptop's site and scrolls with it. "Websites that move." | Drums and bass enter, crash |
 | 6, 8, 10 | Oudelle scrolls: the 3D bottle moves to the notes, the collection (three bottles on pedestals), then the kinetic-type section | Whoosh into each landing, a tick per chip |
 | 12, 13, 14 | The character turns to camera: side, three-quarter, front, one view per beat. "We make them count." | Three stop-time hits, one per cut, snare roll into 16 |
 | 16 (8.35 s) | Cut to the laptop with the portfolio site: the hero, then the ImpactX brand film (18). "Built for real brands." | Crash, whoosh |
@@ -54,7 +54,7 @@ npm run build && npx serve out -l 4173                            # in one termi
 veyra-social/video/build.sh                                       # in another
 ```
 
-- `stage.html`: the animated scene. It frames the three sites in a laptop and a phone (iframes),
+- `stage.html`: the animated scene. It frames the three sites in a laptop and phones (iframes),
   and `renderFrame(t)` sets every element for time `t`, including each site's scroll position,
   the concept sites' 3D scenes (`window.CONCEPT.frame`) and the portfolio's animations, so
   every frame is exact.
