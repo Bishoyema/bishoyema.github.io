@@ -18,7 +18,11 @@ ffmpeg -v error -y -i "$work/music.wav" -af "volume=3.2dB,alimiter=limit=0.85:at
 node "$here/capture.mjs" "$work/frames"
 python3 "$here/blend.py" "$work/frames"
 
+# BT.709 colour (converted and tagged, as phones and Instagram expect) and a generous bitrate,
+# so the platforms' own re-encode starts from a clean file.
 ffmpeg -v error -y -framerate 30 -i "$work/frames/f_%04d.jpg" -i "$work/music_master.wav" \
-  -c:v libx264 -preset slow -crf 17 -profile:v high -pix_fmt yuv420p -r 30 \
-  -c:a aac -b:a 256k -ar 48000 -shortest -movflags +faststart "$out"
+  -vf "scale=in_range=full:out_range=tv:out_color_matrix=bt709:flags=lanczos+accurate_rnd+full_chroma_int,format=yuv420p" \
+  -c:v libx264 -preset slower -crf 12 -maxrate 20M -bufsize 40M -profile:v high -level:v 4.2 -g 60 -keyint_min 30 -bf 2 -tune animation \
+  -color_range tv -colorspace bt709 -color_primaries bt709 -color_trc bt709 -r 30 \
+  -c:a aac -b:a 192k -ar 48000 -ac 2 -shortest -movflags +faststart "$out"
 echo "wrote $out"
