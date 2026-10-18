@@ -169,8 +169,8 @@ and already mixed in, so don't add a trending sound on top. Pick the logo frame 
 as the cover.
 
 The reel shows three websites: the ImpactX case study on the portfolio site, and two concept sites
-Veyra AI designed and built as demos, Oudelle (a perfume house) and Halo Residences (a Dubai Marina
-tower). The two fictional brands are not clients; the caption says so, and so does the reel
+Veyra AI designed and built as demos, Oudelle (a perfume house) and WAVY (a sparkling energy
+drink). The two fictional brands are not clients; the caption says so, and so does the reel
 ("Concept website").
 
 ### English
@@ -180,14 +180,14 @@ Websites that move. ✨
 Three websites, one studio:
 🎬 ImpactX: a cinematic portfolio and case-study pages for a real brand launch
 🧴 Oudelle: a concept perfume site with a 3D bottle that follows your scroll
-🏙️ Halo Residences: a concept tower that builds itself, floor by floor
+🥤 WAVY: a concept energy-drink site where 3D cans drop, spin and change colour with every flavour
 
 📱 Perfect on every screen
 🔎 Built to be found: 100 SEO, 100 Accessibility, 100 Best Practices on Google Lighthouse
 
 Want a website like this for your brand? DM us "WEBSITE" at @veyra_aistudio. 🚀
 
-#webdesign #3dwebsite #webdevelopment #creativeweb #realestate #seo #dubai #uae #dubaibusiness #veyraai #تصميم_مواقع
+#webdesign #3dwebsite #webdevelopment #creativeweb #seo #dubai #uae #dubaibusiness #veyraai #تصميم_مواقع
 
 ### العربي
 
@@ -196,7 +196,7 @@ Want a website like this for your brand? DM us "WEBSITE" at @veyra_aistudio. �
 ٣ مواقع، ستوديو واحد:
 🎬 ImpactX: بورتفوليو سينمائي وصفحات Case Study لإطلاق براند حقيقي
 🧴 Oudelle: موقع تجريبي لبراند برفان، فيه زجاجة 3D بتتحرك مع السكرول
-🏙️ Halo Residences: موقع تجريبي لبرج في دبي مارينا بيتبني قدامك دور ورا دور
+🥤 WAVY: موقع تجريبي لمشروب طاقة، العلب الـ 3D بتنزل وتلف واللون بيتغير مع كل نكهة
 
 📱 مظبوط على كل الشاشات
 🔎 معمول عشان يظهر على جوجل: ١٠٠ SEO و١٠٠ Accessibility و١٠٠ Best Practices على Google Lighthouse

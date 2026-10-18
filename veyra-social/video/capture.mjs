@@ -30,7 +30,7 @@ cpSync(path.join(root, "veyra-social", "src", "fonts"), path.join(reelDir, "font
 copyFileSync(path.join(root, "veyra-social", "src", "fonts.css"), path.join(reelDir, "fonts.css"));
 cpSync(path.join(root, "veyra-social", "src", "character"), path.join(reelDir, "char"), { recursive: true });
 // The concept sites play inside the laptop and the phone (build them first: npm run build in concepts/).
-for (const name of ["oudelle", "halo"]) {
+for (const name of ["oudelle", "wavy"]) {
   const src = path.join(root, "veyra-social", "concepts", name), dst = path.join(reelDir, "concepts", name);
   mkdirSync(dst, { recursive: true });
   for (const f of ["index.html", "style.css", "fonts.css", "concept.js"]) copyFileSync(path.join(src, f), path.join(dst, f));

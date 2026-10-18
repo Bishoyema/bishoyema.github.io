@@ -58,12 +58,12 @@
     background: linear-gradient(160deg, #3a3a44, #0c0c0f 50%, #1d1d24);
     box-shadow: inset 0 0 0 2.5px rgb(255 255 255 / 0.22), inset 0 0 0 8px #050506, 0 0 0 2px #000, 0 0 0 3px rgb(156 144 255 / 0.55), 0 0 160px rgb(110 91 255 / 0.55), 0 60px 120px rgb(0 0 0 / 0.8); }
   #phone .screen { width: 484px; height: 1048px; border-radius: 76px; background: #f3ebdf; }
-  #mH { background: #070b16; }
+  #mW { background: #b5f23d; }
   #phone iframe { position: absolute; left: 0; top: 56px; width: 390px; height: 799px; border: 0; transform-origin: 0 0; transform: scale(1.241026); }
   #phone .status { position: absolute; top: 0; left: 0; right: 0; height: 56px; z-index: 4; display: flex; align-items: center; justify-content: space-between; padding: 8px 52px 0 58px; font-size: 22px; font-weight: 600; color: #1d140c; background: #f3ebdf; }
   #phone .status .bat { width: 36px; height: 17px; border-radius: 5px; border: 2px solid currentColor; position: relative; opacity: 0.8; }
   #phone .status .bat::after { content: ""; position: absolute; inset: 2px; right: 8px; background: currentColor; border-radius: 2px; }
-  #mH .status { color: #eef2fa; background: #070b16; }
+  #mW .status { color: #101010; background: #b5f23d; }
   #phone .island { position: absolute; top: 14px; left: 50%; width: 150px; height: 40px; transform: translateX(-50%); background: #000; border-radius: 24px; z-index: 5; }
 
   /* SEO */
@@ -158,7 +158,7 @@
           <div class="layer" id="lO"><iframe id="siteO" src="concepts/oudelle/?dpr=1" scrolling="no"></iframe></div>
           <div class="layer" id="lIx"><iframe id="siteIx" src="/" scrolling="no"></iframe></div>
           <div class="layer" id="lIc"><iframe id="siteIc" src="/work/impactx-brand-launch" scrolling="no"></iframe></div>
-          <div class="layer" id="lH"><iframe id="siteH" src="concepts/halo/?dpr=1" scrolling="no"></iframe></div>
+          <div class="layer" id="lW"><iframe id="siteW" src="concepts/wavy/?dpr=1" scrolling="no"></iframe></div>
           <div class="wipe"></div><div class="glare"></div></div></div>
         <div class="base"></div>
       </div>
@@ -172,7 +172,7 @@
     <div id="phone">
       <div class="screen">
         <div class="layer" id="mO"><div class="status"><span>9:41</span><span class="bat"></span></div><iframe id="siteMO" src="concepts/oudelle/?dpr=2" scrolling="no"></iframe></div>
-        <div class="layer" id="mH"><div class="status"><span>9:41</span><span class="bat"></span></div><iframe id="siteMH" src="concepts/halo/?dpr=2" scrolling="no"></iframe></div>
+        <div class="layer" id="mW"><div class="status"><span>9:41</span><span class="bat"></span></div><iframe id="siteMW" src="concepts/wavy/?dpr=2" scrolling="no"></iframe></div>
         <div class="island"></div><div class="glare"></div></div>
     </div>
   </section>
@@ -212,7 +212,7 @@
     <div class="cap" id="cap2"><p class="kicker">Concept website · by Veyra AI</p><h2></h2></div>
     <div class="cap" id="cap3"><p class="kicker">Meet the studio</p><h2></h2></div>
     <div class="cap" id="capIx"><p class="kicker">Case study · ImpactX</p><h2></h2></div>
-    <div class="cap" id="capHalo"><p class="kicker">Concept website · by Veyra AI</p><h2></h2></div>
+    <div class="cap" id="capWavy"><p class="kicker">Concept website · by Veyra AI</p><h2></h2></div>
     <div class="cap" id="cap4"><p class="kicker">Responsive</p><h2></h2></div>
     <div class="cap" id="cap5"><p class="kicker">SEO-friendly</p><h2></h2></div>
     <div class="cap" id="cap6"><p class="kicker">Veyra AI websites</p><h2></h2></div>
@@ -260,9 +260,9 @@ const easeIn = (k) => k * k * k;
 const easeOutBack = (k) => { const c1 = 1.6, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); };
 const $ = (q) => document.querySelector(q);
 const show = (el, on) => { el.style.display = on ? "block" : "none"; };
-const SHOTS = { close: [[0, 4], [44, 48]], turn: [[12, 16]], desk: [[4, 12]], ix: [[16, 24]], halo: [[24, 32]], mob: [[32, 36]], seo: [[36, 44]] };
+const SHOTS = { close: [[0, 4], [44, 48]], turn: [[12, 16]], desk: [[4, 12]], ix: [[16, 24]], wavy: [[24, 32]], mob: [[32, 36]], seo: [[36, 44]] };
 const inShot = (t, name) => SHOTS[name].some(([a, b]) => t >= beat(a) && t < beat(b));
-const onLaptop = (t) => inShot(t, "desk") || inShot(t, "ix") || inShot(t, "halo");
+const onLaptop = (t) => inShot(t, "desk") || inShot(t, "ix") || inShot(t, "wavy");
 const LOGO = 48;
 
 const CUTS = [4, 12, 13, 14, 16, 32, 36, 44];
@@ -275,7 +275,7 @@ const CAPS = {
   cap2: { words: [["Websites", 4], ["that", 4.5], ["<em>move.</em>", 5]], in: beat(4), out: beat(11.6) },
   cap3: { words: [["We", 12], ["make", 12], ["them", 13], ["<em>count.</em>", 14]], in: beat(12), out: beat(15.6) },
   capIx: { words: [["Built", 16], ["for", 16.5], ["<em>real</em>", 17], ["<em>brands.</em>", 17]], in: beat(16), out: beat(23.6) },
-  capHalo: { words: [["Any", 24], ["industry.", 24.5], ["<em>Any</em>", 25], ["<em>idea.</em>", 25.5]], in: beat(24), out: beat(31.6) },
+  capWavy: { words: [["Any", 24], ["industry.", 24.5], ["<em>Any</em>", 25], ["<em>idea.</em>", 25.5]], in: beat(24), out: beat(31.6) },
   cap4: { words: [["Perfect", 32], ["on", 32], ["<em>every</em>", 33], ["<em>screen.</em>", 33]], in: beat(32), out: beat(35.6) },
   cap5: { words: [["Built", 36], ["to", 36], ["be", 36.5], ["<em>found.</em>", 37]], in: beat(36), out: beat(43.6) },
   cap6: { words: [["Fast.", 44], ["Findable.", 45], ["Built", 46], ["to", 46], ["<em>win.</em>", 46]], in: beat(44), out: beat(46.9) },
@@ -306,7 +306,7 @@ function renderCaps(t) {
 const CHIPS = [
   [4.25, "01", "3D product hero", 6], [6, "02", "Scroll-driven story", 8], [8, "03", "Interactive collection", 10], [10, "04", "Kinetic type", 11.6],
   [16.25, "01", "Cinematic hero", 18], [18, "02", "Featured brand film", 20], [20, "03", "Case-study pages", 22], [22, "04", "Campaign showcase", 23.6],
-  [24.25, "01", "3D tower that builds itself", 26], [26, "02", "Residence cards", 28], [28, "03", "Scroll-driven camera", 30], [30, "04", "Animated map", 31.6],
+  [24.25, "01", "3D can drop", 26], [26, "02", "Colour-wipe flavours", 28], [28, "03", "Fruit in orbit", 30], [30, "04", "Live counters", 31.6],
   [32.25, "01", "Mobile-first", 34], [34, "02", "Every site, every screen", 35.6],
 ];
 function renderChip(t) {
@@ -400,7 +400,7 @@ const site = { ix: {}, ic: {} };
 const O_STOPS = [[0, 0], [beat(6), VH_D], [beat(8), VH_D * 2], [beat(10), VH_D * 3]];
 const IX_STOPS = () => [[0, 0], [beat(18), site.ix.showreel]];
 const IC_STOPS = [[0, 0], [beat(22), 860]];
-const H_STOPS = [[0, 0], [beat(26), VH_D], [beat(28), VH_D * 2], [beat(30), VH_D * 3]];
+const W_STOPS = [[0, 0], [beat(26), VH_D], [beat(28), VH_D * 2], [beat(30), VH_D * 3]];
 function driveConcept(w, t, scrollY, intro) {
   w.scrollTo({ top: Math.round(scrollY), behavior: "instant" });
   w.CONCEPT.frame(t, intro);
@@ -436,7 +436,7 @@ function renderLaptop(t) {
   const entry = t < beat(16) ? 4 : 16, end = t < beat(16) ? 12 : 32;
   const intro = easeOut(prog(t, beat(entry), beat(entry + 1.5)));
   const rotX = lerp(12, 0, intro), rotY = lerp(-14, 0, intro), lift = lerp(60, 0, intro);
-  // A small bounce as the Halo site swipes in on beat 24.
+  // A small bounce as the WAVY site swipes in on beat 24.
   const bump = t >= beat(24) ? Math.exp(-(t - beat(24)) * 6) * Math.sin((t - beat(24)) * 18) * 6 : 0;
   const z = lerp(1, 1.06, prog(t, beat(entry), beat(end))), fx = 540, fy = 1010;
   $("#cam").style.transform = `translate(${fx - fx * z}px, ${fy - fy * z + Math.sin(t * 0.9) * 4}px) scale(${z})`;
@@ -447,23 +447,23 @@ function renderLaptop(t) {
   for (const kb of KICKS) { const dt = t - beat(kb); if (dt >= 0 && dt < 0.6) pulse = Math.max(pulse, Math.exp(-dt * 7)); }
   $("#glowMain").style.opacity = 0.75 + 0.35 * pulse;
 
-  const L = { o: $("#lO"), ix: $("#lIx"), ic: $("#lIc"), h: $("#lH") };
+  const L = { o: $("#lO"), ix: $("#lIx"), ic: $("#lIc"), w: $("#lW") };
   // Inside the ImpactX section the portfolio home swipes to the case-study page on beat 20,
-  // and that swipes to the Halo site on beat 24.
+  // and that swipes to the WAVY site on beat 24.
   const sw20 = t >= beat(20) - 0.34 && t < beat(20), sw24 = t >= beat(24) - 0.34 && t < beat(24);
   const vis = {
     o: inShot(t, "desk"),
     ix: inShot(t, "ix") && t < beat(20),
     ic: inShot(t, "ix") && t >= beat(20) - 0.34,
-    h: inShot(t, "halo") || sw24,
+    w: inShot(t, "wavy") || sw24,
   };
   for (const k in L) { show(L[k], vis[k]); L[k].style.transform = "none"; }
   if (sw20) swipe(t, 20, L.ix, L.ic);
-  if (sw24) swipe(t, 24, L.ic, L.h);
+  if (sw24) swipe(t, 24, L.ic, L.w);
   if (vis.o) driveConcept(win("siteO"), t, scrollAt(t, O_STOPS), t - beat(4) + 0.15);
   if (vis.ix) drivePage(win("siteIx"), "ix", t, scrollAt(t, IX_STOPS()));
   if (vis.ic) drivePage(win("siteIc"), "ic", t, scrollAt(t, IC_STOPS));
-  if (vis.h) driveConcept(win("siteH"), t, scrollAt(t, H_STOPS), t - beat(24) + 0.1);
+  if (vis.w) driveConcept(win("siteW"), t, scrollAt(t, W_STOPS), t - beat(24) + 0.1);
 }
 
 function renderMob(t) {
@@ -474,14 +474,14 @@ function renderMob(t) {
   const sc = lerp(0.82, 1, k) + 0.03 * prog(t, beat(32.5), beat(36));
   $("#phone").style.transform = `translateX(-50%) translateY(${(1 - k) * 700 + Math.sin(t * 1.1) * 6}px) rotate(${lerp(-10, 0, k) + Math.sin(t * 0.8) * 0.6}deg) scale(${sc})`;
   $("#sMob .watermark").style.transform = `translate(-50%, -50%) rotate(-8deg) scale(${1 + 0.05 * prog(t, beat(32), beat(36))})`;
-  const mO = $("#mO"), mH = $("#mH");
+  const mO = $("#mO"), mW = $("#mW");
   const sw = t >= beat(34) - 0.34;
-  show(mO, t < beat(34)); show(mH, sw);
-  mO.style.transform = mH.style.transform = "none";
-  if (sw && t < beat(34)) swipe(t, 34, mO, mH);
+  show(mO, t < beat(34)); show(mW, sw);
+  mO.style.transform = mW.style.transform = "none";
+  if (sw && t < beat(34)) swipe(t, 34, mO, mW);
   // Each site lands with its hero already composing, so the headline reads at once.
   if (t < beat(34)) driveConcept(win("siteMO"), t, 0, t - beat(32) + 0.7);
-  if (sw) driveConcept(win("siteMH"), t, 0, t - beat(34) + 1.1);
+  if (sw) driveConcept(win("siteMW"), t, 0, t - beat(34) + 0.1);
 }
 
 // ---------- SEO ----------
@@ -580,11 +580,11 @@ window.setupStage = async function () {
   await document.fonts.ready;
   // Iframes only lay out while visible.
   for (const id of ["sDesk", "sMob"]) show($("#" + id), true);
-  for (const id of ["lO", "lIx", "lIc", "lH", "mO", "mH"]) show($("#" + id), true);
+  for (const id of ["lO", "lIx", "lIc", "lW", "mO", "mW"]) show($("#" + id), true);
   await new Promise((r) => setTimeout(r, 600));
-  for (const id of ["siteO", "siteH", "siteMO", "siteMH"]) { const w = win(id); w.CONCEPT.manual(); await w.CONCEPT.ready; }
+  for (const id of ["siteO", "siteW", "siteMO", "siteMW"]) { const w = win(id); w.CONCEPT.manual(); await w.CONCEPT.ready; }
   const pages = [await setupPage(win("siteIx"), "ix"), await setupPage(win("siteIc"), "ic")];
-  for (const id of ["sDesk", "sMob", "lO", "lIx", "lIc", "lH", "mO", "mH"]) show($("#" + id), false);
+  for (const id of ["sDesk", "sMob", "lO", "lIx", "lIc", "lW", "mO", "mW"]) show($("#" + id), false);
   return { ok: true, pages };
 };
 

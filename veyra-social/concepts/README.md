@@ -16,17 +16,20 @@ and the phone in `../out/veyra-website-reel.mp4`.
   Open Graph and Twitter tags, Organization and Product structured data, one H1 and labelled
   controls. Lighthouse 12: SEO 100, Accessibility 100, Best Practices 100 on desktop and mobile.
 
-## Halo Residences (`halo/`): residential tower, Dubai Marina
+## WAVY (`wavy/`): sparkling energy drink
 
-- **A tower that builds itself:** an 88-floor tower (Three.js) that twists 90° from base to
-  crown. On load the floors rise into place from the ground up, their windows light, and the
-  halo rings at the crown switch on.
-- **Scroll-driven camera:** each section frames the tower differently: hero, residences, a
-  close-up of the crown, an aerial view, and the enquiry form.
-- **Residence cards, counters and an animated map:** floor plans with prices, a 90° counter, and
-  routes that draw themselves from the tower to the beach, the Palm and the airport.
+- **3D can drop:** a metallic can (Three.js) drops in spinning, bounces to a stop, and bursts
+  out lime slices, mint and ice as it lands.
+- **Colour-wipe flavours:** each flavour has its own colour; scrolling wipes the next colour up
+  from the bottom of the screen while the old can flies out and the next one spins in (Lime
+  Rush, Mango Wave, Berry Blast).
+- **Fruit in orbit:** each flavour's fruit (lime, mango, raspberries and blackcurrants) and ice
+  cubes orbit its can; bubbles rise through the page.
+- **Giant moving type, line-up and counters:** the flavour name scrolls huge behind the can,
+  the three cans line up over counters (0 g sugar, 80 mg caffeine, 25 kcal), then fan out by the
+  buy button.
 - **SEO basics:** title and meta description, canonical link, Open Graph and Twitter tags,
-  Organization and ApartmentComplex structured data, one H1 and labelled form fields.
+  Organization and Product structured data, one H1.
 
 Both sites have their own mobile layout below 700px, with the 3D scene re-staged for portrait.
 
@@ -36,7 +39,7 @@ Both sites have their own mobile layout below 700px, with the 3D scene re-staged
 cd veyra-social/concepts
 npm install
 npm run build            # bundles each site's src/main.js (with Three.js) into its concept.js
-npx serve . -l 4180      # then open http://localhost:4180/oudelle/ or /halo/
+npx serve . -l 4180      # then open http://localhost:4180/oudelle/ or /wavy/
 ```
 
 The `concept.js` bundles are committed, so both folders also work as static sites without a build.
@@ -46,4 +49,4 @@ and `frame(time, intro)` draws the page for a given time (the scroll position co
 page itself). `?dpr=2` sets the 3D canvas's pixel ratio.
 
 Fonts are bundled in each `fonts/` folder (SIL Open Font License, see `fonts/LICENSE.txt`):
-Cormorant Garamond, Inter and JetBrains Mono for Oudelle; Syne, Inter and JetBrains Mono for Halo.
+Cormorant Garamond, Inter and JetBrains Mono for Oudelle; Unbounded and Inter for WAVY.

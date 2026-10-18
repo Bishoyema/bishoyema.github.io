@@ -8,9 +8,9 @@ samples (FluidSynth + the MuseScore General soundfont, MIT licence), mixed with 
   4-12  Oudelle: groove, scroll whooshes land on 6, 8, 10
   12-14 the character turns to camera: three stop-time hits, one per cut; snare roll into 16
   16-24 ImpactX case study: the portfolio scrolls on 18, swipes to the case page on 20, scrolls on 22
-  24-32 Halo concept site: swipe in on 24, the tower builds itself, scrolls land on 26, 28, 30;
-        a lead motif comes in
-  32-36 the phone springs up on 32, swipes from Oudelle to Halo on 34
+  24-32 WAVY concept site: swipe in on 24, the can drops and lands on 25 with a clink and fizz,
+        colour-wipe scrolls land on 26, 28, 30; a lead motif comes in
+  32-36 the phone springs up on 32, swipes from Oudelle to WAVY on 34, its can lands on 35
   36-44 SEO: typing clicks, the search result lands on 37, four checklist ticks (38-39.5),
         then one celesta note per Lighthouse ring (40, 41, 42)
   44-47 back to the character, build and snare roll, one beat of drop-out
@@ -76,7 +76,7 @@ HARMONY = [(0, 4, FMAJ9),                       # intro
            (4, 4, FMAJ9), (8, 4, AM7),          # Oudelle
            (12, 4, BBMAJ9),                     # stop-time turn
            (16, 4, DM7), (20, 4, BBMAJ9),       # ImpactX
-           (24, 4, FMAJ9), (28, 4, AM7),        # Halo
+           (24, 4, FMAJ9), (28, 4, AM7),        # WAVY
            (32, 2, BBMAJ9), (34, 2, CSUS),      # phone
            (36, 4, FMAJ9), (40, 4, AM7),        # SEO
            (44, 2, BBMAJ9), (46, 1, C)]         # finale, then the drop-out
@@ -127,7 +127,7 @@ for b, m, v in [(2, 84, 70), (2, 89, 58), (12, 81, 72), (13, 84, 72), (14, 89, 8
                 (L, 77, 92), (L + 0.25, 81, 88), (L + 0.5, 84, 88), (L + 0.75, 89, 92), (L + 1, 96, 70), (L + 2, 89, 66), (L + 2, 93, 60)]:
     note("celesta", b, 1.5, m, v)
 
-# Lead: a rising motif over the Halo site, then the counter-melody over SEO and the build.
+# Lead: a rising motif over the WAVY site, then the counter-melody over SEO and the build.
 for b, l, m in [(24, 1, 72), (25, 1, 76), (26, 2, 79), (28, 1, 76), (29, 1, 79), (30, 2, 84),
                 (36, 1.5, 84), (37.5, 0.5, 81), (38, 1, 79), (39, 1, 77), (40, 1.5, 76), (41.5, 0.5, 79),
                 (42, 2, 81), (44, 1.5, 86), (45.5, 0.5, 84), (46, 1, 81)]:
@@ -261,10 +261,10 @@ for d in (0, 0.05, 0.1, 0.16):
 place(sfx, swept_noise(0.6, 300, 5000, peak=0.85), sec(4) - 0.5, 0.06)
 place(sfx, swept_noise(0.6, 300, 5000, peak=0.85), sec(16) - 0.5, 0.05, pan=-0.2)
 place(sfx, swept_noise(0.3, 600, 5000, peak=0.8), sec(36) - 0.24, 0.035)
-# Scroll landings on the laptop: Oudelle (6, 8, 10), ImpactX (18, 22), Halo (26, 28, 30).
+# Scroll landings on the laptop: Oudelle (6, 8, 10), ImpactX (18, 22), WAVY (26, 28, 30).
 for k, b in enumerate((6, 8, 10, 18, 22, 26, 28, 30)):
     place(sfx, swept_noise(0.55, 350, 4200, peak=0.85), sec(b) - 0.48, 0.05, pan=-0.3 if k % 2 else 0.3)
-# In-screen swipes: case page (20), Halo (24), Halo on the phone (34).
+# In-screen swipes: case page (20), WAVY (24), WAVY on the phone (34).
 for k, b in enumerate((20, 24, 34)):
     place(sfx, swept_noise(0.36, 900, 7000, peak=0.8), sec(b) - 0.34, 0.04, pan=0.4 if k % 2 else -0.4)
 # The turn: one swish per cut.
@@ -273,9 +273,23 @@ for b in STABS:
 # The phone lands (32): whoosh and a soft sub thump under the kick.
 place(sfx, swept_noise(0.6, 400, 3000, peak=0.85), sec(32) - 0.5, 0.05, pan=0.6)
 place(sfx, thump(), sec(32), 0.12)
-# Halo's tower builds itself floor by floor (beat 24 + 0.05 s to + 1.5 s): rising soft ticks.
-for i in range(14):
-    place(sfx, tick(900 * 2 ** (i / 9), 0.06), sec(24) + 0.12 + i * 0.09, 0.012, pan=-0.3 + 0.6 * i / 13)
+# The WAVY can drops (24 -> 25) and lands on the beat: a falling swish, a metal clink, then fizz.
+def clink():
+    t = tvec(0.4)
+    return sum(a * np.sin(2 * np.pi * fr * t) * np.exp(-t * d) for fr, a, d in ((1180, 1, 14), (2870, 0.6, 20), (4710, 0.4, 28))) * (1 - np.exp(-t * 4000))
+
+
+def fizz(dur):
+    t = tvec(dur)
+    hiss = signal.lfilter(*signal.butter(2, 5000, "highpass", fs=SR), rng.standard_normal(len(t))) * 0.35
+    crackle = (rng.random(len(t)) < 0.004) * rng.standard_normal(len(t)) * 2.5
+    return (hiss + crackle) * np.exp(-t * 3.2) * (1 - np.exp(-t * 60))
+
+
+place(sfx, swept_noise(sec(1), 5000, 600, peak=0.92), sec(24), 0.03)
+place(sfx, clink() * 0.5 + 0.6 * thump(0.4), sec(25), 0.06)
+place(sfx, fizz(1.4), sec(25) + 0.02, 0.05, pan=0.15)
+place(sfx, fizz(1.0), sec(35) + 0.02, 0.035, pan=-0.15)
 CHIPS = (4.25, 6, 8, 10, 16.25, 18, 20, 22, 24.25, 26, 28, 30, 32.25, 34)
 for b in CHIPS:  # annotation chips
     place(sfx, tick(2093), sec(b), 0.02, pan=0.15)

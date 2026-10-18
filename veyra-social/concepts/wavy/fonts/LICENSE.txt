@@ -1,0 +1,1 @@
+Fonts: Unbounded and Inter (SIL Open Font License 1.1), latin subsets from Google Fonts.

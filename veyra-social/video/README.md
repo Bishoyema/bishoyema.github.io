@@ -6,10 +6,10 @@ AI logo. Made for Instagram Reels, TikTok and Facebook Reels.
 
 The websites in the reel:
 
-- **Oudelle** and **Halo Residences** (`../concepts/`): two original concept sites built by Veyra
-  AI to show the kind of motion work we can do, a perfume house with a 3D glass bottle and a
-  Dubai Marina tower that builds itself. They are demos, not client projects, and the reel says
-  so ("Concept website").
+- **Oudelle** and **WAVY** (`../concepts/`): two original concept sites built by Veyra AI to show
+  the kind of motion work we can do, a perfume house with a 3D glass bottle and a sparkling
+  energy drink with 3D cans and colour wipes. They are demos, not client projects, and the reel
+  says so ("Concept website").
 - **ImpactX**: the portfolio site in this repository, with the ImpactX brand film featured on
   the home page and the "Your Ads Aren't Failing" case-study page.
 
@@ -30,9 +30,9 @@ bass-led mood. One beat is 0.522 s.
 | 12, 13, 14 | The character turns to camera: side, three-quarter, front, one view per beat. "We make them count." | Three stop-time hits, one per cut, snare roll into 16 |
 | 16 (8.35 s) | Cut to the laptop with the portfolio site: the hero, then the ImpactX brand film (18). "Built for real brands." | Crash, whoosh |
 | 20, 22 | The screen swipes to the ImpactX "Your Ads Aren't Failing" case-study page, which scrolls to the campaign poster | Swipe, whoosh |
-| 24 (12.52 s) | The screen swipes to Halo Residences: the tower builds itself floor by floor. "Any industry. Any idea." | Swipe, rising ticks as the floors stack, a lead motif comes in |
-| 26, 28, 30 | Halo scrolls: residence cards, the crown close-up with the 90° counter, the aerial view with the map routes drawing | Whoosh into each landing |
-| 32 (16.70 s) | A large phone springs up with Oudelle, then swipes to Halo on 34. "Perfect on every screen." | Whoosh and a soft sub thump as it lands, a swipe |
+| 24 (12.52 s) | The screen swipes to WAVY: the lime can drops in spinning and lands on 25, bursting out lime slices and ice. "Any industry. Any idea." | Swipe, a falling swish, a metal clink and fizz on 25, a lead motif comes in |
+| 26, 28, 30 | WAVY scrolls: an orange colour wipe to Mango Wave, a purple one to Berry Blast, then the three cans line up over the counters | Whoosh into each landing |
+| 32 (16.70 s) | A large phone springs up with Oudelle, then swipes to WAVY on 34, whose can lands on 35. "Perfect on every screen." | Whoosh and a soft sub thump as it lands, a swipe, fizz |
 | 36–39.5 | SEO: "oud perfume dubai" is typed into a search bar, Oudelle's real title and meta description appear as the search result (37), then four checks: title + meta description, Product schema, Open Graph, mobile-friendly with one H1. "Built to be found." | A key click per letter, a whoosh for the result, four rising ticks |
 | 40, 41, 42 | Google Lighthouse rings fill to 100: SEO, Accessibility, Best Practices | Celesta notes E, G, A |
 | 44–47 | Back to the character, "Fast. Findable. Built to win.", then a rush into the eye bar | Build, snare roll, one beat of drop-out |
