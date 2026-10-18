@@ -230,7 +230,6 @@
     <div class="cap" id="cap3"><p class="kicker">Meet the studio</p><h2></h2></div>
     <div class="cap" id="capIx"><p class="kicker">Case study · ImpactX</p><h2></h2></div>
     <div class="cap" id="capWavy"><p class="kicker">Concept website · by Veyra AI</p><h2></h2></div>
-    <div class="cap" id="cap4"><p class="kicker">Responsive</p><h2></h2></div>
     <div class="cap" id="cap5"><p class="kicker">SEO-friendly</p><h2></h2></div>
     <div class="cap" id="cap6"><p class="kicker">Veyra AI websites</p><h2></h2></div>
     <div id="chip"><span class="n">01</span><span class="t">3D product hero</span></div>
@@ -282,25 +281,26 @@ const $ = (q) => document.querySelector(q);
 const show = (el, on) => { el.style.display = on ? "block" : "none"; };
 // Each website page holds a full bar (4 beats, 2.1 s), so it rests on screen for about 1.6 s
 // between scrolls.
-const SHOTS = { close: [[0, 8], [76, 80]], desk: [[8, 20]], turn: [[20, 28]], ix: [[28, 40]], wavy: [[40, 56]], mob: [[56, 64]], seo: [[64, 76]] };
+// 30 s: two pages each for Oudelle and ImpactX, three for WAVY; the phone beside the laptop shows
+// every site's mobile layout, so there is no separate phone shot.
+const SHOTS = { close: [[0, 4], [48, 52]], desk: [[4, 12]], turn: [[12, 16]], ix: [[16, 24]], wavy: [[24, 36]], mob: [], seo: [[36, 48]] };
 const inShot = (t, name) => SHOTS[name].some(([a, b]) => t >= beat(a) && t < beat(b));
 const onLaptop = (t) => inShot(t, "desk") || inShot(t, "ix") || inShot(t, "wavy");
-const LOGO = 80;
+const LOGO = 52;
 
-const CUTS = [8, 20, 24, 28, 56, 64, 76];
+const CUTS = [4, 12, 16, 36, 48];
 const KICKS = [];
-for (let b = 8; b < LOGO - 1; b++) { if (b >= 20 && b < 28) continue; const p = b % 4; if (p === 0 || p === 2) KICKS.push(b); if (p === 1 && b >= 28) KICKS.push(b + 0.5); }
+for (let b = 4; b < LOGO - 1; b++) { if (b >= 12 && b < 16) continue; const p = b % 4; if (p === 0 || p === 2) KICKS.push(b); if (p === 1 && b >= 16) KICKS.push(b + 0.5); }
 
 // ---------- Captions ----------
 const CAPS = {
-  cap1: { words: [["Your", 1.5], ["website", 1.5], ["has", 2.5], ["<em>3</em>", 3], ["<em>seconds.</em>", 3]], in: beat(1.5), out: beat(8), hard: true },
-  cap2: { words: [["Websites", 8], ["that", 8.5], ["<em>move.</em>", 9]], in: beat(8), out: beat(19.6) },
-  cap3: { words: [["We", 20], ["make", 20], ["them", 21], ["<em>count.</em>", 22]], in: beat(20), out: beat(27.6) },
-  capIx: { words: [["Built", 28], ["for", 28.5], ["<em>real</em>", 29], ["<em>brands.</em>", 29]], in: beat(28), out: beat(39.6) },
-  capWavy: { words: [["Any", 40], ["industry.", 40.5], ["<em>Any</em>", 41], ["<em>idea.</em>", 41.5]], in: beat(40), out: beat(55.6) },
-  cap4: { words: [["Perfect", 56], ["on", 56], ["<em>every</em>", 57], ["<em>screen.</em>", 57]], in: beat(56), out: beat(63.6) },
-  cap5: { words: [["Built", 64], ["to", 64], ["be", 64.5], ["<em>found.</em>", 65]], in: beat(64), out: beat(75.5) },
-  cap6: { words: [["Fast.", 76], ["Findable.", 77], ["Built", 78], ["to", 78], ["<em>win.</em>", 78]], in: beat(76), out: beat(78.9) },
+  cap1: { words: [["Your", 0.4], ["website", 0.4], ["has", 1], ["<em>3</em>", 1.5], ["<em>seconds.</em>", 1.5]], in: beat(0.4), out: beat(4), hard: true },
+  cap2: { words: [["Websites", 4], ["that", 4.5], ["<em>move.</em>", 5]], in: beat(4), out: beat(11.6) },
+  cap3: { words: [["We", 12], ["make", 12], ["them", 12.5], ["<em>count.</em>", 13]], in: beat(12), out: beat(15.6) },
+  capIx: { words: [["Built", 16], ["for", 16.5], ["<em>real</em>", 17], ["<em>brands.</em>", 17]], in: beat(16), out: beat(23.6) },
+  capWavy: { words: [["Any", 24], ["industry.", 24.5], ["<em>Any</em>", 25], ["<em>idea.</em>", 25.5]], in: beat(24), out: beat(35.6) },
+  cap5: { words: [["Built", 36], ["to", 36], ["be", 36.5], ["<em>found.</em>", 37]], in: beat(36), out: beat(47.5) },
+  cap6: { words: [["Fast.", 48], ["Findable.", 48.5], ["Built", 49], ["to", 49], ["<em>win.</em>", 49]], in: beat(48), out: beat(50.9) },
 };
 for (const [id, c] of Object.entries(CAPS)) $(`#${id} h2`).innerHTML = c.words.map(([w]) => `<span class="w"><span>${w}</span></span>`).join(" ");
 function renderCaps(t) {
@@ -326,10 +326,9 @@ function renderCaps(t) {
 
 // ---------- Chips (numbered per website) ----------
 const CHIPS = [
-  [8.25, "01", "3D product hero", 12], [12, "02", "Scroll-driven story", 16], [16, "03", "Interactive collection", 19.6],
-  [28.25, "01", "Cinematic hero", 32], [32, "02", "Featured brand film", 36], [36, "03", "Case-study pages", 39.6],
-  [40.25, "01", "3D can drop", 44], [44, "02", "Colour-wipe flavours", 48], [48, "03", "Fruit in orbit", 52], [52, "04", "Live counters", 55.6],
-  [56.25, "01", "Mobile-first", 60], [60, "02", "Every site, every screen", 63.6],
+  [4.25, "01", "3D product hero", 8], [8, "02", "Interactive collection", 11.6],
+  [16.25, "01", "Cinematic hero", 20], [20, "02", "Case-study pages", 23.6],
+  [24.25, "01", "3D can drop", 28], [28, "02", "Colour-wipe flavours", 32], [32, "03", "Perfect on every screen", 35.6],
 ];
 function renderChip(t) {
   const chip = $("#chip");
@@ -355,7 +354,7 @@ function eyeLevel(t, on) {
   return 1;
 }
 function renderClose(t) {
-  const first = t < beat(8), finale = t >= beat(76) && t < beat(LOGO);
+  const first = t < beat(4), finale = t >= beat(48) && t < beat(LOGO);
   const el = $("#sClose");
   show(el, first || finale);
   if (!(first || finale)) return;
@@ -363,11 +362,11 @@ function renderClose(t) {
   const sc = 1300 / 1208;
   let seam, eye, z, fx, fy;
   if (first) {
-    const sweep = easeInOut(prog(t, beat(1) - 0.05, beat(2) - 0.05));
+    const sweep = easeInOut(prog(t, beat(0.1), beat(1) - 0.05));
     seam = sweep;
     c.querySelectorAll(".seam").forEach((im) => { im.style.webkitMaskImage = im.style.maskImage = `linear-gradient(180deg, #000 ${sweep * 100}%, transparent ${sweep * 100 + 6}%)`; });
-    eye = eyeLevel(t, beat(2) - 0.03);
-    z = lerp(1, 1.1, easeOut(prog(t, 0, beat(8))));
+    eye = eyeLevel(t, beat(1) - 0.03);
+    z = lerp(1, 1.08, easeOut(prog(t, 0, beat(4))));
     fx = 540; fy = 960;
     el.style.opacity = lerp(0.45, 1, clamp(t / 0.35));
   } else {
@@ -375,7 +374,7 @@ function renderClose(t) {
     seam = 1; eye = 1;
     el.style.opacity = 1;
     const rush = easeIn(prog(t, beat(LOGO - 1.1), beat(LOGO)));
-    z = lerp(1.04, 1.12, prog(t, beat(76), beat(LOGO - 1.1))) * lerp(1, 9, rush);
+    z = lerp(1.04, 1.12, prog(t, beat(48), beat(LOGO - 1.1))) * lerp(1, 9, rush);
     const ex = -110 + EYE.x * sc, ey = 430 + EYE.y * sc;
     fx = lerp(540, ex, easeInOut(prog(t, beat(LOGO - 1.4), beat(LOGO - 0.4))));
     fy = lerp(960, ey, easeInOut(prog(t, beat(LOGO - 1.4), beat(LOGO - 0.4))));
@@ -392,8 +391,8 @@ function renderTurn(t) {
   const on = inShot(t, "turn");
   show($("#sTurn"), on);
   if (!on) return;
-  // Two views, a bar each: three-quarter, then front.
-  [["#vSide", 0, 0], ["#vThree", 20, 24], ["#vFront", 24, 28]].forEach(([id, a, b], i) => {
+  // One view, a full bar: the character faces the camera.
+  [["#vSide", 0, 0], ["#vThree", 0, 0], ["#vFront", 12, 16]].forEach(([id, a, b], i) => {
     const el = $(id);
     const vis = t >= beat(a) && t < beat(b);
     show(el, vis);
@@ -403,7 +402,7 @@ function renderTurn(t) {
     el.querySelectorAll(".seam")[0].style.opacity = pulse;
     el.querySelectorAll(".seam")[1].style.opacity = pulse * 0.9;
   });
-  $("#sTurn .watermark").style.transform = `translate(-50%, -50%) rotate(-8deg) scale(${1 + 0.05 * prog(t, beat(20), beat(28))})`;
+  $("#sTurn .watermark").style.transform = `translate(-50%, -50%) rotate(-8deg) scale(${1 + 0.05 * prog(t, beat(12), beat(16))})`;
 }
 
 // ---------- Websites (laptop + phone) ----------
@@ -420,16 +419,17 @@ function scrollAt(t, stops) {
 }
 const VH_D = 900, VH_M = 799;
 const site = { ix: {}, ic: {}, ixm: {}, icm: {} };
-const O_STOPS = [[0, 0], [beat(12), VH_D], [beat(16), VH_D * 2]];
-const IX_STOPS = () => [[0, 0], [beat(32), site.ix.showreel]];
+// Oudelle goes from the hero straight to the collection, two sections down, so it gets more time.
+const O_STOPS = [[0, 0], [beat(8), VH_D * 2, 1.4]];
+const IX_STOPS = () => [[0, 0], [beat(19.6), 90, 2.4]]; // a slow drift over the hero
 // The case-study page swipes in on its campaign poster, then drifts down slowly.
-const IC_STOPS = [[0, 820], [beat(39.6), 940, 1.9]];
-const W_STOPS = [[0, 0], [beat(44), VH_D], [beat(48), VH_D * 2], [beat(52), VH_D * 3]];
+const IC_STOPS = [[0, 820], [beat(23.6), 940, 1.9]];
+const W_STOPS = [[0, 0], [beat(28), VH_D], [beat(32), VH_D * 2]];
 // The small phone scrolls in step with the laptop, through the mobile layout of the same page.
 const sectionStops = (beats, vh) => [[0, 0], ...beats.map((b, i) => [beat(b), vh * (i + 1)])];
-const NO_STOPS = sectionStops([12, 16], VH_M), NW_STOPS = sectionStops([44, 48, 52], VH_M);
-const NIX_STOPS = () => [[0, 0], [beat(32), site.ixm.showreel + 230]]; // heading and film poster in view
-const NIC_STOPS = () => [[0, site.icm.poster - 40], [beat(39.6), site.icm.poster + 60, 1.9]];
+const NO_STOPS = [[0, 0], [beat(8), VH_M * 2, 1.4]], NW_STOPS = sectionStops([28, 32], VH_M);
+const NIX_STOPS = () => [[0, 0], [beat(19.6), 90, 2.4]];
+const NIC_STOPS = () => [[0, site.icm.poster - 40], [beat(23.6), site.icm.poster + 60, 1.9]];
 function driveConcept(w, t, scrollY, intro) {
   w.scrollTo({ top: Math.round(scrollY), behavior: "instant" });
   w.CONCEPT.frame(t, intro);
@@ -464,12 +464,12 @@ function renderLaptop(t) {
   const on = onLaptop(t);
   show($("#sDesk"), on);
   if (!on) return;
-  // The laptop settles in after each full-frame cut (beats 8 and 28).
-  const entry = t < beat(28) ? 8 : 28, end = t < beat(28) ? 20 : 56;
+  // The laptop settles in after each full-frame cut (beats 4 and 16).
+  const entry = t < beat(16) ? 4 : 16, end = t < beat(16) ? 12 : 36;
   const intro = easeOut(prog(t, beat(entry), beat(entry + 2.5)));
   const rotX = lerp(12, 0, intro), rotY = lerp(-14, 0, intro), lift = lerp(60, 0, intro);
-  // A small bounce as the WAVY site swipes in on beat 40.
-  const bump = t >= beat(40) ? Math.exp(-(t - beat(40)) * 6) * Math.sin((t - beat(40)) * 18) * 6 : 0;
+  // A small bounce as the WAVY site swipes in on beat 24.
+  const bump = t >= beat(24) ? Math.exp(-(t - beat(24)) * 6) * Math.sin((t - beat(24)) * 18) * 6 : 0;
   const z = lerp(1, 1.06, prog(t, beat(entry), beat(end))), fx = 500, fy = 1010;
   $("#cam").style.transform = `translate(${fx - fx * z}px, ${fy - fy * z + Math.sin(t * 0.9) * 4}px) scale(${z})`;
   $("#laptop").style.transform = `translate(-95px, ${lift - bump + 10}px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(0.87)`;
@@ -483,27 +483,27 @@ function renderLaptop(t) {
   $("#glowMain").style.opacity = 0.75 + 0.35 * pulse;
 
   const L = { o: $("#lO"), ix: $("#lIx"), ic: $("#lIc"), w: $("#lW") };
-  // Inside the ImpactX section the portfolio home swipes to the case-study page on beat 36,
-  // and that swipes to the WAVY site on beat 40.
-  const sw36 = t >= beat(36) - SWIPE && t < beat(36), sw40 = t >= beat(40) - SWIPE && t < beat(40);
+  // Inside the ImpactX section the portfolio home swipes to the case-study page on beat 20,
+  // and that swipes to the WAVY site on beat 24.
+  const sw20 = t >= beat(20) - SWIPE && t < beat(20), sw24 = t >= beat(24) - SWIPE && t < beat(24);
   const vis = {
     o: inShot(t, "desk"),
-    ix: inShot(t, "ix") && t < beat(36),
-    ic: inShot(t, "ix") && t >= beat(36) - SWIPE,
-    w: inShot(t, "wavy") || sw40,
+    ix: inShot(t, "ix") && t < beat(20),
+    ic: inShot(t, "ix") && t >= beat(20) - SWIPE,
+    w: inShot(t, "wavy") || sw24,
   };
   const N = { o: $("#nO"), ix: $("#nIx"), ic: $("#nIc"), w: $("#nW") };
   for (const k in L) { show(L[k], vis[k]); show(N[k], vis[k]); L[k].style.transform = N[k].style.transform = "none"; }
-  if (sw36) { swipe(t, 36, L.ix, L.ic); swipe(t, 36, N.ix, N.ic); }
-  if (sw40) { swipe(t, 40, L.ic, L.w); swipe(t, 40, N.ic, N.w); }
-  if (vis.o) driveConcept(win("siteO"), t, scrollAt(t, O_STOPS), t - beat(8) + 0.15);
+  if (sw20) { swipe(t, 20, L.ix, L.ic); swipe(t, 20, N.ix, N.ic); }
+  if (sw24) { swipe(t, 24, L.ic, L.w); swipe(t, 24, N.ic, N.w); }
+  if (vis.o) driveConcept(win("siteO"), t, scrollAt(t, O_STOPS), t - beat(4) + 0.15);
   if (vis.ix) drivePage(win("siteIx"), "ix", t, scrollAt(t, IX_STOPS()));
   if (vis.ic) drivePage(win("siteIc"), "ic", t, scrollAt(t, IC_STOPS));
-  if (vis.w) driveConcept(win("siteW"), t, scrollAt(t, W_STOPS), t - beat(40) + 0.1);
-  if (vis.o) driveConcept(win("siteNO"), t, scrollAt(t, NO_STOPS), t - beat(8) + 0.15);
+  if (vis.w) driveConcept(win("siteW"), t, scrollAt(t, W_STOPS), t - beat(24) + 0.1);
+  if (vis.o) driveConcept(win("siteNO"), t, scrollAt(t, NO_STOPS), t - beat(4) + 0.15);
   if (vis.ix) drivePage(win("siteNIx"), "ixm", t, scrollAt(t, NIX_STOPS()));
   if (vis.ic) drivePage(win("siteNIc"), "icm", t, scrollAt(t, NIC_STOPS()));
-  if (vis.w) driveConcept(win("siteNW"), t, scrollAt(t, NW_STOPS), t - beat(40) + 0.1);
+  if (vis.w) driveConcept(win("siteNW"), t, scrollAt(t, NW_STOPS), t - beat(24) + 0.1);
 }
 
 function renderMob(t) {
@@ -534,32 +534,32 @@ function renderSeo(t) {
   const on = inShot(t, "seo");
   show($("#sSeo"), on);
   if (!on) return;
-  const sIn = easeOut(prog(t, beat(64) - 0.02, beat(64) + 0.7));
+  const sIn = easeOut(prog(t, beat(36) - 0.02, beat(36) + 0.7));
   $("#sSeo .search").style.transform = `translateY(${(1 - sIn) * 120}px)`;
-  const typed = Math.round(QUERY.length * prog(t, beat(64.4), beat(66) - 0.1));
+  const typed = Math.round(QUERY.length * prog(t, beat(36.4), beat(38) - 0.1));
   $("#sSeo .q").textContent = QUERY.slice(0, typed);
-  $("#sSeo .caret").style.opacity = t < beat(66) || Math.floor(t * 2.4) % 2 === 0 ? 1 : 0;
-  const rIn = easeOut(prog(t, beat(66), beat(66) + 0.8));
+  $("#sSeo .caret").style.opacity = t < beat(38) || Math.floor(t * 2.4) % 2 === 0 ? 1 : 0;
+  const rIn = easeOut(prog(t, beat(38), beat(38) + 0.8));
   $("#sSeo .result").style.transform = `translateY(${(1 - rIn) * 160}px) scale(${lerp(0.94, 1, rIn)})`;
   $("#sSeo .result").style.opacity = clamp(rIn * 1.6);
   document.querySelectorAll("#sSeo .check").forEach((el, i) => {
-    const k = easeOutBack(prog(t, beat(67 + i * 0.75) - 0.03, beat(67 + i * 0.75) + 0.5));
-    el.style.opacity = clamp(prog(t, beat(67 + i * 0.75) - 0.03, beat(67 + i * 0.75) + 0.25));
+    const k = easeOutBack(prog(t, beat(39 + i * 0.75) - 0.03, beat(39 + i * 0.75) + 0.5));
+    el.style.opacity = clamp(prog(t, beat(39 + i * 0.75) - 0.03, beat(39 + i * 0.75) + 0.25));
     el.style.transform = `translateX(${(1 - clamp(k)) * -40}px)`;
     el.querySelector("i").style.transform = `scale(${lerp(0.3, 1, k)})`;
   });
-  // Checklist and rings share the lower half: the rings rise in before beat 71.
-  const up = easeInOutSine(prog(t, beat(69.9), beat(70.9)));
+  // Checklist and rings share the lower half: the rings rise in before beat 43.
+  const up = easeInOutSine(prog(t, beat(41.9), beat(42.9)));
   $("#sSeo .checks").style.transform = `translateY(${-up * 210}px)`;
   $("#sSeo .result").style.marginTop = `${-up * 210}px`;
   // The search bar has done its job: it fades away as the result card takes its place.
   $("#sSeo .search").style.marginTop = `${-up * 120}px`;
   $("#sSeo .search").style.opacity = sIn * (1 - up);
-  const pin = easeOut(prog(t, beat(70.1), beat(70.9)));
+  const pin = easeOut(prog(t, beat(42.1), beat(42.9)));
   $("#sSeo .rings").style.opacity = pin;
   $("#sSeo .rings").style.transform = `translateY(${(1 - pin) * 80 - up * 170}px)`;
   document.querySelectorAll("#sSeo .ring").forEach((r, i) => {
-    const at = beat(71 + i) - 0.04;
+    const at = beat(43 + i) - 0.04;
     const k = prog(t, at, at + 0.7);
     const v = Math.round(100 * easeOut(k));
     r.querySelector(".arc").setAttribute("stroke-dasharray", `${(v / 100) * C} ${C}`);
@@ -582,16 +582,16 @@ function renderEnd(t) {
   const kv = easeOut(prog(dt, 0.3, 0.95));
   $("#mV").style.clipPath = `inset(${(1 - kv) * 100}% 0 0 0)`;
   $("#mV").style.filter = `drop-shadow(0 0 ${lerp(30, 10, kv)}px rgb(110 91 255 / ${0.9 * kv}))`;
-  const kw = easeOut(prog(t, beat(LOGO + 1.5) - 0.05, beat(LOGO + 1.5) + 0.7));
+  const kw = easeOut(prog(t, beat(LOGO + 1) - 0.05, beat(LOGO + 1) + 0.6));
   $("#end .word").style.opacity = kw;
   $("#end .word").style.transform = `translate(-50%, ${(1 - kw) * 40}px)`;
-  const ks = easeOut(prog(t, beat(LOGO + 2.5), beat(LOGO + 2.5) + 0.6));
+  const ks = easeOut(prog(t, beat(LOGO + 1.75), beat(LOGO + 1.75) + 0.5));
   $("#end .sub").style.opacity = ks;
   $("#end .sub").style.letterSpacing = `${lerp(0.5, 0.32, ks)}em`;
-  const kc = prog(t, beat(LOGO + 3) - 0.05, beat(LOGO + 3) + 0.5);
+  const kc = prog(t, beat(LOGO + 2.25) - 0.05, beat(LOGO + 2.25) + 0.45);
   $("#end .cta").style.transform = `translateX(-50%) scale(${lerp(0.6, 1, easeOutBack(kc))})`;
   $("#end .cta").style.opacity = clamp(kc * 3);
-  $("#end .handle").style.opacity = easeOut(prog(t, beat(LOGO + 3.5), beat(LOGO + 3.5) + 0.6));
+  $("#end .handle").style.opacity = easeOut(prog(t, beat(LOGO + 2.75), beat(LOGO + 2.75) + 0.5));
   $("#end .glowend").style.opacity = 0.65 + 0.35 * Math.exp(-dt * 2.2) + 0.08 * Math.sin(dt * 2);
 }
 
@@ -611,8 +611,7 @@ function renderHud(t) {
 // Frames that need motion blur (fast moves): number of sub-samples.
 window.samplesAt = function (t) {
   const before = (b, d = MOVE) => [beat(b) - d, beat(b)];
-  const moves = [before(12), before(16), before(32), before(36, SWIPE), before(40, SWIPE), before(44), before(48), before(52),
-    [beat(56), beat(56) + 0.6], before(60, SWIPE)];
+  const moves = [before(8, 1.4), before(20, SWIPE), before(24, SWIPE), before(28), before(32)];
   if ([[beat(LOGO - 1.1), beat(LOGO)], [beat(LOGO), beat(LOGO) + 0.4]].some(([a, b]) => t >= a && t <= b)) return 5;
   return moves.some(([a, b]) => t >= a && t <= b) ? 3 : 1;
 };

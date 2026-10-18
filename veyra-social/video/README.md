@@ -1,7 +1,7 @@
 # Veyra AI website reel (with music)
 
-`../out/veyra-website-reel.mp4`: a 45-second vertical reel (1080 × 1920, 30 fps) with the
-Veyra AI character, three websites on a laptop and a phone, an SEO section, and the real Veyra
+`../out/veyra-website-reel.mp4`: a 30-second vertical reel (1080 × 1920, 30 fps) with the
+Veyra AI character, three websites on a laptop with a phone beside it, an SEO section, and the real Veyra
 AI logo. Made for Instagram Reels, TikTok and Facebook Reels.
 
 The websites in the reel:
@@ -27,20 +27,19 @@ with a gentle ease, so nothing rushes and each picture can be read.
 
 | Beat (time) | Picture | Sound |
 | --- | --- | --- |
-| 0–8 (0–4.2 s) | The character wakes up: violet seams light top to bottom (beat 1), the eye bar flickers on (beat 2). "Your website has 3 seconds." | Warm pad and Rhodes, power-up swell, eye clicks, celesta ping, shaker build |
-| 8 (4.17 s) | Drop: hard cut to the laptop, the Oudelle site wipes on and its hero animates in, and a phone slides in beside it with the same site's mobile layout. Until beat 56 the phone always shows the laptop's site and scrolls with it. "Websites that move." | Drums and bass enter, crash |
-| 12, 16 | Oudelle scrolls: the notes, then the collection (three bottles on pedestals) | Whoosh into each landing, a tick per chip |
-| 20, 24 | The character turns to camera: three-quarter view, then front, a bar each. "We make them count." | A stop-time hit per view, snare roll into 28 |
-| 28 (14.61 s) | Cut to the laptop with the portfolio site: the hero, then the ImpactX brand film (32). "Built for real brands." | Crash, whoosh |
-| 36 | The screens swipe to the ImpactX "Your Ads Aren't Failing" case-study page, on its campaign poster | Swipe |
-| 40 (20.87 s) | The screens swipe to WAVY: the lime can falls spinning and lands on 42, bursting out lime slices and ice. "Any industry. Any idea." | Swipe, a falling swish, a metal clink and fizz on 42, a lead motif comes in |
-| 44, 48, 52 | WAVY scrolls: an orange colour wipe to Mango Wave, a purple one to Berry Blast, then the three cans line up over the counters | Whoosh into each landing |
-| 56 (29.22 s) | A large phone rises with Oudelle, then swipes to WAVY on 60, whose can lands on 62. "Perfect on every screen." | Whoosh and a soft sub thump as it lands, a swipe, clink and fizz |
-| 64–69.25 | SEO: "oud perfume dubai" is typed into a search bar, Oudelle's real title and meta description appear as the search result (66), then four checks: title + meta description, Product schema, Open Graph, mobile-friendly with one H1. "Built to be found." | A key click per letter, a whoosh for the result, four rising ticks |
-| 71, 72, 73 | Google Lighthouse rings fill to 100: SEO, Accessibility, Best Practices | Celesta notes E, G, A |
-| 76–79 | Back to the character, "Fast. Findable. Built to win.", then a rush into the eye bar | Build, snare roll, one beat of drop-out |
-| 80 (41.74 s) | The VA mark comes together on the hit, the violet line draws, then VEYRA AI, AI Creative Studio, DM us "WEBSITE", @veyra_aistudio | Impact, final F major chord, celesta arpeggio |
-| to 45 s | Logo holds | The chord rings out to silence by the last frame |
+| 0–4 (0–2.1 s) | The character wakes up: violet seams light top to bottom, the eye bar flickers on (beat 1). "Your website has 3 seconds." | Warm pad and Rhodes, power-up swell, eye clicks, celesta ping, shaker build |
+| 4 (2.09 s) | Drop: hard cut to the laptop, the Oudelle site wipes on and its hero animates in, and a phone slides in beside it with the same site's mobile layout. Until beat 36 the phone always shows the laptop's site and scrolls with it. "Websites that move." | Drums and bass enter, crash |
+| 8 | Oudelle scrolls down to the collection (three bottles on pedestals) | Whoosh into the landing, a tick per chip |
+| 12 (6.26 s) | The character faces the camera. "We make them count." | A stop-time hit, snare roll into 16 |
+| 16 (8.35 s) | Cut to the laptop with the portfolio site's hero. "Built for real brands." | Crash, whoosh |
+| 20 | The screens swipe to the ImpactX "Your Ads Aren't Failing" case-study page, on its campaign poster | Swipe |
+| 24 (12.52 s) | The screens swipe to WAVY: the lime can falls spinning and lands on 26, bursting out lime slices and ice. "Any industry. Any idea." | Swipe, a falling swish, a metal clink and fizz on 26, a lead motif comes in |
+| 28, 32 | WAVY scrolls: an orange colour wipe to Mango Wave, then a purple one to Berry Blast | Whoosh into each landing |
+| 36–41.25 (18.8 s) | SEO: "oud perfume dubai" is typed into a search bar, Oudelle's real title and meta description appear as the search result (38), then four checks: title + meta description, Product schema, Open Graph, mobile-friendly with one H1. "Built to be found." | A key click per letter, a whoosh for the result, four rising ticks |
+| 43, 44, 45 | Google Lighthouse rings fill to 100: SEO, Accessibility, Best Practices | Celesta notes E, G, A |
+| 48–51 | Back to the character, "Fast. Findable. Built to win.", then a rush into the eye bar | Build, snare roll, one beat of drop-out |
+| 52 (27.13 s) | The VA mark comes together on the hit, the violet line draws, then VEYRA AI, AI Creative Studio, DM us "WEBSITE", @veyra_aistudio | Impact, final F major chord, celesta arpeggio |
+| to 30 s | Logo holds | The chord rings out to silence by the last frame |
 
 The Lighthouse scores shown are Oudelle's own results from Lighthouse 12 (desktop and
 mobile: SEO 100, Accessibility 100, Best Practices 100). Performance is not shown: it can only
