@@ -208,15 +208,17 @@ Want a website like this for your brand? DM us "WEBSITE" at @veyra_aistudio. �
 ### Reel for the GCC: Instagram (Arabic first, then English)
 
 Google is written in Latin letters: قوقل is common in Saudi and Kuwaiti chat and جوجل elsewhere,
-while "Google" reads the same everywhere in the Gulf.
+while "Google" reads the same everywhere in the Gulf. Every Arabic line starts with an Arabic word
+and says ثلاثية الأبعاد rather than 3D: a line that starts with a Latin name is laid out
+left-to-right, which splits "3D" and scrambles the Arabic around it.
 
 موقعك عنده ٣ ثواني بس عشان يقنع العميل… ⏱️
 
 في Veyra AI نصمم مواقع تتحرك، تلفت النظر، وتظهر في نتائج البحث على Google 👇
 
-🎬 ImpactX: بورتفوليو سينمائي وصفحات Case Study لإطلاق براند حقيقي
-🧴 Oudelle: موقع تجريبي لعطر فاخر، زجاجة 3D تتحرك مع السكرول
-🥤 WAVY: موقع تجريبي لمشروب طاقة، العلب 3D تنزل وتلف ويتغير لونها مع كل نكهة
+🎬 براند ImpactX: بورتفوليو سينمائي وصفحات Case Study لإطلاق حقيقي
+🧴 عطر Oudelle: موقع تجريبي فاخر، فيه زجاجة ثلاثية الأبعاد تتحرك مع السكرول
+🥤 مشروب WAVY: موقع تجريبي، العلب ثلاثية الأبعاد تنزل وتلف ويتغير لونها مع كل نكهة
 
 📱 يشتغل بشكل مثالي على الجوال والكمبيوتر
 🔎 تقييم 100/100 في SEO على Google Lighthouse
@@ -238,8 +240,8 @@ points to the Page's Message button; when boosting, pick "Send message" as the a
 موقعك عنده ٣ ثواني بس عشان يقنع العميل ⏱️
 
 شوف كيف نخلي الموقع يتحرك، يلفت النظر، ويظهر في نتائج البحث على Google 👇
-🎬 ImpactX: بورتفوليو وصفحات Case Study لإطلاق براند حقيقي
-🧴 Oudelle و 🥤 WAVY: مواقع تجريبية من تصميمنا، بحركة 3D تتفاعل مع السكرول
+🎬 براند ImpactX: بورتفوليو وصفحات Case Study لإطلاق حقيقي
+🧴 عطر Oudelle و🥤 مشروب WAVY: مواقع تجريبية من تصميمنا، بحركة ثلاثية الأبعاد تتفاعل مع السكرول
 
 📱 مثالي على الجوال والكمبيوتر
 🔎 تقييم 100/100 في SEO على Google Lighthouse
