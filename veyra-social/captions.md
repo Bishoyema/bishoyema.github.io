@@ -207,38 +207,43 @@ Want a website like this for your brand? DM us "WEBSITE" at @veyra_aistudio. �
 
 ### Reel for the GCC: Instagram (Arabic first, then English)
 
+Google is written in Latin letters: قوقل is common in Saudi and Kuwaiti chat and جوجل elsewhere,
+while "Google" reads the same everywhere in the Gulf.
+
 موقعك عنده ٣ ثواني بس عشان يقنع العميل… ⏱️
 
-في Veyra AI نصمم مواقع تتحرك، تلفت النظر، وتظهر في قوقل 👇
+في Veyra AI نصمم مواقع تتحرك، تلفت النظر، وتظهر في نتائج البحث على Google 👇
+
 🎬 ImpactX: بورتفوليو سينمائي وصفحات Case Study لإطلاق براند حقيقي
-🧴 Oudelle: موقع تجريبي لعطر فاخر، فيه زجاجة 3D تتحرك مع السكرول
+🧴 Oudelle: موقع تجريبي لعطر فاخر، زجاجة 3D تتحرك مع السكرول
 🥤 WAVY: موقع تجريبي لمشروب طاقة، العلب 3D تنزل وتلف ويتغير لونها مع كل نكهة
 
-📱 ممتاز على الجوال والكمبيوتر
-🔎 مبني عشان يظهر في قوقل: 100 في SEO و Accessibility و Best Practices على Google Lighthouse
+📱 يشتغل بشكل مثالي على الجوال والكمبيوتر
+🔎 تقييم 100/100 في SEO على Google Lighthouse
 
-تبي موقع مثل كذا لمشروعك؟ أرسل لنا كلمة "WEBSITE" بالخاص 📩
+تبي موقع مثل كذا لمشروعك؟ ارسل لنا كلمة "موقع" أو "WEBSITE" بالخاص 📩
 
 —
-
 Your website has 3 seconds to win a customer. ⏱️
-We build websites that move, impress and get found on Google:
-🎬 ImpactX · 🧴 Oudelle (concept) · 🥤 WAVY (concept)
-📱 Perfect on every screen · 🔎 100 SEO on Google Lighthouse
+We build websites that move, impress and get found on Google.
 Want one for your brand? DM us "WEBSITE" 🚀
 
-#تصميم_مواقع #مواقع_الكترونية #تصميم_مواقع_الرياض #دبي #الرياض #جدة #الكويت #قطر #webdesign #websitedesign #3dwebsite #dubai #riyadh #ksa #uae #veyraai
-
-### Reel for the GCC: Facebook (shorter, with the Send Message button)
-
-موقعك عنده ٣ ثواني بس ⏱️
-شوف كيف نخلي المواقع تتحرك وتبيع: ImpactX، و Oudelle و WAVY (مواقع تجريبية من تصميمنا) 👇
-📱 ممتاز على الجوال · 🔎 100 في SEO على Google Lighthouse
-تبي موقع لمشروعك؟ اضغط "إرسال رسالة" أو اكتب لنا "WEBSITE" 📩
-
-Your website has 3 seconds. We build websites that move, sell and get found on Google. Message us "WEBSITE" to start. 🚀
-
 #تصميم_مواقع #دبي #الرياض #webdesign #VeyraAI
+
+### Reel for the GCC: Facebook (Arabic only, with the Send Message button)
+
+موقعك عنده ٣ ثواني بس عشان يقنع العميل ⏱️
+
+شوف كيف نخلي الموقع يتحرك، يلفت النظر، ويظهر في نتائج البحث على Google 👇
+🎬 ImpactX: بورتفوليو وصفحات Case Study لإطلاق براند حقيقي
+🧴 Oudelle و 🥤 WAVY: مواقع تجريبية من تصميمنا، بحركة 3D تتفاعل مع السكرول
+
+📱 مثالي على الجوال والكمبيوتر
+🔎 تقييم 100/100 في SEO على Google Lighthouse
+
+تبي موقع لمشروعك؟ اضغط "إرسال رسالة" وخلنا نبدأ 📩
+
+#تصميم_مواقع #دبي #الرياض
 
 **When to post for the GCC:** Saudi Arabia, Qatar, Kuwait and Bahrain are an hour behind the UAE and Oman. Evenings from 8 to 10 pm Saudi time (9 to 11 pm UAE) reach the most people across the Gulf; Sunday to Thursday evenings are the best days.
 
