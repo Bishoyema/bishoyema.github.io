@@ -230,7 +230,10 @@ Want one for your brand? DM us "WEBSITE" 🚀
 
 #تصميم_مواقع #دبي #الرياض #webdesign #VeyraAI
 
-### Reel for the GCC: Facebook (Arabic only, with the Send Message button)
+### Reel for the GCC: Facebook (Arabic first, then English)
+
+Post it from the Veyra AI Page. Organic Reels have no button of their own, so the call to action
+points to the Page's Message button; when boosting, pick "Send message" as the ad's button.
 
 موقعك عنده ٣ ثواني بس عشان يقنع العميل ⏱️
 
@@ -241,9 +244,18 @@ Want one for your brand? DM us "WEBSITE" 🚀
 📱 مثالي على الجوال والكمبيوتر
 🔎 تقييم 100/100 في SEO على Google Lighthouse
 
-تبي موقع لمشروعك؟ اضغط "إرسال رسالة" وخلنا نبدأ 📩
+تبي موقع لمشروعك؟ أرسل لنا رسالة على الصفحة واكتب "موقع" 📩
 
-#تصميم_مواقع #دبي #الرياض
+—
+Your website has 3 seconds to win a customer. ⏱️
+See how we make websites that move, stand out and get found on Google:
+🎬 ImpactX: a cinematic portfolio and case-study pages for a real brand launch
+🧴 Oudelle and 🥤 WAVY: concept websites by our team, with 3D motion that follows the scroll
+📱 Perfect on mobile and desktop
+🔎 100/100 SEO on Google Lighthouse
+Need a website for your business? Message our page "WEBSITE" and let's start. 📩
+
+#تصميم_مواقع #دبي #الرياض #webdesign
 
 **When to post for the GCC:** Saudi Arabia, Qatar, Kuwait and Bahrain are an hour behind the UAE and Oman. Evenings from 8 to 10 pm Saudi time (9 to 11 pm UAE) reach the most people across the Gulf; Sunday to Thursday evenings are the best days.
 
