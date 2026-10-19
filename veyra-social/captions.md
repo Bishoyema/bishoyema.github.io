@@ -205,6 +205,43 @@ Want a website like this for your brand? DM us "WEBSITE" at @veyra_aistudio. �
 
 #تصميم_مواقع #مواقع_الكترونية #webdesign #3dwebsite #dubai #veyraai
 
+### Reel for the GCC: Instagram (Arabic first, then English)
+
+موقعك عنده ٣ ثواني بس عشان يقنع العميل… ⏱️
+
+في Veyra AI نصمم مواقع تتحرك، تلفت النظر، وتظهر في قوقل 👇
+🎬 ImpactX: بورتفوليو سينمائي وصفحات Case Study لإطلاق براند حقيقي
+🧴 Oudelle: موقع تجريبي لعطر فاخر، فيه زجاجة 3D تتحرك مع السكرول
+🥤 WAVY: موقع تجريبي لمشروب طاقة، العلب 3D تنزل وتلف ويتغير لونها مع كل نكهة
+
+📱 ممتاز على الجوال والكمبيوتر
+🔎 مبني عشان يظهر في قوقل: 100 في SEO و Accessibility و Best Practices على Google Lighthouse
+
+تبي موقع مثل كذا لمشروعك؟ أرسل لنا كلمة "WEBSITE" بالخاص 📩
+
+—
+
+Your website has 3 seconds to win a customer. ⏱️
+We build websites that move, impress and get found on Google:
+🎬 ImpactX · 🧴 Oudelle (concept) · 🥤 WAVY (concept)
+📱 Perfect on every screen · 🔎 100 SEO on Google Lighthouse
+Want one for your brand? DM us "WEBSITE" 🚀
+
+#تصميم_مواقع #مواقع_الكترونية #تصميم_مواقع_الرياض #دبي #الرياض #جدة #الكويت #قطر #webdesign #websitedesign #3dwebsite #dubai #riyadh #ksa #uae #veyraai
+
+### Reel for the GCC: Facebook (shorter, with the Send Message button)
+
+موقعك عنده ٣ ثواني بس ⏱️
+شوف كيف نخلي المواقع تتحرك وتبيع: ImpactX، و Oudelle و WAVY (مواقع تجريبية من تصميمنا) 👇
+📱 ممتاز على الجوال · 🔎 100 في SEO على Google Lighthouse
+تبي موقع لمشروعك؟ اضغط "إرسال رسالة" أو اكتب لنا "WEBSITE" 📩
+
+Your website has 3 seconds. We build websites that move, sell and get found on Google. Message us "WEBSITE" to start. 🚀
+
+#تصميم_مواقع #دبي #الرياض #webdesign #VeyraAI
+
+**When to post for the GCC:** Saudi Arabia, Qatar, Kuwait and Bahrain are an hour behind the UAE and Oman. Evenings from 8 to 10 pm Saudi time (9 to 11 pm UAE) reach the most people across the Gulf; Sunday to Thursday evenings are the best days.
+
 ## Posting notes
 
 - **Instagram:** post the five slides in order as one carousel. Slide 1 works on its own in the grid.
