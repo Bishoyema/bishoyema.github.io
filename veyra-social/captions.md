@@ -259,7 +259,38 @@ Need a website for your business? Message our page "WEBSITE" and let's start. �
 
 #تصميم_مواقع #دبي #الرياض #webdesign
 
+### Reel for the GCC: LinkedIn (English only)
+
+Upload the video file itself rather than a link. Post it from the personal profile, which reaches
+far more people on LinkedIn than a company page, then repost it from the Veyra AI page. A link to
+the portfolio goes in the first comment, not in the post. Only the first two lines show before
+"…see more", so they carry the hook.
+
+Your website has about 3 seconds to win a customer. ⏱️
+53% of mobile visitors leave a page that takes longer than 3 seconds to load (Google).
+
+At Veyra AI, we design and build websites that move, stand out and get found on Google. This reel shows three of them:
+
+🎬 ImpactX: a cinematic portfolio with case-study pages, built for a real brand launch
+🧴 Oudelle: a perfume house, where a 3D glass bottle follows your scroll
+🥤 WAVY: an energy drink, where 3D cans drop in, spin and change colour with every flavour
+
+Oudelle and WAVY are concept brands we created to show what's possible.
+
+Every site is built to perform, not just to look good:
+→ A layout designed for phones, not a shrunken desktop page
+→ SEO from day one: page titles, descriptions and link previews
+→ The Oudelle concept scores 100 for SEO, Accessibility and Best Practices on Google Lighthouse
+
+A website isn't a brochure. It's the first conversation with your customer.
+
+Planning a new website or a redesign in the UAE, Saudi Arabia or anywhere in the GCC? Comment "WEBSITE" below or send us a message, and let's talk about your project.
+
+#WebDesign #WebDevelopment #3DWebsite #Dubai #SaudiArabia
+
 **When to post for the GCC:** Saudi Arabia, Qatar, Kuwait and Bahrain are an hour behind the UAE and Oman. Evenings from 8 to 10 pm Saudi time (9 to 11 pm UAE) reach the most people across the Gulf; Sunday to Thursday evenings are the best days.
+
+**LinkedIn is a work-day platform:** Saudi Arabia works Sunday to Thursday and the UAE Monday to Friday, so Monday to Thursday reaches both. Post between 8 and 10 am Saudi time (9 to 11 am UAE).
 
 ## Posting notes
 
